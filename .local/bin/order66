@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#===============================================================================
+#
+#          FILE: order66
+#
+#         USAGE: ./order66
+#
+#   DESCRIPTION: Shutdown the system.
+#
+#  REQUIREMENTS: rsync
+#        AUTHOR: tung beier
+#       CREATED: 21 August 2019 20:42 CEST
+#===============================================================================
+
+set -o errexit  # Exit when a command fails
+                # Use || true if a command is allowed to fail
+set -o nounset  # Treat unset variables as an error
+set -o pipefail # Exit when a command in a pipeline fails
+
+
+#---  SCRIPT LOGIC  ------------------------------------------------------------
+
+shutdown -h now
+

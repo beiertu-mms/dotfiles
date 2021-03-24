@@ -1,0 +1,12 @@
+[submodule "zsh-autosuggestions"]
+	path = .config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh-completions"]
+	path = .config/zsh/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh-syntax-highlighting"]
+	path = .config/zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".config/zlua"]
+	path = .config/zlua
+	url = https://github.com/skywind3000/z.lua.git

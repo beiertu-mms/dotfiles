@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ -f ./git/MERGE_MODE ]]; then
+    exit 0
+fi
+
+commit_msg="$1"
+commit_regex='((^Revert .*[^\.]$)|(^\[(NoRef-0|S5|[A-Z]{2,10}-[0-9]{1,7})\] [A-Z].*[^\. ]$))((\n(.*)?)+)?'
+
+RED='\033[0;31m'
+NC='\033[0m' # no color
+
+error_msg="${RED}Aborting commit.${NC}\n"
+
+if [[ ${commit_msg} =~ ${commit_regex} ]]; then
+    echo -e "${error_msg}" >&2
+    exit 1
+fi
+

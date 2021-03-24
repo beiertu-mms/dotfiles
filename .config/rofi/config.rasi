@@ -1,0 +1,24 @@
+/* vim:ft=css */
+configuration {
+    lines: 20;
+    width: 1000;
+    columns: 1;
+    font: "JetBrainsMono-Regular 15";
+    show-icons: false;
+    terminal: "st";
+    eh: 1;
+    matching: "fuzzy";
+    separator-style: "dash";
+    hide-scrollbar: true;
+    color-normal: "#073642, #93a1a1, #073642, #b58900, #073642";
+    color-urgent: "#dc322f, #073642, #dc322f, #d33682, #073642";
+    color-active: "#268bd2, #073642, #2aa198, #268bd2, #073642";
+    color-window: "#073642,    #073642,    #268bd2";
+    display-window: " :";
+    display-windowcd: " :";
+    display-run: " :";
+    display-ssh: " :";
+    display-drun: " :";
+    display-combi: " :";
+    display-keys: " :";
+}

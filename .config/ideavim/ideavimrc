@@ -1,0 +1,15 @@
+set number
+set relativenumber
+set showmode
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set visualbell
+set wrapscan
+
+set ideajoin
+set ideastatusicon=gray
+
+" set surround
+

@@ -1,0 +1,59 @@
+#               _   _                                        __ _
+#      ______ _| |_| |__  _   _ _ __ __ _    ___ ___  _ __  / _(_) __ _
+#     |_  / _` | __| '_ \| | | | '__/ _` |  / __/ _ \| '_ \| |_| |/ _` |
+#      / / (_| | |_| | | | |_| | | | (_| | | (_| (_) | | | |  _| | (_| |
+#     /___\__,_|\__|_| |_|\__,_|_|  \__,_|  \___\___/|_| |_|_| |_|\__, |
+#                                                                 |___/
+#--------------------------------------------------------------------------------
+
+# enable copy selection
+    set selection-clipboard clipboard
+
+# Open document in fit-width mode by default
+    set adjust-open "best-fit"
+
+# stop at page boundries
+    set scroll-page-aware "true"
+    set scroll-full-overlap 0.01
+    set scroll-step 50
+
+# zoom settings
+    set zoom-min 10
+    set guioptions "s"
+
+    set font "inconsolata 12"
+
+# solarized light
+    set default-bg "#fdf6e3" #00
+    set default-fg "#002b36" #01
+    
+    set statusbar-fg "#eee8d5" #04
+    set statusbar-bg "#073642" #01
+    
+    set inputbar-bg "#859900" #00 currently not used
+    set inputbar-fg "#002b36" #02
+    
+    set notification-error-bg "#dc322f" #08
+    set notification-error-fg "#002b36" #00
+    
+    set notification-warning-bg "#b58900" #08
+    set notification-warning-fg "#002b36" #00
+    
+    set highlight-color "#859900" #0A
+    set highlight-active-color "#859900" #0D
+    
+    set completion-highlight-bg "#2aa198" #0C
+    set completion-highlight-fg "#002b36" #02
+    
+    set completion-bg "#268bd2" #02
+    set completion-fg "#002b36" #0C
+    
+    set notification-bg "#93a1a1" #0B
+    set notification-fg "#002b36" #00
+    
+    set recolor "true"
+    set recolor-lightcolor "#fdf6e3" #00
+    set recolor-darkcolor "#002b36" #06
+    set recolor-reverse-video "true"
+    set recolor-keephue "true"
+    

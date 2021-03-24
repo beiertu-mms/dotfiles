@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# ----- Variables -----
+# branch name
+name=$(git symbolic-ref --short HEAD)
+# branch prefix, e.g. feature, bugfix, etc.
+prefix=$(echo ${name} | cut -d '/' -f 1)
+# branch suffix == description
+suffix=$(echo ${name} | cut -d '/' -f 2)
+
+# check regex
+prefix_regex="^(master|develop|dev|integration|release)"
+task_regex="^[A-Z 0-9]{2,10}-[0-9]{1,7}"
+
+# ----- Functions -----
+
+# ----- Logic -----
+if [[ ${prefix} =~ $prefix_regex ]]; then
+    cat << END
+    ____________________
+   /                    \\
+   |      CAUTION!      |
+   \____________________/
+            !  !
+            L_ !
+           / _)!
+          / /__L
+_________/ (____)
+           (____)
+_________  (____)
+         \_(____)
+            !  !
+            \__/
+
+>>>>> You are on ${prefix} <<<<<
+
+END
+fi
+
+if [ -f .git/MERGE_MSG ]; then
+  exit 0
+fi
+
+if [ ! -f .git/COMMIT_EDITMSG ]; then
+  echo 'EDITMSG file does not exist. Exiting commit message preparation.'
+  exit 0
+fi
+
+if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
+  exit 0
+fi
+
+sed -i "1i ${suffix//[-_]/ }" .git/COMMIT_EDITMSG
+exit 0

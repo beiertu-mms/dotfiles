@@ -1,0 +1,14 @@
+name: linter
+on: push
+
+jobs:
+  lint:
+    name: Lint files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Lint Files
+        uses: docker://github/super-linter:v2.1.1
+

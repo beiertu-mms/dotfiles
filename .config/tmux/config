@@ -1,0 +1,123 @@
+#      _____
+#     |_   _| __ ___  _   ___  __
+#       | || '_ ` _ \| | | \ \/ /
+#       | || | | | | | |_| |>  <
+#       |_||_| |_| |_|\__,_/_/\_\
+#
+#-------------------------------------------------------------------------------
+# Split panes keys
+bind v split-window -h -c "#{pane_current_path}"
+bind h split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
+# Switch panes using Alt + vim keys
+bind -n M-h select-pane -L
+bind -n M-l select-pane -R
+bind -n M-j select-pane -U
+bind -n M-k select-pane -D
+
+# Switch windows
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# Enable vi style keys
+set -g status-keys vi
+setw -g mode-keys vi
+
+# Copy
+unbind [
+bind Escape copy-mode
+bind P paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard" \; save-buffer ~/.config/tmux/buffer
+
+# Reload config file while in tmux
+bind r source-file ~/.config/tmux/config \; display "Reload configurations..."
+
+# Mouse setting
+set -g mouse on
+
+# Automatically re-number windows after one is closed
+set -g renumber-windows on
+
+# Tmux history settings
+set -g history-limit 100000
+set -g history-file ~/.config/tmux/history
+
+# Stop auto rename of windows
+set-option -g allow-rename off
+
+# Default shell
+set-option -g default-shell /bin/zsh
+
+# Use 256 color
+set -g default-terminal "screen-256color"
+
+# No command delay
+set -sg escape-time 0
+
+# Do not display the original window's name when renaming it
+bind , command-prompt -p "(rename-window '#W')" "rename-window '%%'"
+
+# Do not display the orignal pane's name when renaming it
+bind '$' command-prompt -p "(rename-session '#S')" "rename-session '%%'"
+
+# Status bar position
+set-option -g status-position top
+
+# Status update interval
+set -g status-interval 1
+
+#-------------------------------------------------------------------------------
+#####     THEME     #####
+# Basic status bar colors
+set -g status-style "bg=colour235, fg=cyan"
+
+# Left side of status bar
+set -g status-left-style "bg=colour235, fg=green"
+set -g status-left-length 40
+set -g status-left "#[fg=white][#[fg=green]#S#[fg=white]] #[fg=yellow]#I #[fg=cyan]#P"
+
+# Right side of status bar
+set -g status-right-style "bg=colour235, fg=cyan"
+set -g status-right-length 40
+set -g status-right "#[fg=white][#[fg=cyan]#H#[fg=white]]"
+
+# Window status
+set -g window-status-format " #I:#W#F "
+set -g window-status-current-format " #I:#W#F "
+
+# Current window status
+set -g window-status-current-style "bg=default, fg=yellow"
+
+# Window with activity status
+# fg and bg are flipped here due to a bug in tmux
+set -g window-status-activity-style "bg=white, fg=colour235"
+
+# Window separator
+set -g window-status-separator ""
+
+# Window status alignment
+set -g status-justify centre
+
+# Pane border
+set -g pane-border-style default
+
+# Active pane border
+set -g pane-active-border-style "bg=default, fg=red"
+
+# Pane number indicator
+set -g display-panes-colour red
+set -g display-panes-active-colour green
+
+# Message
+set -g message-style default
+
+# Command message
+set -g message-command-style default
+
+# Mode
+set -g mode-style "bg=red, fg=default"
+

@@ -1,0 +1,67 @@
+# https://starship.rs/config/#prompt
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$kubernetes\
+$jobs\
+$status\
+$java\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = false
+
+[username]
+format = '[$user@]($style)'
+
+[hostname]
+format = '[$hostname](bold red) '
+
+[directory]
+home_symbol = ' '
+style = 'blue bold'
+format = '[  $path]($style)[$read_only]($read_only_style) '
+
+[kubernetes]
+disabled = false
+style = 'cyan dimmed'
+symbol = '  '
+format = '[$symbol$context:$namespace]($style) '
+
+[git_branch]
+disabled = false
+format = '[$symbol$branch]($style) '
+
+[git_commit]
+disabled = false
+tag_disabled = false
+
+[git_state]
+disabled = false
+
+[git_status]
+disabled = false
+
+[cmd_duration]
+disabled = false
+format = '[ $duration]($style) '
+#   
+
+[jobs]
+disabled = false
+format = '[$symbol $number]($style) '
+
+[status]
+disabled = false
+map_symbol = true
+format = '[$symbol $status]($style) '
+
+[java]
+disabled = true
+style = "yellow"
