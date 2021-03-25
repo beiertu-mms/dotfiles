@@ -64,6 +64,9 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Set LS_COLORS
+[ -e "$HOME/.config/dir_colors" ] && eval $(dircolors $HOME/.config/dir_colors)
+
 # Sourcing
 local ALIAS=$HOME/.config/alias
 if [ -d ${ALIAS} ]; then

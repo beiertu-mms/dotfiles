@@ -12,7 +12,6 @@ xmodmap -e "keysym Pause = Insert"
 [ -x "$HOME/.local/bin/webcam-setting.sh" ] && $HOME/.local/bin/webcam-setting.sh &
 
 [ -e "$HOME/.Xresources" ] && xrdb $HOME/.Xresources &
-[ -e "$HOME/.config/dir_colors" ] && eval $(dircolors $HOME/.config/dir_colors) &
 
 amixer sset 'Master' 60% && amixer sset 'Capture' 100% &
 
