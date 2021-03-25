@@ -8,15 +8,15 @@ xmodmap -e "clear lock"
 xmodmap -e "keysym Caps_Lock = Escape"
 xmodmap -e "keysym Pause = Insert"
 
-[ -e "$HOME/.Xresources" ] && xrdb $HOME/.Xresources &
 [ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && $HOME/.local/bin/generate-git-aliases.sh &
 [ -x "$HOME/.local/bin/webcam-setting.sh" ] && $HOME/.local/bin/webcam-setting.sh &
+
+[ -e "$HOME/.Xresources" ] && xrdb $HOME/.Xresources &
+[ -e "$HOME/.config/dir_colors" ] && eval $(dircolors $HOME/.config/dir_colors) &
 
 amixer sset 'Master' 60% && amixer sset 'Capture' 100% &
 
 numlockx &
-
-[ -e "$HOME/.config/dir_colors" ] && eval `dircolors $HOME/.config/dir_colors` &
 
 # Set fan speed for Nvidia
 # see https://www.techticity.com/howto/how-to-control-nvidia-graphics-card-fan-speed-in-linux/
