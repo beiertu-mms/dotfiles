@@ -2,52 +2,47 @@
 ![license](https://img.shields.io/github/license/beiertu-mms/dotfiles)
 [![linter](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml/badge.svg?branch=master)](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml)
 
-My dotfiles setup using git bare repository functionality.
+My dotfiles setup using [git](https://git-scm.com/) bare repository functionality.
 
-## How to track the dotfiles with a bare repository
-- Create a placeholder
-  ```bash
-  mkdir $HOME/dotfiles
-  ```
+- Table of contents
+  - [Prerequisites](#prerequisites)
+  - [Set up from scratch](#set-up-from-scratch)
+  - [Install the dotfiles on a new machine](#install-the-dotfiles-on-a-new-machine)
+  - [License](#license)
 
-- Initialize bare repository
-  ```bash
-  git init --bare $HOME/dotfiles
-  ```
+## Prerequisites
+- git
+- rsync (to set up a new machine)
 
-- Create alias to interact with the dotfiles
-  ```bash
-  alias dot='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
-  ```
+## Set up from scratch
+
+1. Create a placeholder for git internal files  
+  `mkdir -p ~/dotfiles`
+
+1. Initialize the bare repository  
+  `git init --bare ~/dotfiles`
+
+1. Create an alias to interact with the dotfiles  
+  `alias dot='git --git-dir=~/dotfiles/ --work-tree=$HOME'`  
   so instead of `git add` or `git status`, use `dot add`, `dot status` etc.
 
-- Setup status to not show untracked files
-  ```bash
-  dot config --local status.showUntrackedFiles no
-  ```
+1. Config git to ignore all files by default  
+  `dot config --local status.showUntrackedFiles no`
 
-- Add remote
-  ```bash
-  dot remote add origin <remote-git-repository>
-  ```
+1. Now you are ready to track your dot files.  
 
-- Show currently tracked files
-  ```bash
-  dot ls-tree -r master --name-only
-  ```
+**Note:** To see which files are currently being tracked, use `dot ls-tree -r master --name-only`
 
-## Setting up a new machine
-- Clone to a temporary folder<br>
-  ```bash
-  git clone --separate-git-dir=$HOME/dotfiles <remote-git-url> tmp-dotfiles
-  ```
+## Install the dotfiles on a new machine
 
-- Synchronize files<br>
-  ```bash
-  rsync --recursive --verbose --exclude '.git' tmp-dotfiles/ $HOME/
-  ```
+1. Clone to a temporary folder  
+  `git clone --separate-git-dir=~/dotfiles <remote-git-url> tmp-dotfiles`
 
-- Remove the temporary folder<br>
-  ```bash
-  rm -rf tmp-dotfiles
-  ```
+1. Synchronize the files  
+  `rsync --recursive --verbose --exclude '.git' tmp-dotfiles/ ~/`
+
+1. Remove the temporary folder  
+  `rm -rf tmp-dotfiles`
+
+## License
+Distributed under the MIT License. See LICENSE.txt for more information.
