@@ -13,22 +13,23 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-clang'
   Plug 'zchee/deoplete-go'
-  
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  
-  Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'fatih/vim-go'
+
   Plug 'udalov/kotlin-vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'yggdroot/indentline'
+  Plug 'fatih/vim-go'
+  Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'retrohacker/asciidoc.vim'
   Plug 'cespare/vim-toml'
+  
+  Plug 'sheerun/vim-polyglot'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'yggdroot/indentline'
   Plug 'mhinz/vim-signify'
+
+  Plug 'joshdick/onedark.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
