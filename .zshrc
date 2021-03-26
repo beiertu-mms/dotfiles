@@ -136,5 +136,3 @@ source $HOME/.config/zsh/ssh-agent/ssh-agent.plugin.zsh
 # Starship prompt - see https://starship.rs/
 eval "$(starship init zsh)"
 
-[ -x "$HOME/.local/bin/sysinfo.sh" ] && $HOME/.local/bin/sysinfo.sh
-
