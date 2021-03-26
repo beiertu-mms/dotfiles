@@ -1,6 +1,6 @@
 # Dotfiles
-![license](https://img.shields.io/github/license/beiertu-mms/dotfiles)
-[![linter](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml/badge.svg?branch=master)](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml)
+[![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?label=license&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt)
+[![GitHub Linter Workflow](https://img.shields.io/github/workflow/status/beiertu-mms/dotfiles/linter/master?label=linter&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml)
 
 My dotfiles setup using [git](https://git-scm.com/) bare repository functionality.
 
