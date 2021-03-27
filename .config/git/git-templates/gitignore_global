@@ -17,6 +17,7 @@
 *.rar
 *.tar
 *.zip
+*.tgz
 
 # Logs #
 ########
@@ -26,8 +27,6 @@
 ###########
 tmp/
 101/
-dev-tmp/
-dev-temp/
 
 # CTags and CScope #
 ####################
@@ -86,4 +85,3 @@ gradle-app.setting
 # Git patch files
 *.patch
 
-run-service-local.sh
