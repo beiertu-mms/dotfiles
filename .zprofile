@@ -16,6 +16,7 @@ export BROWSER="chromium"
 export READER="zathura"
 export FILE="lf"
 export PAGER="most"
+export DIFFPROG="nvim -d"
 
 M2_HOME=/opt/maven
 export M2_HOME
