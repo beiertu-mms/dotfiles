@@ -82,6 +82,11 @@ let g:ctrlp_custom_ignore = {
 colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 
+hi DiffAdd      ctermfg=Green         ctermbg=NONE
+hi DiffChange   ctermfg=NONE          ctermbg=NONE
+hi DiffDelete   ctermfg=Red           ctermbg=NONE
+hi DiffText     ctermfg=Yellow        ctermbg=NONE
+
 " Save undo history
 set undofile
 

@@ -132,6 +132,12 @@ syntax on
 colorscheme onedark
 set termguicolors
 
+hi DiffAdd      ctermfg=Green         ctermbg=NONE
+hi DiffChange   ctermfg=NONE          ctermbg=NONE
+hi DiffDelete   ctermfg=Red           ctermbg=NONE
+hi DiffText     ctermfg=Yellow        ctermbg=NONE
+
+
 " Set encoding
 set encoding=utf-8
 
