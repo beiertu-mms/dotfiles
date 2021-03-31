@@ -41,11 +41,10 @@ setopt auto_menu
 unsetopt menu_complete
 
 # Completion
-autoload -U compinit && compinit
+autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 bindkey -v # vi key binding
 export KEYTIMEOUT=1 # minimize delay
