@@ -4,3 +4,6 @@
 [submodule ".local/share/zsh-autosuggestions"]
 	path = .local/share/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".local/share/zsh-syntax-highlighting"]
+	path = .local/share/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
