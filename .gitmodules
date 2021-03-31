@@ -1,0 +1,3 @@
+[submodule ".local/share/z.lua"]
+	path = .local/share/z.lua
+	url = https://github.com/skywind3000/z.lua.git

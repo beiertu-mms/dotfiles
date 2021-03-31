@@ -112,12 +112,12 @@ sf() {
 }
 
 # z.lua
-if [ -f $HOME/.config/zlua/z.lua ]; then
+if [ -x $HOME/.local/share/z.lua/z.lua ]; then
     export _ZL_DATA=$HOME/.config/zluadata
     export _ZL_ADD_ONCE=1
     export _ZL_MATCH_MODE=1
     export _ZL_HYPHEN=1
-    eval "$(lua $HOME/.config/zlua/z.lua --init zsh)"
+    eval "$(lua $HOME/.local/share/z.lua/z.lua --init zsh)"
 fi
 
 # ssh-agent
