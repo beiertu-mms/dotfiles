@@ -74,19 +74,23 @@ if [ -d ${ALIAS} ]; then
     done
 fi
 
-[ -f $HOME/.config/proxy ] && source $HOME/.config/proxy
-
-# Google Cloud SDK.
-[ -f "$HOME/.local/share/google-cloud-sdk/path.zsh.inc" ] && source "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
-[ -f "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc" ] && source "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
+local files_to_source=(
+    "$HOME/.config/proxy"
+    # Google Cloud SDK.
+    "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
+    "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
+    # Zsh plugins
+    "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+    "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
+    "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+    "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
+)
+for file in ${files_to_source[@]}; do
+    [ -f "${file}" ] && source "${file}"
+done
 
 # Kubectl completion
 [[ /user/bin/kubectl ]] && source <(kubectl completion zsh)
-
-# Plugins
-[ -f "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ] && source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-[ -f "$HOME/.config/zsh/zsh-completions/zsh-completions.plugin.zsh" ] && source $HOME/.config/zsh/zsh-completions/zsh-completions.plugin.zsh
-[ -f "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ] && source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f'
@@ -130,7 +134,6 @@ case `hostname` in
         zstyle :omz:plugins:ssh-agent lifetime 1h
         ;;
 esac
-[ -f "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh" ] && source $HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh
 
 # Starship prompt - see https://starship.rs/
 eval "$(starship init zsh)"
