@@ -84,7 +84,7 @@ fi
 [[ /user/bin/kubectl ]] && source <(kubectl completion zsh)
 
 # Plugins
-source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+[ -f "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ] && source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.config/zsh/zsh-completions/zsh-completions.plugin.zsh
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 

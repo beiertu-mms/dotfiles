@@ -1,3 +1,6 @@
 [submodule ".local/share/z.lua"]
 	path = .local/share/z.lua
 	url = https://github.com/skywind3000/z.lua.git
+[submodule ".local/share/zsh-autosuggestions"]
+	path = .local/share/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
