@@ -130,7 +130,7 @@ case `hostname` in
         zstyle :omz:plugins:ssh-agent lifetime 1h
         ;;
 esac
-source $HOME/.config/zsh/ssh-agent/ssh-agent.plugin.zsh
+[ -f "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh" ] && source $HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh
 
 # Starship prompt - see https://starship.rs/
 eval "$(starship init zsh)"
