@@ -4,10 +4,7 @@ if [ -x "$HOME/.xprofile" ]; then
     . $HOME/.xprofile
 fi
 
-xmodmap -e "clear lock"
-xmodmap -e "keysym Caps_Lock = Escape"
-xmodmap -e "keysym Pause = Insert"
-
+[ -x "$HOME/.local/bin/change-keymap.sh" ] && $HOME/.local/bin/change-keymap.sh &
 [ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && $HOME/.local/bin/generate-git-aliases.sh &
 [ -x "$HOME/.local/bin/webcam-setting.sh" ] && $HOME/.local/bin/webcam-setting.sh &
 
@@ -40,9 +37,4 @@ wmname LG3D
 
 dwmblocks 2>&1 >/dev/null &
 exec dwm
-
-# ----- I3wm -----
-#$HOME/.local/bin/generate-i3-config
-#$HOME/.local/bin/generate-i3blocks-config
-#exec i3
 
