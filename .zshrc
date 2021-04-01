@@ -84,6 +84,20 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+#++++++++++++++++#
+#     ZStyle     #
+#++++++++++++++++#
+# ssh-agent
+case `hostname` in
+    node202)
+        zstyle :omz:plugins:ssh-agent identities id_rsa-mms id_rsa-tungbeier
+        ;;
+    *)
+        zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_github_mms
+        zstyle :omz:plugins:ssh-agent lifetime 1h
+        ;;
+esac
+
 #++++++++++++++++++#
 #     Sourcing     #
 #++++++++++++++++++#
@@ -104,6 +118,7 @@ local files_to_source=(
     "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
     "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
     "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
+    "$HOME/.local/share/zsh-kafka-completions/kafka.plugin.zsh"
 )
 for file in ${files_to_source[@]}; do
     [ -f "${file}" ] && source "${file}"
@@ -121,20 +136,6 @@ sf() {
     local selected=$(fd -t f -H "$1" $location | fzf)
     [[ -n "$selected" ]] && nvim $selected
 }
-
-#++++++++++++++++#
-#     ZStyle     #
-#++++++++++++++++#
-# ssh-agent
-case `hostname` in
-    node202)
-        zstyle :omz:plugins:ssh-agent identities id_rsa-mms id_rsa-tungbeier
-        ;;
-    *)
-        zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_github_mms
-        zstyle :omz:plugins:ssh-agent lifetime 1h
-        ;;
-esac
 
 #++++++++++++++#
 #     Eval     #
