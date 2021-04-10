@@ -34,7 +34,7 @@ format = '[$hostname](bold red) '
 [directory]
 #home_symbol = ' '
 style = 'blue bold'
-format = ' [ ]($style) [$read_only]($read_only_style)[$path]($style) '
+format = '[ ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
@@ -74,3 +74,8 @@ format = '[$symbol $status]($style) '
 disabled = true
 style = "yellow"
 
+[character]
+format = "$symbol "
+#success_symbol = "[❯](bold green)"
+#error_symbol = "[❯](bold red)"
+#vicmd_symbol = "[❮](bold green)"
