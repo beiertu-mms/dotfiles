@@ -61,8 +61,6 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
 
-[[ /user/bin/kubectl ]] && source <(kubectl completion zsh)
-
 #++++++++++++++++++++#
 #     Keybinding     #
 #++++++++++++++++++++#
