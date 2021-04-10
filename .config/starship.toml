@@ -32,9 +32,9 @@ format = '[$user@]($style)'
 format = '[$hostname](bold red) '
 
 [directory]
-home_symbol = ' '
+#home_symbol = ' '
 style = 'blue bold'
-format = '[ ]($style) [$read_only]($read_only_style)[$path]($style) '
+format = ' [ ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
