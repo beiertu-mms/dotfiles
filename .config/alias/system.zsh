@@ -26,3 +26,5 @@ alias mkd='mkdir -pv'
 
 alias gotop='gotop -l custom'
 
+alias wget="wget --hsts-file $HOME/.config/wget-hsts"
+
