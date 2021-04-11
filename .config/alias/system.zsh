@@ -13,7 +13,7 @@ alias vi='nvim'
 alias nv='nvim'
 alias vim="vim -u $HOME/.config/vimrc"
 
-alias L='less'
+alias L='bat -p'
 alias M='most'
 alias C='cat'
 alias B='bat'
