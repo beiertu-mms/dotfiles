@@ -10,13 +10,14 @@ fi
 
 [ -e "$HOME/.Xresources" ] && xrdb $HOME/.Xresources &
 
-amixer sset 'Master' 60% && amixer sset 'Capture' 100% &
+amixer sset 'Master' 70% &
+amixer sset 'Capture' 100% &
 
 numlockx &
 
 # Set fan speed for Nvidia
 # see https://www.techticity.com/howto/how-to-control-nvidia-graphics-card-fan-speed-in-linux/
-nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=15" &
+[[ /usr/bin/nvidia-settings ]] && nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=10" &
 
 [ ! -d "$HOME/data/git/work" ] && mkdir -p $HOME/data/git/work &
 [ ! -d "$HOME/data/git/private" ] && mkdir -p $HOME/data/git/private &
@@ -29,8 +30,10 @@ $HOME/.local/bin/screenlayout.sh && \
     --bg-fill $HOME/.config/wallpapers/bg2.jpg \
     --bg-fill $HOME/.config/wallpapers/bg.jpg &
 
-# ----- DWM -----
-# Workaround for java app to be correctly display in DWM
+#-------------#
+#     DWM     #
+#-------------#
+# Workaround for jvm app to be correctly display in DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 wmname LG3D
