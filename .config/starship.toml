@@ -16,11 +16,11 @@ $git_commit\
 $git_state\
 $git_status\
 $kubernetes\
-$jobs\
 $status\
 $java\
 $cmd_duration\
 $line_break\
+$jobs\
 $character"""
 
 add_newline = false
