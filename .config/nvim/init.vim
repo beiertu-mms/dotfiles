@@ -15,11 +15,11 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
+  autocmd!
+  autocmd VimEnter * PlugInstall
 endif
 
-let g:polyglot_disabled = ['markdown']
-
+set termguicolors
 "==============================================================================
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -27,14 +27,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
   " Golang
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'fatih/vim-go', { 'branch': 'master' }
 
   " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
 
-  " Theme
+  " Color theme
   Plug 'joshdick/onedark.vim'
 
   " Statusline
@@ -47,21 +47,34 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'norcalli/nvim-colorizer.lua'
 
   " Syntax highlighting
+  let g:polyglot_disabled = ['markdown']
   Plug 'sheerun/vim-polyglot'
 call plug#end()
 
-" Settings
-set termguicolors
-set updatetime=100
+"==============================================================================
+
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
+
+"==============================================================================
 
 lua require'colorizer'.setup()
 
-" Deoplete
-let g:deoplete#enable_at_startup=1
+let mapleader=","
 
-" Golang
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
+let g:deoplete#enable_at_startup = 1
+
+" vim-go
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_fmt_command = "goimports"
 
 " Airline
 let g:airline_powerline_fonts=1
@@ -73,8 +86,10 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 "==============================================================================
+" Settings
 "
-let mapleader=","
+set updatetime=100
+set completeopt+=noselect
 
 colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
@@ -166,7 +181,6 @@ set autowrite
 set path+=**
 set shell=/bin/zsh
 set ttyfast
-" :au FocusLost * :wa
 
 set splitbelow splitright
 
