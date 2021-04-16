@@ -31,8 +31,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'ctrlpvim/ctrlp.vim'
-
   Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-surround'
 
   " Theme
   Plug 'joshdick/onedark.vim'
