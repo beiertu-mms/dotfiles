@@ -18,6 +18,8 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
 endif
 
+let g:polyglot_disabled = ['markdown']
+
 "==============================================================================
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -43,6 +45,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'yggdroot/indentline'
   Plug 'norcalli/nvim-colorizer.lua'
+
+  " Syntax highlighting
+  Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Settings
