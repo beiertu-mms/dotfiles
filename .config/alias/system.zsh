@@ -17,6 +17,7 @@ alias L='bat -p'
 alias M='most'
 alias C='cat'
 alias B='bat'
+alias F="fzf"
 
 alias cp='cp --interactive --verbose --preserve'
 alias mv='mv --verbose --interactive'
