@@ -10,6 +10,5 @@ set wrapscan
 
 set ideajoin
 set ideastatusicon=gray
-
-" set surround
+set surround
 
