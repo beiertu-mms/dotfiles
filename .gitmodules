@@ -10,3 +10,6 @@
 [submodule ".local/share/zsh-completions"]
 	path = .local/share/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule ".local/share/zsh-terraform"]
+	path = .local/share/zsh-terraform
+	url = git@github.com:jsporna/terraform-zsh-plugin.git
