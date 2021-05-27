@@ -116,7 +116,7 @@ local files_to_source=(
     "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
     "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
     "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
-    "$HOME/.local/share/zsh-kafka-completions/kafka.plugin.zsh"
+    "$HOME/.local/share/zsh-terraform/terraform.plugin.zsh"
 )
 for file in ${files_to_source[@]}; do
     [ -f "${file}" ] && source "${file}"
