@@ -33,6 +33,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
   " Color theme
   Plug 'joshdick/onedark.vim'
@@ -84,6 +85,22 @@ let g:airline_theme='ayu_mirage'
 let g:ctrlp_custom_ignore = {
   \ 'dir': '(out|build|target)',
   \ }
+
+" Firenvim
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }
 
 "==============================================================================
 " Settings
@@ -187,6 +204,13 @@ set splitbelow splitright
 set updatetime=100
 
 set laststatus=2
+
+set guifont=JetBrains_Mono:h16
+if exists('g:started_by_firenvim')
+  set laststatus=0
+else
+  set laststatus=2
+endif
 
 "==============================================================================
 " Key maps
