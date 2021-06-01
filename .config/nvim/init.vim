@@ -11,6 +11,8 @@
 " Vim options: http://vimdoc.sourceforge.net/htmldoc/options.html
 
 "==============================================================================
+" Plugins
+"==============================================================================
 " auto-install vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -20,8 +22,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 set termguicolors
-"==============================================================================
-" Plugins
+
 call plug#begin('~/.local/share/nvim/plugged')
   " Auto completion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -52,13 +53,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sheerun/vim-polyglot'
 call plug#end()
 
-"==============================================================================
-
+" plugin's settings
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
-
-"==============================================================================
 
 lua require'colorizer'.setup()
 
@@ -104,7 +102,7 @@ let g:firenvim_config = {
 
 "==============================================================================
 " Settings
-"
+"==============================================================================
 set updatetime=100
 set completeopt+=noselect
 
@@ -213,7 +211,8 @@ else
 endif
 
 "==============================================================================
-" Key maps
+" Key mappings
+"==============================================================================
 " Moving between splits with Ctrl + vim keys
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -225,8 +224,13 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+" CtrlP and ctags
+nnoremap <leader>t ::CtrlPTag<cr>
+
 "==============================================================================
 " Functions
+"==============================================================================
 " ag - the silver searcher
 if executable('ag')
   " Prefer over vim grep
@@ -246,11 +250,4 @@ function! DeleteTrailingWhiteSpaces()
 endfunction
 
 " autocmd BufWrite *.py, *.java, *.h, *.cpp, *.js, *.kt :call DeleteTrailingWhiteSpaces()
-command! FixWhitespaces call DeleteTrailingWhiteSpaces()
-
-" Write file with higher permission
-command! W w !sudo tee "%" > /dev/null
-
-" CtrlP and ctags
-nnoremap <leader>t ::CtrlPTag<cr>
 
