@@ -17,12 +17,16 @@ set -o errexit  # Exit when a command fails
 set -o nounset  # Treat unset variables as an error
 set -o pipefail # Exit when a command in a pipeline fails
 
-figlet -w 500 "Arch update"
+function print() {
+    figlet -w 500 "$1"
+}
+
+print "arch"
 yay -Syyu
 
-figlet -w 500 "gcloud update"
+print "gcloud"
 gcloud components update
 
-figlet -w 500 "ccloud update"
+print "ccloud"
 ccloud update
 
