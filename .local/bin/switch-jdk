@@ -17,7 +17,7 @@ set -o errexit  # Exit when a command fails
 set -o nounset  # Treat unset variables as an error
 set -o pipefail # Exit when a command in a pipeline fails
 
-SELECTED=$(archlinux-java status | sed '1d' | awk '{$1=$1};1' | fzf)
+SELECTED=$(archlinux-java status | grep -v 'default' | sed '1d' | awk '{$1=$1};1' | fzf)
 if [[ -z "$SELECTED" || "$SELECTED" =~ default ]]; then
     exit 0
 fi
