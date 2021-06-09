@@ -3,5 +3,6 @@
     "config:base"
   ],
   "labels": ["dependencies"],
+  "groupName": "all dependencies",
   "automerge": true
 }
