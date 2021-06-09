@@ -31,7 +31,7 @@ if [[ "$#" -eq 1 ]]; then
 fi
 
 echo "Stop ${wireless_interface}"
-sudo -S ip link set $wireless_interface down
+sudo -S ip link set "$wireless_interface" down
 
 echo "Start ${wpa_name}"
 sudo -S netctl start "$wpa_name"

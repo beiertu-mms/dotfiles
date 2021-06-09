@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [ -x "$HOME/.xprofile" ]; then
-    # shellcheck source=$HOME/.xprofile
-    . "$HOME"/.xprofile
+    # shellcheck disable=SC1091
+    source "$HOME"/.xprofile
 fi
 
 [ -x "$HOME/.local/bin/change-keymap.sh" ] && "$HOME"/.local/bin/change-keymap.sh &
@@ -18,7 +18,9 @@ numlockx &
 
 # Set fan speed for Nvidia
 # see https://www.techticity.com/howto/how-to-control-nvidia-graphics-card-fan-speed-in-linux/
-[[ /usr/bin/nvidia-settings ]] && nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=10" &
+if [ command -v nvidia-settings &> /dev/null ]; then
+    nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=10" &
+fi
 
 [ ! -d "$HOME/data/git/work" ] && mkdir -p "$HOME"/data/git/work &
 [ ! -d "$HOME/data/git/private" ] && mkdir -p "$HOME"/data/git/private &
@@ -26,7 +28,7 @@ numlockx &
 compton -CGb &
 
 # Screen layout and wallpaper
-$HOME/.local/bin/screenlayout.sh && \
+"$HOME"/.local/bin/screenlayout.sh && \
     feh --no-fehbg \
     --bg-fill "$HOME"/.config/wallpapers/bg2.jpg \
     --bg-fill "$HOME"/.config/wallpapers/bg.jpg &
