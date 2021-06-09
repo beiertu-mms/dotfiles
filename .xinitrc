@@ -18,7 +18,8 @@ numlockx &
 
 # Set fan speed for Nvidia
 # see https://www.techticity.com/howto/how-to-control-nvidia-graphics-card-fan-speed-in-linux/
-if [ command -v nvidia-settings &> /dev/null ]; then
+if command -v nvidia-settings &> /dev/null 
+then
     nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=10" &
 fi
 
