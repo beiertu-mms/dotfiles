@@ -4,13 +4,12 @@
 # branch name
 name=$(git symbolic-ref --short HEAD)
 # branch prefix, e.g. feature, bugfix, etc.
-prefix=$(echo ${name} | cut -d '/' -f 1)
+prefix=$(echo "${name}" | cut -d '/' -f 1)
 # branch suffix == description
-suffix=$(echo ${name} | cut -d '/' -f 2)
+suffix=$(echo "${name}" | cut -d '/' -f 2)
 
 # check regex
 prefix_regex="^(master|develop|dev|integration|release)"
-task_regex="^[A-Z 0-9]{2,10}-[0-9]{1,7}"
 
 # ----- Functions -----
 
