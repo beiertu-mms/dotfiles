@@ -19,7 +19,7 @@ set -o pipefail # Exit when a command in a pipeline fails
 
 
 #---  SCRIPT LOGIC  ------------------------------------------------------------
-wireless_interface=wlp7s0
+wireless_interface=$(ip link show | grep 'wlp' | awk '{print $2}' | sed 's/://')
 wpa_name=tbe-at-home
 
 if [[ "$#" -gt 1 ]]; then
@@ -34,5 +34,5 @@ echo "Stop ${wireless_interface}"
 sudo -S ip link set $wireless_interface down
 
 echo "Start ${wpa_name}"
-sudo -S netctl start $wpa_name
+sudo -S netctl start "$wpa_name"
 

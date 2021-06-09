@@ -1,14 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ -x "$HOME/.xprofile" ]; then
-    . $HOME/.xprofile
+    # shellcheck source=$HOME/.xprofile
+    . "$HOME"/.xprofile
 fi
 
-[ -x "$HOME/.local/bin/change-keymap.sh" ] && $HOME/.local/bin/change-keymap.sh &
-[ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && $HOME/.local/bin/generate-git-aliases.sh &
-[ -x "$HOME/.local/bin/webcam-setting.sh" ] && $HOME/.local/bin/webcam-setting.sh &
+[ -x "$HOME/.local/bin/change-keymap.sh" ] && "$HOME"/.local/bin/change-keymap.sh &
+[ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && "$HOME"/.local/bin/generate-git-aliases.sh &
+[ -x "$HOME/.local/bin/webcam-setting.sh" ] && "$HOME"/.local/bin/webcam-setting.sh &
 
-[ -e "$HOME/.Xresources" ] && xrdb $HOME/.Xresources &
+[ -e "$HOME/.Xresources" ] && xrdb "$HOME"/.Xresources &
 
 amixer sset 'Master' 70% &
 amixer sset 'Capture' 100% &
@@ -19,16 +20,16 @@ numlockx &
 # see https://www.techticity.com/howto/how-to-control-nvidia-graphics-card-fan-speed-in-linux/
 [[ /usr/bin/nvidia-settings ]] && nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=10" &
 
-[ ! -d "$HOME/data/git/work" ] && mkdir -p $HOME/data/git/work &
-[ ! -d "$HOME/data/git/private" ] && mkdir -p $HOME/data/git/private &
+[ ! -d "$HOME/data/git/work" ] && mkdir -p "$HOME"/data/git/work &
+[ ! -d "$HOME/data/git/private" ] && mkdir -p "$HOME"/data/git/private &
 
 compton -CGb &
 
 # Screen layout and wallpaper
 $HOME/.local/bin/screenlayout.sh && \
     feh --no-fehbg \
-    --bg-fill $HOME/.config/wallpapers/bg2.jpg \
-    --bg-fill $HOME/.config/wallpapers/bg.jpg &
+    --bg-fill "$HOME"/.config/wallpapers/bg2.jpg \
+    --bg-fill "$HOME"/.config/wallpapers/bg.jpg &
 
 #-------------#
 #     DWM     #
