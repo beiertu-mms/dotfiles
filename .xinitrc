@@ -42,6 +42,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 wmname LG3D
 
-dwmblocks 2>&1 >/dev/null &
+dwmblocks > /dev/null 2>&1 &
 exec dwm
 
