@@ -103,7 +103,7 @@ let g:firenvim_config = {
 " netrw - vim internal directory browser
 let g:netrw_liststyle = 3     " i: to change view
 let g:netrw_banner = 1        " I: to hide banner
-let g:netrw_browse_split = 2  " open file in 1 - new horizontal split; 2 - new vertical split; 3 - new tab; 4 - previous window
+let g:netrw_browse_split = 4  " open file in 1 - new horizontal split; 2 - new vertical split; 3 - new tab; 4 - previous window
 let g:netrw_winsize = 20      " set width to n% of the page
 "augroup ProjectDrawer " open on vim enter
 "  autocmd!
