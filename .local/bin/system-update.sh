@@ -24,9 +24,15 @@ function print() {
 print "arch"
 yay -Syyu
 
-print "gcloud"
-gcloud components update
+if command -v gcloud &> /dev/null
+then
+    print "gcloud"
+    gcloud components update
+fi
 
-print "ccloud"
-ccloud update
+if command -v ccloud &> /dev/null
+then
+    print "ccloud"
+    ccloud update
+fi
 
