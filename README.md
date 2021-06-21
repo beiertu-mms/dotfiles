@@ -1,4 +1,5 @@
-# Dotfiles
+# <img src="https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png" alt="dotfiles logo" width="400">
+
 [![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?label=license&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt)
 [![GitHub Linter Workflow](https://img.shields.io/github/workflow/status/beiertu-mms/dotfiles/linter/master?label=linter&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml)
 
@@ -43,6 +44,9 @@ My dotfiles setup using [git](https://git-scm.com/) bare repository functionalit
 
 1. Remove the temporary folder  
   `rm -rf tmp-dotfiles`
+
+## Credits
+- [dotfiles image](https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png) by [Joel Glovier](https://github.com/jglovier)
 
 ## License
 Distributed under the MIT License. See LICENSE.txt for more information.
