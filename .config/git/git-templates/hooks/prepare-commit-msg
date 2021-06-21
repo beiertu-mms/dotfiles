@@ -22,6 +22,7 @@ _________  (____)
 END
 }
 
+# shellcheck disable=SC2009
 if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
     # skip this as --no-verify was given as param
     exit 0
