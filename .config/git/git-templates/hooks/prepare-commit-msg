@@ -1,20 +1,6 @@
 #!/usr/bin/env bash
 
-# ----- Variables -----
-# branch name
-name=$(git symbolic-ref --short HEAD)
-# branch prefix, e.g. feature, bugfix, etc.
-prefix=$(echo "${name}" | cut -d '/' -f 1)
-# branch suffix == description
-suffix=$(echo "${name}" | cut -d '/' -f 2)
-
-# check regex
-prefix_regex="^(master|develop|dev|integration|release)"
-
-# ----- Functions -----
-
-# ----- Logic -----
-if [[ ${prefix} =~ $prefix_regex ]]; then
+function printCautionText() {
     cat << END
     ____________________
    /                    \\
@@ -34,20 +20,41 @@ _________  (____)
 >>>>> You are on ${prefix} <<<<<
 
 END
-fi
+}
 
-if [ -f .git/MERGE_MSG ]; then
-  exit 0
-fi
+if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
+    # skip this as --no-verify was given as param
+    exit 0
+else
+    # ----- Variables -----
+    # branch name
+    name=$(git symbolic-ref --short HEAD)
+    # branch prefix, e.g. feature, bugfix, etc.
+    prefix=$(echo "${name}" | cut -d '/' -f 1)
+    # branch suffix == description
+    suffix=$(echo "${name}" | cut -d '/' -f 2)
 
-if [ ! -f .git/COMMIT_EDITMSG ]; then
-  echo 'EDITMSG file does not exist. Exiting commit message preparation.'
-  exit 0
-fi
+    # check regex
+    prefix_regex="^(master|develop|dev|integration|release)"
 
-if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
-  exit 0
-fi
+    # ----- Logic -----
+    if [[ ${prefix} =~ $prefix_regex ]]; then
+        printCautionText
+    fi
 
-sed -i "1i ${suffix//[-_]/ }" .git/COMMIT_EDITMSG
-exit 0
+    if [ -f .git/MERGE_MSG ]; then
+        exit 0
+    fi
+
+    if [ ! -f .git/COMMIT_EDITMSG ]; then
+        echo 'EDITMSG file does not exist. Exiting commit message preparation.'
+        exit 0
+    fi
+
+    if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
+        exit 0
+    fi
+
+    sed -i "1i ${suffix//[-_]/ }" .git/COMMIT_EDITMSG
+    exit 0
+fi
