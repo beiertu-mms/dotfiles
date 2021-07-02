@@ -65,9 +65,7 @@ gh pr list | grep "$search_branch_name" | while read -r pr ; do
     msg=$(echo "$pr" | cut -f2 | xargs)
 
     echo -e "try to apply pr #${id}..."
-    gh pr diff "$id" | git apply --apply --verbose
-
-    if [ $? -eq 0 ]; then
+    if gh pr diff "$id" | git apply; then
         git commit --all --no-verify --message "$msg"
         echo -e "${GREEN}pr #${id}: '${msg}' apply successfully${NC}\n"
     else
