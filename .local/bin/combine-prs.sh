@@ -29,7 +29,7 @@ Options:
 -s  earch criteria for branches to be considered in the combination. Default: dependabot.
 *   show this usage.
 EOF
-    1>&2; exit 1; 
+    exit 1; 
 }
 
 #===============================================================================
@@ -50,7 +50,7 @@ shift $((OPTIND-1))
 #===============================================================================
 git stash
 git checkout "$base_branch"
-git remote update -p && git merge --ff-only @{u}
+git pull --ff-only
 git checkout -b "$combine_branch_name"
 
 #===============================================================================
