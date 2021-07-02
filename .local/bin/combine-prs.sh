@@ -7,18 +7,22 @@
 #
 #   DESCRIPTION: Combine multiple braches, which match the search criteria
 #                into one new brach.
+#                This will try to apply the patches. If one fails, it will
+#                continue with the next one.
 #
 #  REQUIREMENTS: gh (github-cli), git
 #        AUTHOR: tung beier
 #       CREATED: 01 July 2021 23:16 CEST
 #===============================================================================
 
-set -o errexit  # Exit when a command fails
-                # Use || true if a command is allowed to fail
 set -o nounset  # Treat unset variables as an error
 set -o pipefail # Exit when a command in a pipeline fails
 
-#===============================================================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+#===== Print the usage of this script ==========================================
 usage() {
     cat << EOF
 usage: ./combine-prs.sh [OPTIONS]
@@ -32,7 +36,7 @@ EOF
     exit 1; 
 }
 
-#===============================================================================
+#===== Parse arguments =========================================================
 base_branch="master"
 combine_branch_name="Update-dependencies"
 search_branch_name="dependabot"
@@ -47,20 +51,28 @@ while getopts ":b:c:s:" option; do
 done
 shift $((OPTIND-1))
 
-#===============================================================================
+#===== Update and checkout to new branch =======================================
 git stash
 git checkout "$base_branch"
 git pull --ff-only
+git branch -D "$combine_branch_name"
 git checkout -b "$combine_branch_name"
+echo ""
 
-#===============================================================================
+#===== Search and apply patches ================================================
 gh pr list | grep "$search_branch_name" | while read -r pr ; do
     id=$(echo "$pr" | cut -f1 | xargs)
     msg=$(echo "$pr" | cut -f2 | xargs)
 
-    gh pr diff "$id" | git apply -v
-    git add .
-    git commit --no-verify --message "$msg"
+    echo -e "try to apply pr #${id}..."
+    gh pr diff "$id" | git apply --apply --verbose
+
+    if [ $? -eq 0 ]; then
+        git commit --all --no-verify --message "$msg"
+        echo -e "${GREEN}pr #${id}: '${msg}' apply successfully${NC}\n"
+    else
+        echo -e "${RED}failed to apply pr #${id}: '${msg}'${NC}\n"
+    fi
 done
 
 echo "done"
