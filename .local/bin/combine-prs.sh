@@ -52,12 +52,15 @@ done
 shift $((OPTIND-1))
 
 #===== Update and checkout to new branch =======================================
-git stash
-git checkout "$base_branch"
-git pull --ff-only
-git branch -D "$combine_branch_name"
-git checkout -b "$combine_branch_name"
-echo ""
+current_branch=$(git branch | grep '*' | cut -d' ' -f2)
+if [[ "$current_branch" != "$combine_branch_name" ]]; then
+    git stash
+    git checkout "$base_branch"
+    git pull --ff-only
+    git branch -D "$combine_branch_name"
+    git checkout -b "$combine_branch_name"
+    echo ""
+fi
 
 #===== Search and apply patches ================================================
 gh pr list | grep "$search_branch_name" | while read -r pr ; do
