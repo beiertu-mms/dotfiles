@@ -85,3 +85,4 @@ gradle-app.setting
 # Git patch files
 *.patch
 
+run.sh
