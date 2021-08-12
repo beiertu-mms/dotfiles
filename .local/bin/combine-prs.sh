@@ -52,7 +52,7 @@ done
 shift $((OPTIND-1))
 
 #===== Update and checkout to new branch =======================================
-current_branch=$(git branch | grep '*' | cut -d' ' -f2)
+current_branch=$(git branch | grep -F '*' | cut -d' ' -f2)
 if [[ "$current_branch" != "$combine_branch_name" ]]; then
     git stash
     git checkout "$base_branch"
