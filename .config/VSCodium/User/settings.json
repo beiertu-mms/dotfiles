@@ -3,11 +3,10 @@
     "debug.console.fontSize": 16,
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "block",
-    "editor.fontFamily": "'JetBrainsMono Regular', 'monospace', monospace, 'JetBrainsMono Regular'",
+    "editor.fontFamily": "'JetBrains Mono Regular', 'monospace', monospace, 'JetBrains Mono Regular'",
     "editor.fontLigatures": true,
     "editor.fontSize": 15,
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 140,
     "editor.quickSuggestionsDelay": 100,
@@ -66,5 +65,7 @@
     "workbench.preferredDarkColorTheme": "Gruvbox Material Dark",
     "workbench.preferredLightColorTheme": "Gruvbox Material Light",
     "workbench.colorTheme": "One Dark Pro",
-    "redhat.telemetry.enabled": true
+    "redhat.telemetry.enabled": true,
+    "scm.inputFontSize": 14,
+    "editor.formatOnSave": true
 }
