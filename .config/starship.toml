@@ -32,14 +32,14 @@ format = '[$user@]($style)'
 format = '[$hostname](bold red) '
 
 [directory]
-#home_symbol = ' '
+#home_symbol = '🏠'
 style = 'blue bold'
-format = '[ ]($style) [$read_only]($read_only_style)[$path]($style) '
+format = '[🗁  ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
 style = 'yellow dimmed'
-symbol = '  '
+symbol = '☁  '
 format = '[$symbol$context:$namespace]($style) '
 
 [git_branch]
@@ -58,8 +58,8 @@ disabled = false
 
 [cmd_duration]
 disabled = false
-style = 'cyan dimmed'
-format = '[  $duration]($style) '
+style = 'cyan'
+format = '[⌛$duration]($style) ' # ⚙ 
 
 [jobs]
 disabled = false
