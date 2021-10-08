@@ -15,13 +15,15 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
+$git_metrics\
 $kubernetes\
 $status\
 $java\
 $cmd_duration\
 $line_break\
 $jobs\
-$character"""
+$character
+"""
 
 add_newline = false
 
@@ -34,12 +36,12 @@ format = '[$hostname](bold red) '
 [directory]
 #home_symbol = '🏠'
 style = 'blue bold'
-format = '[🗁  ]($style) [$read_only]($read_only_style)[$path]($style) '
+format = '[🗁 ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
-style = 'yellow dimmed'
-symbol = '☁  '
+style = 'white dimmed'
+#symbol = '☁️ '
 format = '[$symbol$context:$namespace]($style) '
 
 [git_branch]
@@ -49,16 +51,44 @@ format = '[$symbol$branch]($style) '
 [git_commit]
 disabled = false
 tag_disabled = false
+only_detached = true
 
 [git_state]
 disabled = false
+format = '\([$state($progress_current/$progress_total)]($style)\) '
+style = 'bold yellow'
+cherry_pick = "[🍒 PICKING](bold red)"
+rebase = 'REBASING'
+merge = 'MERGING'
+revert = 'REVERTING'
+bisect = 'BISECTING'
+am = 'AM'
+am_or_rebase = 'AM/REBASE'
 
 [git_status]
 disabled = false
+format = '([\[ $ahead_behind$all_status\]]($style) )'
+style = 'bold red'
+diverged = '⇄ ${ahead_count}⇡${behind_count}⇣ '
+ahead = '[${count}⇡ ](blue)'
+behind = '[${count}⇣ ](yellow)'
+up_to_date = '[✅](green)'
+conflicted = '${count}⤧  '
+stashed = '[${count}📦 ](yellow)'
+deleted = '${count}✘ '
+renamed = '${count}» '
+modified = '[${count}📝 ](yellow)'
+staged = '[${count}➕](green)'
+untracked = '[${count}❓](cyan)'
+
+[git_metrics]
+disabled = true
+added_style = "bold blue"
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 
 [cmd_duration]
 disabled = false
-style = 'cyan'
+style = 'cyan dimmed'
 format = '[⌛$duration]($style) ' # ⚙ 
 
 [jobs]
@@ -72,10 +102,10 @@ format = '[$symbol $status]($style) '
 
 [java]
 disabled = true
-style = "yellow"
+style = 'yellow'
 
 [character]
-format = "$symbol "
-#success_symbol = "[❯](bold green)"
-#error_symbol = "[❯](bold red)"
-#vicmd_symbol = "[❮](bold green)"
+format = '$symbol '
+#success_symbol = '[❯](bold green)'
+#error_symbol = '[❯](bold red)'
+#vicmd_symbol = '[❮](bold green)'
