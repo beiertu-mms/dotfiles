@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2009
+if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
+    # skip this as --no-verify was given as param
+    exit 0
+fi
+
+if [[ ! -x "$(pwd)/gradlew" ]]; then
+    exit 0
+fi
+
+if ! bash "$(pwd)/gradlew" tasks | grep -q 'ktlintFormat'; then
+    exit 0
+fi
+
+bash ./gradlew ktlintFormat > /dev/null
