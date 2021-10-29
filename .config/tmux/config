@@ -3,7 +3,7 @@
 #       | || '_ ` _ \| | | \ \/ /
 #       | || | | | | | |_| |>  <
 #       |_||_| |_| |_|\__,_/_/\_\
-#
+# See https://man7.org/linux/man-pages/man1/tmux.1.html
 #-------------------------------------------------------------------------------
 # Split panes keys
 bind v split-window -h -c "#{pane_current_path}"
@@ -31,10 +31,16 @@ bind Escape copy-mode
 bind P paste-buffer
 bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard" \; save-buffer ~/.config/tmux/buffer
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard" \; save-buffer ~/.cache/tmux_buffer
 
 # Reload config file while in tmux
 bind r source-file ~/.config/tmux/config \; display "Reload configurations..."
+
+# Do not display the original window's name when renaming it
+bind , command-prompt -p "(rename-window '#W')" "rename-window '%%'"
+
+# Do not display the orignal pane's name when renaming it
+bind '$' command-prompt -p "(rename-session '#S')" "rename-session '%%'"
 
 # Mouse setting
 set -g mouse on
@@ -43,8 +49,8 @@ set -g mouse on
 set -g renumber-windows on
 
 # Tmux history settings
-set -g history-limit 100000
-set -g history-file ~/.config/tmux/history
+set -g history-limit 1000000
+set -g history-file ~/.local/share/tmux_history
 
 # Stop auto rename of windows
 set-option -g allow-rename off
@@ -57,12 +63,6 @@ set -g default-terminal "screen-256color"
 
 # No command delay
 set -sg escape-time 0
-
-# Do not display the original window's name when renaming it
-bind , command-prompt -p "(rename-window '#W')" "rename-window '%%'"
-
-# Do not display the orignal pane's name when renaming it
-bind '$' command-prompt -p "(rename-session '#S')" "rename-session '%%'"
 
 # Status bar position
 set-option -g status-position top
