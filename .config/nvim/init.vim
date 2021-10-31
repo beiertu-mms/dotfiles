@@ -11,7 +11,7 @@
 " Vim options: http://vimdoc.sourceforge.net/htmldoc/options.html
 
 "==============================================================================
-" Plugins
+" PLUGINS
 "==============================================================================
 " auto-install vim-plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -30,8 +30,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Golang
   Plug 'fatih/vim-go', { 'branch': 'master' }
 
-  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-surround'
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -79,11 +79,6 @@ let g:go_fmt_command = "goimports"
 let g:airline_powerline_fonts=1
 let g:airline_theme='ayu_mirage'
 
-" CtrlP
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '(out|build|target)',
-  \ }
-
 " Firenvim
 let g:firenvim_config = { 
     \ 'globalSettings': {
@@ -110,7 +105,7 @@ let g:netrw_winsize = 20      " set width to n% of the page
 "augroup END
 
 "==============================================================================
-" Settings
+" SETTINGS
 "==============================================================================
 set updatetime=100
 set completeopt+=noselect
@@ -220,7 +215,7 @@ else
 endif
 
 "==============================================================================
-" Key mappings
+" KEY MAPPINGS
 "==============================================================================
 " Moving between splits with Ctrl + vim keys
 map <C-j> <C-W>j
@@ -234,21 +229,17 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" CtrlP and ctags
-nnoremap <leader>t ::CtrlPTag<cr>
-
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-n> :GFiles<CR>
+nnoremap <C-s> :Buffers<CR>
 "==============================================================================
-" Functions
+" FUNCTIONS
 "==============================================================================
 " ag - the silver searcher
 if executable('ag')
   " Prefer over vim grep
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
-
-  " Use ag in CtrlP
-  let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching=0
 endif
 
 " Delete trailing white spaces on save
