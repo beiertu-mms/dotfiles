@@ -1,48 +1,10 @@
 #!/usr/bin/env bash
 
-function printCautionText() {
-    cat << END
-    ____________________
-   /                    \\
-   |      CAUTION!      |
-   \____________________/
-            !  !
-            L_ !
-           / _)!
-          / /__L
-_________/ (____)
-           (____)
-_________  (____)
-         \_(____)
-            !  !
-            \__/
-
->>>>> You are on ${prefix} <<<<<
-
-END
-}
-
 # shellcheck disable=SC2009
 if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
     # skip this as --no-verify was given as param
     exit 0
 else
-    # ----- Variables -----
-    # branch name
-    name=$(git symbolic-ref --short HEAD)
-    # branch prefix, e.g. feature, bugfix, etc.
-    prefix=$(echo "${name}" | cut -d '/' -f 1)
-    # branch suffix == description
-    suffix=$(echo "${name}" | cut -d '/' -f 2)
-
-    # check regex
-    prefix_regex="^(master|develop|dev|integration|release)"
-
-    # ----- Logic -----
-    if [[ ${prefix} =~ $prefix_regex ]]; then
-        printCautionText
-    fi
-
     if [ -f .git/MERGE_MSG ]; then
         exit 0
     fi
@@ -55,6 +17,11 @@ else
     if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
         exit 0
     fi
+
+    # branch name
+    name=$(git symbolic-ref --short HEAD)
+    # branch suffix == description
+    suffix=$(echo "${name}" | cut -d '/' -f 2)
 
     sed -i "1i ${suffix//[-_]/ }" .git/COMMIT_EDITMSG
     exit 0

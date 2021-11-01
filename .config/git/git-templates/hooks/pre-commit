@@ -14,4 +14,8 @@ if ! bash "$(pwd)/gradlew" tasks | grep -q 'ktlintFormat'; then
     exit 0
 fi
 
+if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
+    terraform fmt
+fi
+
 bash ./gradlew ktlintFormat > /dev/null
