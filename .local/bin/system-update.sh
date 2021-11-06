@@ -39,5 +39,11 @@ then
     ccloud update
 fi
 
+if command -v confluent &> /dev/null
+then
+    print "update confluent"
+    confluent update
+fi
+
 print "done"
 
