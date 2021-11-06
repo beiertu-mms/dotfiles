@@ -11,7 +11,7 @@ fi
 
 [ -e "$HOME/.Xresources" ] && xrdb "$HOME"/.Xresources &
 
-amixer sset 'Master' 70% &
+amixer sset 'Master' 100% &
 amixer sset 'Capture' 100% &
 
 numlockx &
