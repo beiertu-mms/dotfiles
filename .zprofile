@@ -32,8 +32,6 @@ export GOPATH
 PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin
 export PATH
 
-export BAT_THEME="Dracula"
-
 export RAM_DISK_PATH="$HOME/downloads"
 export BACK_UP_PATH="$HOME/data/backup"
 
