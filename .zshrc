@@ -92,7 +92,7 @@ case `hostname` in
         ;;
     *)
         zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_github_mms
-        zstyle :omz:plugins:ssh-agent lifetime 1h
+        # zstyle :omz:plugins:ssh-agent lifetime 1h
         ;;
 esac
 
