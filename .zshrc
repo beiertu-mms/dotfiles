@@ -99,10 +99,10 @@ esac
 #++++++++++++++++++#
 #     Sourcing     #
 #++++++++++++++++++#
-local alias_dir=$HOME/.config/alias
+local alias_dir="$HOME/.config/alias"
 if [ -d ${alias_dir} ]; then
-    for f in ${alias_dir}/*; do
-        source ${f}
+    for alias_file in $alias_dir/*.zsh; do
+        source "$alias_file"
     done
 fi
 
