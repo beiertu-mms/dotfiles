@@ -86,3 +86,8 @@ gradle-app.setting
 *.patch
 
 run.sh
+
+env_secrets.yaml
+secret.yaml
+sealedSecret.yaml
+
