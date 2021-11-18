@@ -96,9 +96,10 @@ case `hostname` in
         ;;
 esac
 
-#++++++++++++++++++#
-#     Sourcing     #
-#++++++++++++++++++#
+#++++++++++++++++++++++#
+#     Source files     #
+#++++++++++++++++++++++#
+# aliases
 local alias_dir="$HOME/.config/alias"
 if [ -d ${alias_dir} ]; then
     for alias_file in $alias_dir/*.zsh; do
@@ -106,6 +107,15 @@ if [ -d ${alias_dir} ]; then
     done
 fi
 
+# functions
+local func_dir="$HOME/.config/zsh/functions"
+if [ -d ${func_dir} ]; then
+    for func_file in $func_dir/*.zsh; do
+        source "$func_file"
+    done
+fi
+
+# some files
 local files_to_source=(
     "$HOME/.config/proxy"
     # Google Cloud SDK.
@@ -120,19 +130,6 @@ local files_to_source=(
 for file in ${files_to_source[@]}; do
     [ -f "${file}" ] && source "${file}"
 done
-
-#+++++++++++++++++++#
-#     Functions     #
-#+++++++++++++++++++#
-sd() { cd $(fd -t d -E '.git/*' -E 'build/*' -E 'target/*' -H "$1" $HOME | fzf) ; }
-sf() {
-    local location=$(pwd)
-    if [ -n "$2" ]; then
-        location="$2"
-    fi
-    local selected=$(fd -t f -E '.git/*' -E 'build/*' -E 'target/*' -H "$1" $location | fzf)
-    [[ -n "$selected" ]] && nvim $selected
-}
 
 #++++++++++++++#
 #     Eval     #
