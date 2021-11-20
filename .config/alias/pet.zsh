@@ -1,0 +1,7 @@
+alias pt='pet'
+alias pted='pet edit'
+alias ptex='pet exec --command'
+alias ptl='pet list'
+alias ptn='pet new'
+alias ptnt='pet new --tag'
+alias pts='pet search --color'
