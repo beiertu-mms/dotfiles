@@ -1,5 +1,8 @@
-alias zz='z -c'      # restrict matches to subdirs of $PWD
-alias zi='z -i'      # cd with interactive selection
-alias zf='z -I'      # use fzf to select in multiple matches
-alias zb='z -b'      # quickly cd to the parent directory
+alias zr='z -r' # cd to the highest ranked dir matching foo
+alias zt='z -t' # cd to most recently accessed dir matching foo
+alias zl='z -l' # list matches instead of cd
+alias ze='z -e' # echo the best match, don't cd
+alias zz='z -c' # restrict matches to subdirs of $PWD
+alias zb='z -b' # cd to the parent directory starting with foo
+alias zi='z -I' # cd with interactive selection using fzf; z -i to cd with interactive without fzf
 
