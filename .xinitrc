@@ -7,7 +7,6 @@ fi
 
 [ -x "$HOME/.local/bin/change-keymap.sh" ] && "$HOME"/.local/bin/change-keymap.sh &
 [ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && "$HOME"/.local/bin/generate-git-aliases.sh &
-[ -x "$HOME/.local/bin/webcam-setting.sh" ] && "$HOME"/.local/bin/webcam-setting.sh &
 
 [ -e "$HOME/.Xresources" ] && xrdb "$HOME"/.Xresources &
 
