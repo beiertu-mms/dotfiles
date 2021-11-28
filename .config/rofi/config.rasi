@@ -127,7 +127,6 @@ configuration {
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	steal-focus: false;*/
 	terminal: "st";
-	theme: "gruvbox-dark";
 /*	threads: 0;*/
 /*	tokenize: true;*/
 /*	window-command: "wmctrl -i -R {window}";*/
@@ -147,3 +146,4 @@ configuration {
       sorting-method:    "name";
   }
 }
+@theme "gruvbox-dark"
