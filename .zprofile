@@ -18,6 +18,7 @@ export FILE="lf"
 export PAGER="most"
 export DIFFPROG="nvim -d"
 export GNUPGHOME="$HOME/.config/gnupg"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 M2_HOME=/opt/maven
 export M2_HOME
