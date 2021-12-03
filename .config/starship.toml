@@ -40,7 +40,7 @@ format = '[🗁 ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
-style = 'white dimmed'
+style = 'green dimmed'
 #symbol = '☁️ '
 format = '[$symbol$context:$namespace]($style) '
 
