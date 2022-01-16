@@ -67,5 +67,6 @@
     "workbench.colorTheme": "One Dark Pro",
     "redhat.telemetry.enabled": true,
     "scm.inputFontSize": 14,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "window.openWithoutArgumentsInNewWindow": "off"
 }
