@@ -18,4 +18,4 @@ if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
     terraform fmt
 fi
 
-bash ./gradlew ktlintFormat > /dev/null
+gradle ktlintFormat > /dev/null
