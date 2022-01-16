@@ -1,0 +1,2 @@
+Plug 'joshdick/onedark.vim'
+

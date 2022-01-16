@@ -21,96 +21,36 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
-set termguicolors
-
 call plug#begin('~/.local/share/nvim/plugged')
-  " Auto completion
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-  " Golang
-  Plug 'fatih/vim-go', { 'branch': 'master' }
-
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'tpope/vim-surround'
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
-  " Color theme
-  Plug 'joshdick/onedark.vim'
-
-  " Statusline
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-
-  " UI
-  Plug 'airblade/vim-gitgutter'
-  Plug 'yggdroot/indentline'
-  Plug 'norcalli/nvim-colorizer.lua'
-
-  " Syntax highlighting
-  let g:polyglot_disabled = ['markdown']
-  Plug 'sheerun/vim-polyglot'
+  source ~/.config/nvim/plugins/airline.vim
+  source ~/.config/nvim/plugins/auto-pairs.vim
+  source ~/.config/nvim/plugins/colorizer.vim
+  source ~/.config/nvim/plugins/deoplete.vim
+  source ~/.config/nvim/plugins/firenvim.vim
+  source ~/.config/nvim/plugins/fzf.vim
+  source ~/.config/nvim/plugins/gitgutter.vim
+  source ~/.config/nvim/plugins/go.vim
+  source ~/.config/nvim/plugins/indentline.vim
+  source ~/.config/nvim/plugins/netrw.vim
+  source ~/.config/nvim/plugins/onedark.vim
+  source ~/.config/nvim/plugins/polyglot.vim
+  source ~/.config/nvim/plugins/surround.vim
 call plug#end()
 
-" plugin's settings
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
 
+set termguicolors
 lua require'colorizer'.setup()
-
-let mapleader=","
-
-let g:deoplete#enable_at_startup = 1
-
-" vim-go
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_fmt_command = "goimports"
-
-" Airline
-let g:airline_powerline_fonts=1
-let g:airline_theme='ayu_mirage'
-
-" Firenvim
-let g:firenvim_config = { 
-    \ 'globalSettings': {
-        \ 'alt': 'all',
-    \  },
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'content': 'text',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
-            \ 'takeover': 'never',
-        \ },
-    \ }
-\ }
-
-" netrw - vim internal directory browser
-let g:netrw_liststyle = 3     " i: to change view
-let g:netrw_banner = 1        " I: to hide banner
-let g:netrw_winsize = 20      " set width to n% of the page
-"augroup ProjectDrawer " open on vim enter
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
-
 "==============================================================================
 " SETTINGS
 "==============================================================================
+colorscheme onedark
+
 set updatetime=100
 set completeopt+=noselect
 
-colorscheme onedark
 hi Normal guibg=NONE ctermbg=NONE
 
 hi DiffAdd      ctermfg=Green         ctermbg=NONE
@@ -217,6 +157,8 @@ endif
 "==============================================================================
 " KEY MAPPINGS
 "==============================================================================
+let mapleader=","
+
 " Moving between splits with Ctrl + vim keys
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -229,11 +171,8 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <C-p> :FZF<CR>
-nnoremap <C-n> :GFiles<CR>
-nnoremap <C-s> :Buffers<CR>
 "==============================================================================
-" FUNCTIONS
+" MISCELLANEOUS
 "==============================================================================
 " ag - the silver searcher
 if executable('ag')
