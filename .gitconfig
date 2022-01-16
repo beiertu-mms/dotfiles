@@ -2,6 +2,7 @@
 	editor = nvim
 	fileMode = false
 	excludesfile = ~/.config/git/git-templates/gitignore_global
+	pager = bat --plain
 [merge]
 	tool = meld
 [mergetool "meld"]
@@ -25,6 +26,8 @@
 	a = add
 	c = commit --verbose
 	cp = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
 	br = branch
 	co = checkout
 	sh = stash
@@ -32,9 +35,11 @@
 	sha = stash apply
 	shp = stash pop
 	re = rebase
-	rei = rebase -i
+	rei = rebase --interactive
+	rec = rebase --continue
+	rea = rebase --abort
 	unstage = reset HEAD
-	af = add -f
+	af = add --force
 [push]
 	default = current
 [includeIf "gitdir:~/data/git/"]
