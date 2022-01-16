@@ -19,6 +19,7 @@ $git_metrics\
 $kubernetes\
 $status\
 $java\
+$time\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -89,7 +90,7 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 [cmd_duration]
 disabled = false
 style = 'cyan dimmed'
-format = '[⌛$duration]($style) ' # ⚙ 
+format = '[⚙ $duration]($style) ' # ⚙ ⌛
 
 [jobs]
 disabled = false
@@ -109,3 +110,10 @@ format = '$symbol '
 #success_symbol = '[❯](bold green)'
 #error_symbol = '[❯](bold red)'
 #vicmd_symbol = '[❮](bold green)'
+
+[time]
+disabled = false
+format = '[🕒$time]($style) '
+time_format = "%T"
+style = 'cyan dimmed'
+
