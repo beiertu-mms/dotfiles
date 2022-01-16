@@ -64,7 +64,7 @@ fi
 
 
 #===== Search and apply patches ================================================
-echo -e "${GREEN}about to apply $(gh pr list | grep "$search_branch_name" | wc -l) PRs${NC}"
+echo -e "${GREEN}about to apply $(gh pr list | grep -c "$search_branch_name") PRs${NC}"
 gh pr list | grep "$search_branch_name" | while read -r pr ; do
     id=$(echo "$pr" | cut -f1 | xargs)
     msg=$(echo "$pr" | cut -f2 | xargs)
