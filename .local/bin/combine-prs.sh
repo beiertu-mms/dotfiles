@@ -39,7 +39,7 @@ EOF
 #===== Parse arguments =========================================================
 base_branch="master"
 combine_branch_name="Update-dependencies"
-search_branch_name="dependabot"
+search_branch_name="dependabot-"
 
 while getopts ":b:c:s:" option; do
     case "${option}" in
@@ -62,18 +62,23 @@ if [[ "$current_branch" != "$combine_branch_name" ]]; then
     echo ""
 fi
 
+
 #===== Search and apply patches ================================================
+echo -e "${GREEN}about to apply $(gh pr list | grep "$search_branch_name" | wc -l) PRs${NC}"
 gh pr list | grep "$search_branch_name" | while read -r pr ; do
     id=$(echo "$pr" | cut -f1 | xargs)
     msg=$(echo "$pr" | cut -f2 | xargs)
 
-    echo -e "try to apply pr #${id}..."
+    echo -e "${GREEN}try to apply pr #${id}...${NC}"
     if gh pr diff "$id" | git apply; then
         git commit --all --no-verify --message "$msg"
         echo -e "${GREEN}pr #${id}: '${msg}' apply successfully${NC}\n"
     else
-        echo -e "${RED}failed to apply pr #${id}: '${msg}'${NC}\n"
+        echo -e "${RED}merge pr #${id}: '${msg}'${NC}"
+        pr_branch=$(echo "$pr" | cut -f3 | xargs)
+        git merge "origin/$pr_branch" --message "$msg" --strategy-option theirs --verbose
     fi
+    echo ""
 done
 
 echo "done"
