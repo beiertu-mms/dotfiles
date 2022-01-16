@@ -45,5 +45,11 @@ then
     confluent update
 fi
 
+if command -v cheatsheets &> /dev/null
+then
+    print "update cheatsheets"
+    cheatsheets pull
+fi
+
 print "done"
 
