@@ -36,17 +36,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   source ~/.config/nvim/plugins/polyglot.vim
   source ~/.config/nvim/plugins/surround.vim
 call plug#end()
+doautocmd User PlugLoaded
 
-call deoplete#custom#option('omni_patterns', {
-\ 'go': '[^. *\t]\.\w*',
-\})
-
-set termguicolors
-lua require'colorizer'.setup()
 "==============================================================================
 " SETTINGS
 "==============================================================================
-colorscheme onedark
 
 set updatetime=100
 set completeopt+=noselect
