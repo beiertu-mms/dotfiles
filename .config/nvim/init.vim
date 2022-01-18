@@ -18,7 +18,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd!
-  autocmd VimEnter * PlugInstall
+  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -66,8 +66,8 @@ set list
 set listchars=tab:▸\ ,eol:¬,nbsp:+
 
 " Spell checking
-  " set spelllang=en_us,de_de
-  " set spell
+" set spelllang=en_us,de_de
+" set spell
 
 set expandtab
 set smarttab
@@ -80,7 +80,6 @@ au FileType vim,yml,yaml,toml,json setlocal sw=2 ts=2 sts=2
 au FileType cpp setlocal noexpandtab
 au FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 
-" Auto reload file when it is changed outside
 set autoread
 
 set clipboard=unnamed
@@ -99,8 +98,7 @@ set hlsearch
 
 set lazyredraw
 
-" Turn on magic for regex
-set magic
+set magic " turn on magic for regex
 
 set showmatch
 
@@ -140,13 +138,6 @@ set splitbelow splitright
 set updatetime=100
 
 set laststatus=2
-
-set guifont=JetBrains_Mono:h16
-if exists('g:started_by_firenvim')
-  set laststatus=0
-else
-  set laststatus=2
-endif
 
 "==============================================================================
 " KEY MAPPINGS
