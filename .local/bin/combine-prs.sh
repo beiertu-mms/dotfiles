@@ -64,7 +64,8 @@ fi
 
 
 #===== Search and apply patches ================================================
-echo -e "${GREEN}about to apply $(gh pr list | grep -c "$search_branch_name") PRs${NC}"
+pr_count=$(gh pr list | grep -c "$search_branch_name")
+echo -e "${GREEN}about to apply ${pr_count} PRs${NC}"
 gh pr list | grep "$search_branch_name" | while read -r pr ; do
     id=$(echo "$pr" | cut -f1 | xargs)
     msg=$(echo "$pr" | cut -f2 | xargs)
@@ -80,6 +81,8 @@ gh pr list | grep "$search_branch_name" | while read -r pr ; do
     fi
     echo ""
 done
+
+git rebase --interactive "HEAD~${pr_count}"
 
 echo "done"
 
