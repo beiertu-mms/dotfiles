@@ -17,11 +17,11 @@ $git_state\
 $git_status\
 $git_metrics\
 $kubernetes\
-$status\
 $java\
-$time\
 $cmd_duration\
+$status\
 $line_break\
+$time\
 $jobs\
 $character
 """
@@ -90,7 +90,7 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 [cmd_duration]
 disabled = false
 style = 'cyan dimmed'
-format = '[⚙ $duration]($style) ' # ⚙ ⌛
+format = '[⌛$duration]($style) ' # ⚙ ⌛
 
 [jobs]
 disabled = false
@@ -113,7 +113,7 @@ format = '$symbol '
 
 [time]
 disabled = false
-format = '[🕒$time]($style) '
+format = '[$time]($style) ' # 🕒
 time_format = "%T"
 style = 'cyan dimmed'
 
