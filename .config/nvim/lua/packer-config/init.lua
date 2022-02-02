@@ -8,8 +8,7 @@ end
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'navarasu/onedark.nvim'
-  use 'joshdick/onedark.vim' -- somehow these work together?!
+  use 'joshdick/onedark.vim'
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -21,7 +20,10 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use 'sheerun/vim-polyglot'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
 
   if packer_bootstrap then
     require('packer').sync()

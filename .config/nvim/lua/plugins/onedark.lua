@@ -1,6 +1,6 @@
--- https://github.com/navarasu/onedark.nvim
--- also see https://github.com/joshdick/onedark.vim
-require('onedark').load()
-
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+-- https://github.com/joshdick/onedark.vim
+vim.cmd([[
+colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
+]])
 
