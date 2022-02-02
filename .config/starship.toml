@@ -8,6 +8,7 @@
 # https://starship.rs/config/#prompt
 
 format = """
+$time\
 $username\
 $hostname\
 $directory\
@@ -21,7 +22,6 @@ $java\
 $cmd_duration\
 $status\
 $line_break\
-$time\
 $jobs\
 $character
 """
