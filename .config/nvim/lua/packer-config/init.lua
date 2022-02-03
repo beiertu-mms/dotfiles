@@ -25,6 +25,11 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end

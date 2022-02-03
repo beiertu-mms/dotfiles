@@ -15,6 +15,7 @@
 require('settings')
 require('keys-binding')
 require('packer-config')
+require('lsp-config')
 require('plugins.onedark')
 require('plugins.lualine')
 require('plugins.telescope')
