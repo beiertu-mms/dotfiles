@@ -1,5 +1,10 @@
 -- https://github.com/nvim-telescope/telescope.nvim
-require('telescope').setup{
+local status_ok, telescope = pcall(require, 'telescope')
+if not status_ok then
+  return
+end
+
+telescope.setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
@@ -8,7 +13,7 @@ require('telescope').setup{
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
+        -- ["<C-h>"] = "which_key"
       }
     }
   },

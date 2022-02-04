@@ -12,7 +12,7 @@ set.listchars:append("space:⋅")
 set.listchars:append("tab:>-")
 
 set.updatetime=100
-set.completeopt:append('noselect')
+set.completeopt:append('menu,menuone,noselect')
 
 set.expandtab = true
 set.smarttab = true

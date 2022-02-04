@@ -1,8 +1,12 @@
 -- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/williamboman/nvim-lsp-installer
+require('utils')
 
-require('functions')
-local nvim_lsp = require('lspconfig')
+local lsp_status_ok, _ = require('lspconfig')
+if not lsp_status_ok then
+  return
+end
+
 local lsp_installer_servers = require('nvim-lsp-installer.servers')
 require("nvim-lsp-installer").settings({
     ui = {
@@ -15,14 +19,16 @@ require("nvim-lsp-installer").settings({
 })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-nmap("<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
-nmap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-nmap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-nmap("<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+--nmap("<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
+--nmap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+--nmap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+--nmap("<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>")
 
+--[[
 local buf_map = function(bufnr, mode, keys, command)
   vim.api.nvim_buf_set_keymap(bufnr, mode, keys, command, { noremap=true, silent=true })
 end
+--]]
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -32,24 +38,39 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_map(bufnr, 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  buf_map(bufnr, 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  buf_map(bufnr, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  buf_map(bufnr, 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  buf_map(bufnr, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  buf_map(bufnr, '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-  buf_map(bufnr, '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-  buf_map(bufnr, '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
-  buf_map(bufnr, '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  buf_map(bufnr, '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  buf_map(bufnr, '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  buf_map(bufnr, 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-  buf_map(bufnr, '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  --buf_map(bufnr, 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  --buf_map(bufnr, 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+  --buf_map(bufnr, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+  --buf_map(bufnr, 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  --buf_map(bufnr, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  --buf_map(bufnr, '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+  --buf_map(bufnr, '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+  --buf_map(bufnr, '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+  --buf_map(bufnr, '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  --buf_map(bufnr, '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+  --buf_map(bufnr, '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  --buf_map(bufnr, 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  --buf_map(bufnr, '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 end
 
 local servers = {
-    "kotlin_language_server",
-    "bashls",
+  'awk_ls',
+  'bashls',
+  'clangd',
+  'cmake',
+  'dockerls',
+  'gopls',
+  'groovyls',
+  'jsonls',
+  'jdtls',
+  'kotlin_language_server',
+  'pyright',
+  'remark_ls',
+  'sumneko_lua',
+  'taplo',
+  'tflint',
+  'lemminx',
+  'yamlls',
 }
 
 for _, server_name in pairs(servers) do

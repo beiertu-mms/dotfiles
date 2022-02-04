@@ -5,7 +5,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-return require('packer').startup(function(use)
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
+
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'joshdick/onedark.vim'
@@ -25,9 +30,23 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- language server protocol
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+
+  -- completion
   use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'saadparwaiz1/cmp_luasnip',
+  }
+
+  -- snippets
+  use {
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
   }
 
   if packer_bootstrap then
