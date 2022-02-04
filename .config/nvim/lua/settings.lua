@@ -1,5 +1,6 @@
 --[[
--- settings
+-- Settings
+-- Vim options: http://vimdoc.sourceforge.net/htmldoc/options.html
 --]]
 local set = vim.opt
 

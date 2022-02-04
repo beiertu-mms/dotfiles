@@ -9,13 +9,12 @@
 -- License: MIT
 --
 -- Neovim documentation https://neovim.io/doc/user/vim_diff.html
--- Vim options: http://vimdoc.sourceforge.net/htmldoc/options.html
 --]]
 
 require('settings')
-require('keys-binding')
+require('key-bindings')
 require('packer')
---require('lsp-config')
+--require('language-servers')
 require('plugins.onedark')
 require('plugins.lualine')
 require('plugins.telescope')
