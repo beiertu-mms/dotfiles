@@ -24,9 +24,6 @@ function print() {
     echo -e "\n${GREEN}${1}${NC}\n"
 }
 
-print "update arch"
-yay -Syyu
-
 if command -v gcloud &> /dev/null
 then
     print "update gcloud"
@@ -50,6 +47,9 @@ then
     print "update cheatsheets"
     cheatsheets pull
 fi
+
+print "update arch"
+yay -Syyu
 
 print "done"
 
