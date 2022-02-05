@@ -13,8 +13,8 @@
 
 require('settings')
 require('key-bindings')
-require('packer')
---require('language-servers')
+require('packer-config')
+require('language-servers')
 require('plugins.onedark')
 require('plugins.lualine')
 require('plugins.telescope')
