@@ -1,4 +1,10 @@
-require('utils')
+local map = function(mode, shortcut, command)
+  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+end
+
+local nmap = function(shortcut, command)
+  map('n', shortcut, command)
+end
 
 vim.g.mapleader=' '
 vim.g.maplocalleader=','
