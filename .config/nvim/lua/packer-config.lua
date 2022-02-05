@@ -1,8 +1,16 @@
--- See https://github.com/wbthomason/packer.nvim#quickstart
 local fn = vim.fn
+
+-- See https://github.com/wbthomason/packer.nvim#quickstart
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP = fn.system {
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  }
 end
 
 local status_ok, packer = pcall(require, 'packer')
@@ -22,7 +30,7 @@ return packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 
   use {
@@ -53,7 +61,10 @@ return packer.startup(function(use)
     'rafamadriz/friendly-snippets',
   }
 
-  if packer_bootstrap then
+  use 'jghauser/mkdir.nvim'
+  use 'lewis6991/gitsigns.nvim'
+
+  if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
 end)

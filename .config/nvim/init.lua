@@ -20,19 +20,16 @@ require('plugins.lualine')
 require('plugins.telescope')
 require('plugins.treesitter')
 require('plugins.completion')
+require('plugins.mkdir')
+require('plugins.gitsigns')
 
 --[[
 -- TODO:
--- [ ] LSP nvim-lspconfig + nvim-lspinstall + lspsaga.nvim
--- [x] nvim-cmp for completion / deoplete
--- [x] telescope.nvim replaces any search plugins e.g. ctrl-p or fzf.vim
--- [x] https://github.com/nvim-treesitter/nvim-treesitter for file preview?
--- [ ] gitsigns replaces vim-gitgutter
--- [ ] autopair
--- [ ] colorizer
--- [ ] firenvim
--- [ ] go.vim
--- [ ] indentline
--- [ ] surround
+-- autopair
+-- colorizer
+-- firenvim
+-- go.vim
+-- indentline
+-- surround
 --]]
 
