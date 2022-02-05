@@ -22,10 +22,10 @@ require('plugins.treesitter')
 require('plugins.completion')
 require('plugins.mkdir')
 require('plugins.gitsigns')
+require('plugins.autopairs')
 
 --[[
 -- TODO:
--- autopair
 -- colorizer
 -- firenvim
 -- go.vim

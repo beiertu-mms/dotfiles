@@ -63,6 +63,7 @@ return packer.startup(function(use)
 
   use 'jghauser/mkdir.nvim'
   use 'lewis6991/gitsigns.nvim'
+  use 'windwp/nvim-autopairs'
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
