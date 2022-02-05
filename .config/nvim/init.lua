@@ -23,13 +23,13 @@ require('plugins.completion')
 require('plugins.mkdir')
 require('plugins.gitsigns')
 require('plugins.autopairs')
+require('plugins.indentline')
 
 --[[
 -- TODO:
 -- colorizer
 -- firenvim
 -- go.vim
--- indentline
 -- surround
 --]]
 

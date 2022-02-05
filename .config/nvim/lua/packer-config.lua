@@ -21,8 +21,6 @@ end
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'joshdick/onedark.vim'
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -61,9 +59,13 @@ return packer.startup(function(use)
     'rafamadriz/friendly-snippets',
   }
 
-  use 'jghauser/mkdir.nvim'
-  use 'lewis6991/gitsigns.nvim'
-  use 'windwp/nvim-autopairs'
+  use {
+    'joshdick/onedark.vim',
+    'jghauser/mkdir.nvim',
+    'lewis6991/gitsigns.nvim',
+    'windwp/nvim-autopairs',
+    'lukas-reineke/indent-blankline.nvim',
+  }
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
