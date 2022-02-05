@@ -32,7 +32,10 @@ GOBIN=$GOPATH/bin
 export GOBIN
 export GOPATH
 
-PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin
+CARGO_HOME=$HOME/.local/share/cargo
+export CARGO_HOME
+
+PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin
 export PATH
 
 export RAM_DISK_PATH="$HOME/downloads"

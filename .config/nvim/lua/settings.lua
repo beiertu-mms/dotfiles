@@ -12,8 +12,8 @@ set.listchars:append("eol:¬")
 set.listchars:append("space:⋅")
 set.listchars:append("tab:>-")
 
-set.updatetime=100
-set.completeopt:append('menu,menuone,noselect')
+set.updatetime = 100
+set.completeopt:append("menu,menuone,noselect")
 
 set.expandtab = true
 set.smarttab = true
@@ -62,7 +62,7 @@ set.autoindent = true
 set.smartindent = true
 set.wrap = true
 
-set.fileformat = 'unix'
+set.fileformat = "unix"
 
 set.ttimeout = true
 set.ttimeoutlen = 20
@@ -71,8 +71,8 @@ set.timeout = false
 set.showcmd = true
 set.showmode = false
 set.autowrite = true
-set.path = '.,**'
-set.shell = '/bin/zsh'
+set.path = ".,**"
+set.shell = "/bin/zsh"
 set.ttyfast = true
 
 set.splitbelow = true

@@ -11,19 +11,19 @@
 -- Neovim documentation https://neovim.io/doc/user/vim_diff.html
 --]]
 
-require('settings')
-require('key-bindings')
-require('packer-config')
-require('language-servers')
-require('plugins.onedark')
-require('plugins.lualine')
-require('plugins.telescope')
-require('plugins.treesitter')
-require('plugins.completion')
-require('plugins.mkdir')
-require('plugins.gitsigns')
-require('plugins.autopairs')
-require('plugins.indentline')
+require("settings")
+require("key-bindings")
+require("packer-config")
+require("language-servers")
+require("plugins.onedark")
+require("plugins.lualine")
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.completion")
+require("plugins.mkdir")
+require("plugins.gitsigns")
+require("plugins.autopairs")
+require("plugins.indentline")
 
 --[[
 -- TODO:
@@ -32,4 +32,3 @@ require('plugins.indentline')
 -- go.vim
 -- surround
 --]]
-
