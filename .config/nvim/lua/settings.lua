@@ -8,9 +8,7 @@ set.relativenumber = true
 set.numberwidth = 5
 
 set.list = true
-set.listchars:append("eol:¬")
-set.listchars:append("space:⋅")
-set.listchars:append("tab:>-")
+set.listchars = { eol = "↲", tab = "▸ ", trail = "·", space = "⋅" }
 
 set.updatetime = 100
 set.completeopt:append("menu,menuone,noselect")
