@@ -65,6 +65,14 @@ return packer.startup(function(use)
 		"lewis6991/gitsigns.nvim",
 		"windwp/nvim-autopairs",
 		"lukas-reineke/indent-blankline.nvim",
+		"norcalli/nvim-colorizer.lua",
+	})
+
+	use({
+		"glacambre/firenvim",
+		run = function()
+			vim.fn["firenvim#install"](0)
+		end,
 	})
 
 	if PACKER_BOOTSTRAP then

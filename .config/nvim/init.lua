@@ -24,11 +24,5 @@ require("plugins.mkdir")
 require("plugins.gitsigns")
 require("plugins.autopairs")
 require("plugins.indentline")
-
---[[
--- TODO:
--- colorizer
--- firenvim
--- go.vim
--- surround
---]]
+require("plugins.firenvim")
+require("plugins.colorizer")
