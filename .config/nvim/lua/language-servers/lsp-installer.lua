@@ -20,7 +20,6 @@ if not lsp_servers_status_ok then
 end
 
 local servers = {
-	"awk_ls", -- AWK
 	"bashls", -- Bash
 	"clangd", -- C
 	"cmake", -- CMake
