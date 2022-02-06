@@ -36,7 +36,6 @@ local servers = {
 	"kotlin_language_server", -- Kotlin
 	"texlab", -- LaTeX
 	"sumneko_lua", -- Lua
-	"remark_ls", -- Markdown
 	"spectral", -- OpenAPI
 	"pyright", -- Python
 	"rust_analyzer", -- Rust [(wiki)][rust_analyzer]
@@ -46,6 +45,7 @@ local servers = {
 	"vimls", -- VimL
 	"lemminx", -- XML
 	"yamlls", -- YAML
+	"zk", -- Markdown
 }
 
 -- Loop through the servers listed above.
