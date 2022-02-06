@@ -1,5 +1,7 @@
+---
 name: linter
-on: push
+on:
+  push:
 
 jobs:
   lint:
@@ -10,5 +12,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Lint Files
-        uses: docker://github/super-linter:v4
+        uses: github/super-linter/slim@v4
+        env:
+          FILTER_REGEX_EXCLUDE: (nvim/.*)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
