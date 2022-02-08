@@ -41,6 +41,7 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		"williamboman/nvim-lsp-installer",
 		"tamago324/nlsp-settings.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
 	})
 
 	-- completion
