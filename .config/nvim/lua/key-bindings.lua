@@ -28,3 +28,6 @@ nmap("<C-n>", ":Telescope find_files<CR>")
 nmap("<C-s>", ":Telescope buffers<CR>")
 nmap("<C-p>", ":Telescope git_files<CR>")
 nmap("<leader>fh", ":Telescope help_tags<CR>")
+
+-- NvimTree
+nmap("<leader>n", ":NvimTreeToggle<CR>")

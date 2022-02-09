@@ -67,6 +67,7 @@ return packer.startup(function(use)
 		"windwp/nvim-autopairs",
 		"lukas-reineke/indent-blankline.nvim",
 		"norcalli/nvim-colorizer.lua",
+		"kyazdani42/nvim-tree.lua",
 	})
 
 	use({

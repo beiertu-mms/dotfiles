@@ -35,10 +35,10 @@ local servers = {
 	"kotlin_language_server", -- Kotlin
 	"texlab", -- LaTeX
 	"sumneko_lua", -- Lua
-	"spectral", -- OpenAPI
+	-- "spectral", -- OpenAPI
 	"pyright", -- Python
 	"rust_analyzer", -- Rust [(wiki)][rust_analyzer]
-	"sqlls", -- SQL
+	-- "sqlls", -- SQL
 	"taplo", -- TOML
 	"terraformls", -- Terraform
 	"vimls", -- VimL
