@@ -1,8 +1,16 @@
 #-------------------------------------------------------------------------------
-# Select a secret from a service and decode its value.
+# Select a service to decode all its secrets.
 #-------------------------------------------------------------------------------
-function decode-secret() {
-    SERVICE=$(kubectl get service | tail -n +2 | cut -d' ' -f1 | fzf)
-    SECRET=$(kubectl get secret "$SERVICE" -o json | jq -r '.data | keys | .[]' | fzf)
-    kubectl get secrets "$SERVICE" -o template="{{.data.$SECRET | base64decode}}"
+function un-kubeseal() {
+
+  TEMPLATE=$(cat <<-EOM
+{{ range \$key, \$value := .data }}
+  {{- \$key }}: {{ \$value | base64decode }}
+{{ end }}
+EOM
+)
+
+  SERVICE=$(kubectl get service "$@" | tail -n +2 | cut -d' ' -f1 | fzf)
+  kubectl get secrets "$@" "$SERVICE" -o template="$TEMPLATE"
 }
+
