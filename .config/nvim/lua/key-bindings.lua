@@ -31,3 +31,6 @@ nmap("<leader>fh", ":Telescope help_tags<CR>")
 
 -- NvimTree
 nmap("<leader>n", ":NvimTreeToggle<CR>")
+
+-- Open help in full window with 'H'
+vim.cmd[[ command! -nargs=1 -complete=help H h <args> | only ]]
