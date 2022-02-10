@@ -6,8 +6,8 @@ end
 
 local filetype = {
 	"filetype",
-	colored = false, -- Displays filetype icon in color if set to true
-	icon_only = true, -- Display only an icon for filetype
+	colored = true, -- Displays filetype icon in color if set to true
+	icon_only = false, -- Display only an icon for filetype
 }
 
 local filename = {
@@ -18,7 +18,7 @@ local filename = {
 	symbols = {
 		modified = " ",
 		readonly = " ",
-		unnamed = "No Name",
+		unnamed = "No-Name",
 	},
 }
 
@@ -33,11 +33,11 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { filetype, filename },
+		lualine_b = { filename },
 		lualine_c = { "diagnostics" },
 
 		lualine_x = { "diff", "encoding", "fileformat" },
-		lualine_y = { "branch", "progress" },
+		lualine_y = { "branch", "progress", filetype },
 		lualine_z = { "location" },
 	},
 	inactive_sections = {
