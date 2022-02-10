@@ -52,4 +52,5 @@ print "update arch"
 yay -Syyu
 
 print "done"
+print "TODO update go installed packages"
 
