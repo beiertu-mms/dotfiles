@@ -48,6 +48,9 @@ then
     cheatsheets pull
 fi
 
+curl -LJO https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/ssh-agent/ssh-agent.plugin.zsh \
+  --output-dir "$HOME/.local/share/zsh-ssh-agent/"
+
 print "update arch"
 yay -Syyu
 

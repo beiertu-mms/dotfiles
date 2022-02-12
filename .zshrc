@@ -1,3 +1,8 @@
+#            _
+#    _______| |__  _ __ ___
+#   |_  / __| '_ \| '__/ __|
+#  _ / /\__ \ | | | | | (__
+# (_)___|___/_| |_|_|  \___|
 #
 # Copyright (c) 2021-present Tung Beier
 # License: MIT
@@ -82,19 +87,10 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-#++++++++++++++++#
-#     ZStyle     #
-#++++++++++++++++#
-# ssh-agent
-case `hostname` in
-    node202)
-        zstyle :omz:plugins:ssh-agent identities id_rsa-mms id_rsa-tungbeier
-        ;;
-    *)
-        zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_github_mms
-        # zstyle :omz:plugins:ssh-agent lifetime 1h
-        ;;
-esac
+#+++++++++++++++++++#
+#     SSH-Agent     #
+#+++++++++++++++++++#
+zstyle :omz:plugins:ssh-agent lazy yes
 
 #++++++++++++++++++++++#
 #     Source files     #
