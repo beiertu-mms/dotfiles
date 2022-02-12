@@ -28,9 +28,10 @@ nmap("<C-n>", ":Telescope find_files<CR>")
 nmap("<C-s>", ":Telescope buffers<CR>")
 nmap("<C-p>", ":Telescope git_files<CR>")
 nmap("<leader>fh", ":Telescope help_tags<CR>")
+nmap("<leader>ff", ":Telescope live_grep<CR>")
 
 -- NvimTree
 nmap("<leader>n", ":NvimTreeToggle<CR>")
 
 -- Open help in full window with 'H'
-vim.cmd[[ command! -nargs=1 -complete=help H h <args> | only ]]
+vim.cmd([[ command! -nargs=1 -complete=help H h <args> | only ]])

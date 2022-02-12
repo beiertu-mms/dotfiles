@@ -1,4 +1,6 @@
+--
 -- https://github.com/joshdick/onedark.vim
+--
 vim.cmd([[
 try
   colorscheme onedark

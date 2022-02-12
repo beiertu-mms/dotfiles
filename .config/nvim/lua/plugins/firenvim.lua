@@ -1,4 +1,6 @@
+--
 -- https://github.com/glacambre/firenvim
+--
 local status_ok, _ = pcall(require, "firenvim")
 if not status_ok then
 	return

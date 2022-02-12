@@ -1,4 +1,6 @@
+--
 -- https://github.com/nvim-lualine/lualine.nvim
+--
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
@@ -22,10 +24,14 @@ local filename = {
 	},
 }
 
+local custom_onedark = require("lualine.themes.onedark")
+custom_onedark.normal.a.bg = "#61AFEF"
+custom_onedark.insert.a.bg = "#98C379"
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "wombat",
+		theme = custom_onedark,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
@@ -33,17 +39,18 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { filename },
-		lualine_c = { "diagnostics" },
+		lualine_b = { filename, "diagnostics" },
+		lualine_c = { "diff" },
 
-		lualine_x = { "diff", "encoding", "fileformat" },
-		lualine_y = { "branch", "progress", filetype },
+		lualine_x = { "encoding", "fileformat", filetype },
+		lualine_y = { "branch", "progress" },
 		lualine_z = { "location" },
 	},
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
 		lualine_c = { "filename" },
+
 		lualine_x = { "location" },
 		lualine_y = {},
 		lualine_z = {},

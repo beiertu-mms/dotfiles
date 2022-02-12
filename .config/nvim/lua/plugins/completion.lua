@@ -1,10 +1,12 @@
+--
 -- https://github.com/hrsh7th/nvim-cmp
+-- https://github.com/L3MON4D3/LuaSnip
+--
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
 	return
 end
 
--- https://github.com/L3MON4D3/LuaSnip
 local luasnip_status_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_status_ok then
 	return
