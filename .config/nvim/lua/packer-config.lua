@@ -1,4 +1,6 @@
+--
 -- See https://github.com/wbthomason/packer.nvim#quickstart
+--
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = vim.fn.system({
@@ -76,6 +78,7 @@ return packer.startup(function(use)
 		"lukas-reineke/indent-blankline.nvim",
 		"norcalli/nvim-colorizer.lua",
 		"kyazdani42/nvim-tree.lua",
+		"numToStr/Comment.nvim",
 	})
 
 	use({
