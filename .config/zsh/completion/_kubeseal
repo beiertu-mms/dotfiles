@@ -1,0 +1,63 @@
+#compdef _kubeseal kubeseal
+
+#-------------------------------------------------------------------------------
+# Completion function for kubeseal
+#-------------------------------------------------------------------------------
+function _kubeseal() {
+  _arguments -C \
+    "--add_dir_header[If true, adds the file directory to the header]" \
+    "--allow-empty-data[Allow empty data in the secret object]" \
+    "--alsologtostderr[log to standard error as well as files]" \
+    "--as[Username to impersonate for the operation]" \
+    "--as-group[Group to impersonate for the operation, this flag can be repeated to specify multiple groups.]" \
+    "--cert[Certificate / public key file/URL to use for encryption. Overrides --controller-*]" \
+    "--certificate-authority[Path to a cert file for the certificate authority]" \
+    "--client-certificate[Path to a client certificate file for TLS]" \
+    "--client-key[Path to a client key file for TLS]" \
+    "--cluster[The name of the kubeconfig cluster to use]" \
+    "--context[The name of the kubeconfig context to use]" \
+    "--controller-name[Name of sealed-secrets controller. (default 'sealed-secrets-controller')]" \
+    "--controller-namespace[Namespace of sealed-secrets controller. (default 'kube-system')]" \
+    "--fetch-cert[Write certificate to stdout. Useful for later use with --cert]" \
+    "-o[Output format for sealed secret. Either json or yaml (default 'json')]" \
+    "--format[Output format for sealed secret. Either json or yaml (default 'json')]" \
+    "--from-file[(only with --raw) Secret items can be sourced from files. Pro-tip: you can use /dev/stdin to read pipe input. This flag tries to follow the same syntax as in kubectl]" \
+    "--insecure-skip-tls-verify[If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure]" \
+    "--kubeconfig[Path to a kube config. Only required if out-of-cluster]" \
+    "--log_backtrace_at[when logging hits line file:N, emit a stack trace (default :0)]" \
+    "--log_dir[If non-empty, write log files in this directory]" \
+    "--log_file[If non-empty, use this log file]" \
+    "--log_file_max_size[Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited. (default 1800)]" \
+    "--logtostderr[log to standard error instead of files (default true)]" \
+    "--merge-into[Merge items from secret into an existing sealed secret file, updating the file in-place instead of writing to stdout.]" \
+    "--name[Name of the sealed secret (required with --raw and default (strict) scope)]" \
+    "-n[If present, the namespace scope for this CLI request]" \
+    "--namespace[If present, the namespace scope for this CLI request]" \
+    "--password[Password for basic authentication to the API server]" \
+    "--raw[Encrypt a raw value passed via the --from-* flags instead of the whole secret object]" \
+    "--re-encrypt[Re-encrypt the given sealed secret to use the latest cluster key.]" \
+    "--recovery-private-key strings[Private key filename used by the --recovery-unseal command. Multiple files accepted either via comma separated list or by repetition of the flag. Either PEM encoded private keys or a backup of a json/yaml encoded k8s sealed-secret controller secret (and v1.List) are accepted.]" \
+    "--recovery-unseal[Decrypt a sealed secrets file obtained from stdin, using the private key passed with --recovery-private-key. Intended to be used in disaster recovery mode.]" \
+    "--request-timeout[The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests. (default '0')]" \
+    "--scope[Set the scope of the sealed secret: strict, namespace-wide, cluster-wide (defaults to strict). Mandatory for --raw, otherwise the 'sealedsecrets.bitnami.com/cluster-wide' and 'sealedsecrets.bitnami.com/namespace-wide' annotations on the input secret can be used to select the scope. (default 'strict')]" \
+    "-w[Sealed-secret (output) file]" \
+    "--sealed-secret-file[Sealed-secret (output) file]" \
+    "-f[Secret (input) file]" \
+    "--secret-file[Secret (input) file]" \
+    "--server[The address and port of the Kubernetes API server]" \
+    "--skip_headers[If true, avoid header prefixes in the log messages]" \
+    "--skip_log_headers[If true, avoid headers when opening log files]" \
+    "--stderrthreshold[logs at or above this threshold go to stderr (default 2)]" \
+    "--token[Bearer token for authentication to the API server]" \
+    "--user[The name of the kubeconfig user to use]" \
+    "--username[Username for basic authentication to the API server]" \
+    "-v[number for the log level verbosity]" \
+    "--v[number for the log level verbosity]" \
+    "--validate[Validate that the sealed secret can be decrypted]" \
+    "--version[Print version information and exit]" \
+    "--vmodule[comma-separated list of pattern=N settings for file-filtered logging]" \
+    "*::arg:->args"
+}
+
+compdef _kubeseal kubeseal
+

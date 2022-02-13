@@ -7,9 +7,9 @@
 # Copyright (c) 2021-present Tung Beier
 # License: MIT
 #
-#+++++++++++++++++++++++++++++++#
-#     Environment Variables     #
-#+++++++++++++++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Environment Variables                                                    #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 export TERMINAL="st"
 export TERM="st-256color" # 256 color schemes support
 
@@ -26,9 +26,9 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-a:select-all'
 "
 
-#+++++++++++++++++++#
-#     Variables     #
-#+++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Variables                                                                #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=15"
@@ -38,9 +38,9 @@ SAVEHIST=10000000
 HIST_STAMPS="yyyy-mm-dd"
 HISTFILE=~/.config/zsh/history
 
-#+++++++++++++++++#
-#     Options     #
-#+++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Options                                                                  #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # see zsh.sourceforge.net/Doc/Release/Options.html
 setopt no_beep
 setopt auto_cd
@@ -58,17 +58,19 @@ setopt share_history
 setopt auto_menu
 unsetopt menu_complete
 
-#++++++++++++++++++++#
-#     Completion     #
-#++++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Completion                                                               #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+fpath=(~/.config/zsh/completion $fpath)
+
 autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
 
-#++++++++++++++++++++#
-#     Keybinding     #
-#++++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Keybinding                                                               #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 bindkey -v # vi key binding
 export KEYTIMEOUT=1 # minimize delay
 
@@ -87,14 +89,14 @@ bindkey '^ ' autosuggest-accept
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-#+++++++++++++++++++#
-#     SSH-Agent     #
-#+++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     SSH-Agent                                                                #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 zstyle :omz:plugins:ssh-agent lazy yes
 
-#++++++++++++++++++++++#
-#     Source files     #
-#++++++++++++++++++++++#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Files sourcing                                                           #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 # aliases
 local alias_dir="$HOME/.config/alias"
 if [ -d ${alias_dir} ]; then
@@ -127,13 +129,14 @@ for file in ${files_to_source[@]}; do
     [ -f "${file}" ] && source "${file}"
 done
 
-#++++++++++++++#
-#     Eval     #
-#++++++++++++++#
-# dircolors
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Dir colors                                                               #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 [ -e "$HOME/.config/dir_colors" ] && eval $(dircolors $HOME/.config/dir_colors)
 
-# z.lua
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Z.lua                                                                    #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 if [ -x $HOME/.local/share/z.lua/z.lua ]; then
     export _ZL_DATA=$HOME/.config/zluadata
     export _ZL_ADD_ONCE=1
@@ -142,6 +145,8 @@ if [ -x $HOME/.local/share/z.lua/z.lua ]; then
     eval "$(lua $HOME/.local/share/z.lua/z.lua --init zsh)"
 fi
 
-# Starship prompt
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Starship prompt                                                          #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 eval "$(starship init zsh)"
 
