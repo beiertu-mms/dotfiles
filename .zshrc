@@ -97,23 +97,18 @@ zstyle :omz:plugins:ssh-agent lazy yes
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Files sourcing                                                           #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-# aliases
-local alias_dir="$HOME/.config/alias"
-if [ -d ${alias_dir} ]; then
-    for alias_file in $alias_dir/*.zsh; do
-        source "$alias_file"
+local dirs_to_source=(
+  "$HOME/.config/alias"
+  "$HOME/.config/zsh/functions"
+)
+for dir in ${dirs_to_source[@]}; do
+  if [ -d ${dir} ]; then
+    for file in $dir/*.zsh; do
+      source "$file"
     done
-fi
+  fi
+done
 
-# functions
-local func_dir="$HOME/.config/zsh/functions"
-if [ -d ${func_dir} ]; then
-    for func_file in $func_dir/*.zsh; do
-        source "$func_file"
-    done
-fi
-
-# some files
 local files_to_source=(
     "$HOME/.config/proxy"
     # Google Cloud SDK.
