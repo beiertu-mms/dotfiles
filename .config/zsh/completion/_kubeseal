@@ -1,4 +1,5 @@
 #compdef _kubeseal kubeseal
+compdef _kubeseal kubeseal
 
 #-------------------------------------------------------------------------------
 # Completion function for kubeseal
@@ -58,6 +59,4 @@ function _kubeseal() {
     "--vmodule[comma-separated list of pattern=N settings for file-filtered logging]" \
     "*::arg:->args"
 }
-
-compdef _kubeseal kubeseal
 
