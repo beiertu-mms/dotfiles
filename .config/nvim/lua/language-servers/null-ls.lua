@@ -17,6 +17,3 @@ null_ls.setup({
 	},
 	on_attach = require("language-servers.handlers").on_attach,
 })
-
--- Register the format function
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])

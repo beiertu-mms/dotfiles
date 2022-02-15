@@ -48,12 +48,12 @@ local function lsp_highlight_document(client)
 	if client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
+			augroup lsp_document_highlight
+				autocmd! * <buffer>
+				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+			augroup END
+		]],
 			false
 		)
 	end
@@ -81,15 +81,24 @@ local function lsp_keymaps(bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
+	-- Register the format function
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
 M.on_attach = function(client, bufnr)
-	if client.name == "tsserver" then
+	-- Deactivate document formatting for these lsp to not collide with null-ls
+	if client.name == "tsserver" or client.name == "terraformls" then
 		client.resolved_capabilities.document_formatting = false
 	end
+
+	-- Format automatically on save for these files
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
+		vim.cmd([[
+			augroup autoformat
+				autocmd!
+				autocmd BufWritePre *.lua,*.sh,*.tf,*.go lua vim.lsp.buf.formatting_sync()
+			augroup end
+			]])
 	end
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
