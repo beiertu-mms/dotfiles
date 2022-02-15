@@ -17,10 +17,10 @@ set -o errexit # Exit when a command fails
 set -o nounset  # Treat unset variables as an error
 set -o pipefail # Exit when a command in a pipeline fails
 
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
-
 function print() {
+	local GREEN='\033[0;32m'
+	local NC='\033[0m' # No Color
+
 	echo -e "\n${GREEN}${1}${NC}\n"
 }
 
@@ -47,7 +47,10 @@ fi
 
 print "update zsh plugins"
 for zsh_plugin_dir in "$HOME"/.local/share/zsh/plugins/*; do
+	[[ -d "${zsh_plugin_dir}/.git" ]] || continue
+
 	(
+		echo "updating ${zsh_plugin_dir##/} ..."
 		cd "$zsh_plugin_dir"
 		git pull --ff-only
 	)
