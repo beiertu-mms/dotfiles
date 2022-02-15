@@ -45,8 +45,15 @@ if command -v cheatsheets &>/dev/null; then
 	cheatsheets pull
 fi
 
+print "update zsh plugins"
+for zsh_plugin_dir in "$HOME"/.local/share/zsh/plugins/*; do
+	(
+		cd "$zsh_plugin_dir"
+		git pull --ff-only
+	)
+done
 curl -LJO https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/ssh-agent/ssh-agent.plugin.zsh \
-	--output-dir "$HOME/.local/share/zsh-ssh-agent/"
+	--output-dir "$HOME/.local/share/zsh/plugins/ssh-agent/"
 
 print "update arch"
 yay -Syyu

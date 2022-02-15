@@ -104,16 +104,34 @@ local sources=(
   # Google Cloud SDK.
   "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
   "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
-  # Zsh plugins
-  "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-  "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
-  "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-  "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
+  # Ssh agent from oh-my-zsh
+  "$HOME/.local/share/zsh/plugins/ssh-agent/ssh-agent.plugin.zsh"
 )
-for s in "${sources[@]}"; do
-	[[ -e "$s" ]] || continue
-	[[ -f "$s" ]] && source "$s" && continue
-	[[ -d "$s" ]] && for f in "$s"/*.zsh; do source "$f"; done && continue
+for source in "${sources[@]}"; do
+	[ -e "$source" ] || continue
+	[ -f "$source" ] && source "$source" && continue
+	[ -d "$source" ] && for file in "$source"/*.zsh; do source "$file"; done && continue
+done
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Plugins                                                                  #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+local plugins=(
+  "skywind3000/z.lua"
+  "zsh-users/zsh-autosuggestions"
+  "zsh-users/zsh-syntax-highlighting"
+  "zsh-users/zsh-completions"
+)
+for plugin in "${plugins[@]}"; do
+  local plugin_name=$(echo "$plugin" | cut -d"/" -f2)
+  local plugin_dir="${HOME}/.local/share/zsh/plugins/${plugin_name}"
+
+  if [ -d "$plugin_dir" ]; then 
+    source "${plugin_dir}/${plugin_name}.plugin.zsh" || \
+      source "${plugin_dir}/${plugin_name}.zsh"
+  else
+    git clone "https://github.com/${plugin}.git" "$plugin_dir"
+  fi
 done
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Dir colors                                                               #
