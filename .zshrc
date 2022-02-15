@@ -31,7 +31,7 @@ export FZF_DEFAULT_OPTS="
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=15"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -97,33 +97,24 @@ zstyle :omz:plugins:ssh-agent lazy yes
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Files sourcing                                                           #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-local dirs_to_source=(
-  "$HOME/.config/alias"
+local sources=(
+  "$HOME/.config/zsh/aliases"
   "$HOME/.config/zsh/functions"
+  "$HOME/.config/proxy"
+  # Google Cloud SDK.
+  "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
+  "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
+  # Zsh plugins
+  "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+  "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
+  "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+  "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
 )
-for dir in ${dirs_to_source[@]}; do
-  if [ -d ${dir} ]; then
-    for file in $dir/*.zsh; do
-      source "$file"
-    done
-  fi
+for s in "${sources[@]}"; do
+	[[ -e "$s" ]] || continue
+	[[ -f "$s" ]] && source "$s" && continue
+	[[ -d "$s" ]] && for f in "$s"/*.zsh; do source "$f"; done && continue
 done
-
-local files_to_source=(
-    "$HOME/.config/proxy"
-    # Google Cloud SDK.
-    "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
-    "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
-    # Zsh plugins
-    "$HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-    "$HOME/.local/share/zsh-completions/zsh-completions.plugin.zsh"
-    "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-    "$HOME/.local/share/zsh-ssh-agent/ssh-agent.plugin.zsh"
-)
-for file in ${files_to_source[@]}; do
-    [ -f "${file}" ] && source "${file}"
-done
-
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Dir colors                                                               #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
