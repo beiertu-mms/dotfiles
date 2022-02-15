@@ -97,57 +97,66 @@ zstyle :omz:plugins:ssh-agent lazy yes
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Files sourcing                                                           #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-local sources=(
-  "$HOME/.config/zsh/aliases"
-  "$HOME/.config/zsh/functions"
-  "$HOME/.config/proxy"
-  # Google Cloud SDK.
-  "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
-  "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
-  # Ssh agent from oh-my-zsh
-  "$HOME/.local/share/zsh/plugins/ssh-agent/ssh-agent.plugin.zsh"
-)
-for source in "${sources[@]}"; do
-	[ -e "$source" ] || continue
-	[ -f "$source" ] && source "$source" && continue
-	[ -d "$source" ] && for file in "$source"/*.zsh; do source "$file"; done && continue
-done
+function () {
+  local SOURCES=(
+    "$HOME/.config/zsh/aliases"
+    "$HOME/.config/zsh/functions"
+    "$HOME/.config/proxy"
+    # Google Cloud SDK.
+    "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
+    "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
+    # Ssh agent from oh-my-zsh
+    "$HOME/.local/share/zsh/plugins/ssh-agent/ssh-agent.plugin.zsh"
+    )
+  local SOURCE
+  for SOURCE in "${SOURCES[@]}"; do
+    [ -e "$SOURCE" ] || continue
+    [ -f "$SOURCE" ] && source "$SOURCE" && continue
+    [ -d "$SOURCE" ] && for FILE in "$SOURCE"/*.zsh; do source "$FILE"; done && continue
+  done
+}
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Plugins                                                                  #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-local plugins=(
-  "skywind3000/z.lua"
-  "zsh-users/zsh-autosuggestions"
-  "zsh-users/zsh-syntax-highlighting"
-  "zsh-users/zsh-completions"
-)
-for plugin in "${plugins[@]}"; do
-  local plugin_name=$(echo "$plugin" | cut -d"/" -f2)
-  local plugin_dir="${HOME}/.local/share/zsh/plugins/${plugin_name}"
+function () {
+  local PLUGINS=(
+    "skywind3000/z.lua"
+    "zsh-users/zsh-autosuggestions"
+    "zsh-users/zsh-syntax-highlighting"
+    "zsh-users/zsh-completions"
+    )
+  local PLUGIN
+  for PLUGIN in "${PLUGINS[@]}"; do
+    local PLUGIN_NAME=$(echo "$PLUGIN" | cut -d"/" -f2)
+    local PLUGIN_DIR="${HOME}/.local/share/zsh/plugins/${PLUGIN_NAME}"
 
-  if [ -d "$plugin_dir" ]; then 
-    source "${plugin_dir}/${plugin_name}.plugin.zsh" || \
-      source "${plugin_dir}/${plugin_name}.zsh"
-  else
-    git clone "https://github.com/${plugin}.git" "$plugin_dir"
+    if [ -d "$PLUGIN_DIR" ]; then 
+      source "${PLUGIN_DIR}/${PLUGIN_NAME}.plugin.zsh" || \
+        source "${PLUGIN_DIR}/${PLUGIN_NAME}.zsh"
+    else
+      git clone "https://github.com/${PLUGIN}.git" "$PLUGIN_DIR"
+    fi
+  done
+}
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#     Z.lua                                                                    #
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+function () {
+  local ZLUA_EXE="$HOME"/.local/share/zsh/plugins/z.lua/z.lua
+  if [ -x "$ZLUA_EXE" ]; then
+    export _ZL_DATA="$HOME"/.config/zluadata
+    export _ZL_ADD_ONCE=1
+    export _ZL_MATCH_MODE=1
+    export _ZL_HYPHEN=1
+    eval "$(lua $ZLUA_EXE --init zsh)"
   fi
-done
+}
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Dir colors                                                               #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 [ -e "$HOME/.config/dir_colors" ] && eval $(dircolors $HOME/.config/dir_colors)
-
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-#     Z.lua                                                                    #
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-if [ -x $HOME/.local/share/z.lua/z.lua ]; then
-    export _ZL_DATA=$HOME/.config/zluadata
-    export _ZL_ADD_ONCE=1
-    export _ZL_MATCH_MODE=1
-    export _ZL_HYPHEN=1
-    eval "$(lua $HOME/.local/share/z.lua/z.lua --init zsh)"
-fi
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Starship prompt                                                          #
