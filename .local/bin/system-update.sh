@@ -32,11 +32,13 @@ fi
 if command -v ccloud &>/dev/null; then
 	print "update ccloud"
 	ccloud update
+	ccloud completion zsh >~/.config/zsh/completion/_ccloud
 fi
 
 if command -v confluent &>/dev/null; then
 	print "update confluent"
 	confluent update
+	confluent completion zsh >~/.config/zsh/completion/_confluent
 fi
 
 if command -v cheatsheets &>/dev/null; then
