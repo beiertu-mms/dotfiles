@@ -43,9 +43,9 @@
 [push]
 	default = current
 [includeIf "gitdir:~/data/git/"]
-	path = .config/git/git-configs/work
+	path = ~/.config/git/git-configs/work
 [includeIf "gitdir:~/data/go/"]
-	path = .config/git/git-configs/work
+	path = ~/.config/git/git-configs/work
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
