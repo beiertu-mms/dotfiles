@@ -19,7 +19,7 @@ set -o nounset  # Treat unset variables as an error
 set -o pipefail # Exit when a command in a pipeline fails
 
 #---  GLOBAL VARIABLES  --------------------------------------------------------
-readonly git_config_file=$HOME/.gitconfig
+readonly git_config_file=$HOME/.config/git/config
 
 
 #---  FUNCTION  ----------------------------------------------------------------
@@ -61,7 +61,7 @@ _check_git_config() {
 #   DESCRIPTION: generate and fill the zsh alias file with git aliases
 #-------------------------------------------------------------------------------
 _generate_alias_file() {
-  local alias_file=$HOME/.config/alias/git.zsh
+  local alias_file=$HOME/.config/zsh/aliases/git.zsh
 
   if [[ ! -f "$alias_file" ]]; then
     touch "$alias_file"
