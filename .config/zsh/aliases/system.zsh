@@ -13,11 +13,13 @@ alias vi='nvim'
 alias nv='nvim'
 alias vim="vim -u $HOME/.config/vimrc"
 
-alias L='bat -p'
-alias M='most'
-alias C='cat'
-alias B='bat'
-alias F="fzf"
+alias -g L='| bat --show-all --plain'
+alias -g C='| bat --show-all --paging=never'
+alias -g B='| bat --show-all'
+alias -g F="| fzf"
+
+alias -s {txt,sh}='nvim'
+alias -s {pdf,PDF}='zathura'
 
 alias cp='cp --interactive --verbose --preserve'
 alias mv='mv --verbose --interactive'
