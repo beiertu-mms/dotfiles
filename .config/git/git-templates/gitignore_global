@@ -64,6 +64,7 @@ buildNumber.properties
 .gradle
 build/
 out/
+out
 
 # Ignore Gradle GUI config
 gradle-app.setting
