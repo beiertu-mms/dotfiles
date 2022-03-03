@@ -30,14 +30,14 @@ local servers = {
 	"groovyls", -- Groovy
 	"html", -- HTML
 	"jsonls", -- JSON
-	"jdtls", -- Java
+	-- "jdtls", -- Java
 	"tsserver", -- JavaScript
-	"kotlin_language_server", -- Kotlin
+	-- "kotlin_language_server", -- Kotlin
 	"texlab", -- LaTeX
 	"sumneko_lua", -- Lua
 	-- "spectral", -- OpenAPI
 	"pyright", -- Python
-	"rust_analyzer", -- Rust [(wiki)][rust_analyzer]
+	-- "rust_analyzer", -- Rust [(wiki)][rust_analyzer]
 	-- "sqlls", -- SQL
 	"taplo", -- TOML
 	"terraformls", -- Terraform
