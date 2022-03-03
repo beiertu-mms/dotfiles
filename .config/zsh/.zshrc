@@ -31,7 +31,7 @@ export FZF_DEFAULT_OPTS="
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=15"
 
 HISTSIZE=10000000
 SAVEHIST=10000000
