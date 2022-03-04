@@ -18,7 +18,7 @@ alias -g C='| bat --show-all --paging=never'
 alias -g B='| bat --show-all'
 alias -g F="| fzf"
 
-alias -s {txt,sh,md}='nvim'
+alias -s {txt,md}='nvim'
 alias -s {pdf,PDF}='zathura'
 
 alias cp='cp --interactive --verbose --preserve'
