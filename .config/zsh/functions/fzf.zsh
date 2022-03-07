@@ -18,7 +18,8 @@ function sd() {
 #-------------------------------------------------------------------------------
 function sf() {
   local file
-  file=$(fd -t f -E "(\.git|build|target|\.cache)" -H "$@" | fzf)
+  file=$(fd -t f -E "(\.git|build|target|\.cache)" -H "$@" \
+    | fzf --preview-window right:50% --preview 'bat --color=always --line-range :500 {}')
   [[ -n "$file" ]] && nvim "$file"
 }
 
