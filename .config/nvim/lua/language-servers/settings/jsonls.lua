@@ -1,7 +1,7 @@
 local default_schemas = nil
-local status_ok, jsonls_settings = pcall(require, "nlspsettings.jsonls")
+local status_ok, nlsp_settings = pcall(require, "nlspsettings")
 if status_ok then
-	default_schemas = jsonls_settings.get_default_schemas()
+	default_schemas = nlsp_settings.get_default_schemas()
 end
 
 -- See https://www.schemastore.org/json/ for more schemas
