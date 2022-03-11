@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -o errexit  # Exit when a command fails
+                # Use || true if a command is allowed to fail
+set -o nounset  # Treat unset variables as an error
+set -o pipefail # Exit when a command in a pipeline fails
+
+function run() {
+  read -rp 'insomnia version: ' version
+  [ -z "$version" ] && echo 'invalid version' && exit 1
+
+  local dl_dir="$HOME/downloads"
+
+  curl --location \
+    --remote-header-name \
+    --remote-name \
+    --output-dir "$dl_dir" \
+    "https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.tar.gz"
+
+  tar -xzf "${dl_dir}/Insomnia.Core-${version}.tar.gz" -C "${dl_dir}"
+  rsync -auv "${dl_dir}/Insomnia.Core-${version}/" "$HOME/.local/share/insomnia/"
+}
+
+run "$@"

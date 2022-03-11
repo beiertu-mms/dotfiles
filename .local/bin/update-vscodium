@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -o errexit  # Exit when a command fails
+                # Use || true if a command is allowed to fail
+set -o nounset  # Treat unset variables as an error
+set -o pipefail # Exit when a command in a pipeline fails
+
+function run() {
+  read -rp 'vscodium version: ' version
+  [ -z "$version" ] && echo 'invalid version' && exit 1
+
+  local dl_dir="$HOME/downloads"
+
+  curl --location \
+    --remote-header-name \
+    --remote-name \
+    --output-dir "$dl_dir" \
+    "https://github.com/VSCodium/vscodium/releases/download/${version}/VSCodium-linux-x64-${version}.tar.gz"
+
+  curl --location \
+    --remote-header-name \
+    --remote-name \
+    --output-dir "$dl_dir" \
+    "https://github.com/VSCodium/vscodium/releases/download/${version}/VSCodium-linux-x64-${version}.tar.gz.sha256"
+
+  local checksum
+  checksum=$(sha256sum "${dl_dir}/VSCodium-linux-x64-${version}.tar.gz" | cut -d' ' -f1)
+
+  if grep -q "$checksum" "${dl_dir}/VSCodium-linux-x64-${version}.tar.gz.sha256"; then
+    mkdir -vp "${dl_dir}/vscodium"
+    tar -xzf "${dl_dir}/VSCodium-linux-x64-${version}.tar.gz" -C "${dl_dir}/vscodium"
+    rsync -auv "${dl_dir}/vscodium/" "$HOME/.local/share/vscodium/"
+  else
+    echo "invalid checksum"
+    exit 1
+  fi
+}
+
+run "$@"
