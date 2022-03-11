@@ -21,6 +21,7 @@ export GNUPGHOME="$HOME/.config/gnupg"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 # export CLOUDSDK_PYTHON="/usr/bin/python3" # set python execuable for gcloud
 export TF_CLI_CONFIG_FILE="$HOME/.config/terraform/config.tfrc"
+export TFENV_CONFIG_DIR="$HOME/.config/tfenv"
 
 M2_HOME=/opt/maven
 export M2_HOME
