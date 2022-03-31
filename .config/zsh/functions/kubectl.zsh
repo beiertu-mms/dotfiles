@@ -10,7 +10,13 @@ function un-kubeseal() {
 EOM
 )
 
-  SERVICE=$(kubectl get service "$@" | tail -n +2 | cut -d' ' -f1 | fzf)
-  kubectl get secrets "$@" "$SERVICE" -o template="$TEMPLATE"
+  kubectl get secrets "$@" -o template="$TEMPLATE"
+}
+
+#-------------------------------------------------------------------------------
+# Select a service to decode all its secrets.
+#-------------------------------------------------------------------------------
+function un-kubeseal-fzf() {
+  un-kubeseal $(kubectl get service "$@" | tail -n +2 | cut -d' ' -f1 | fzf)
 }
 
