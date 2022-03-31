@@ -4,7 +4,7 @@
 function render-helm-template() {
   RELEASE=$(fd -t f -E 'yaml' '' ./releases | fzf)
   CHARTS=$(fd -t d -d 1 '' ./charts | fzf)
-  vared -p 'Service name (template): ' -c NAME
+  local release_file="${RELEASE##*/}"
 
-  yq '.spec.values' "$RELEASE" | helm template "${NAME:-template}" "$CHARTS" -f -
+  yq '.spec.values' "$RELEASE" | helm template "${release_file%.yaml}" "$CHARTS" -f -
 }
