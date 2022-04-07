@@ -1,7 +1,11 @@
-# <img src="https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png" alt="dotfiles logo" width="400">
+# <p align="center"><img src="https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png" alt="dotfiles logo" width="400"></p>
 
-[![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?label=license&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt)
-[![GitHub Linter Workflow](https://img.shields.io/github/workflow/status/beiertu-mms/dotfiles/linter/master?label=linter&style=for-the-badge)](https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml)
+<div align="center">
+
+  <a href="https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt">![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?style=flat-square)</a>
+  <a href="https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml">![Linter](https://img.shields.io/github/workflow/status/beiertu-mms/dotfiles/linter/master?label=linter&style=flat-square)</a>
+
+</div>
 
 My dotfiles setup using [git](https://git-scm.com/) bare repository functionality.
 
@@ -49,4 +53,4 @@ My dotfiles setup using [git](https://git-scm.com/) bare repository functionalit
 - [dotfiles image](https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png) by [Joel Glovier](https://github.com/jglovier)
 
 ## License
-Distributed under the MIT License. See LICENSE.txt for more information.
+Distributed under the MIT License. See [LICENSE.txt](https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt) for more information.
