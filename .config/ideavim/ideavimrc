@@ -1,3 +1,5 @@
+""" See https://github.com/JetBrains/ideavim
+""" Common settings ------------------------------------------------------------
 set number
 set relativenumber
 set showmode
