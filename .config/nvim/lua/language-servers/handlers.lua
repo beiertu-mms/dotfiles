@@ -87,7 +87,7 @@ end
 
 M.on_attach = function(client, bufnr)
 	-- Deactivate document formatting for these lsp to not collide with null-ls
-	if client.name == "tsserver" or client.name == "terraformls" then
+	if client.name == "tsserver" or client.name == "terraformls" or client.name == "sumneko_lua" then
 		client.resolved_capabilities.document_formatting = false
 	end
 
