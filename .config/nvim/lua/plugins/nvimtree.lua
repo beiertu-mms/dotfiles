@@ -3,7 +3,6 @@
 --
 vim.opt.termguicolors = true
 
-vim.g.nvim_tree_indent_markers = 1 -- shows indent markers when folders are open
 vim.g.nvim_tree_add_trailing = 1 -- append a trailing slash to folder names
 
 vim.g.nvim_tree_icons = {
@@ -88,6 +87,16 @@ nvim_tree.setup({
 		number = false,
 		relativenumber = false,
 		signcolumn = "yes",
+	},
+	renderer = {
+		indent_markers = {
+			enable = true,
+			icons = {
+				corner = "└ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
 	},
 	trash = {
 		cmd = "trash",
