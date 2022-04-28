@@ -6,16 +6,12 @@ if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
     exit 0
 fi
 
-if [[ ! -x "$(pwd)/gradlew" ]]; then
-    exit 0
-fi
-
-if ! bash "$(pwd)/gradlew" tasks | grep -q 'ktlintFormat'; then
-    exit 0
+if [[ $(fd -t f -e 'kt' -e 'kts' . | wc -l) -gt 0 ]]; then
+    # https://github.com/pinterest/ktlint#command-line-usage
+    ktlint -F
 fi
 
 if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
     terraform fmt
 fi
 
-gradle ktlintFormat > /dev/null
