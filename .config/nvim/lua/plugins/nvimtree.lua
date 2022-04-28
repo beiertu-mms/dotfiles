@@ -36,19 +36,63 @@ if not status_ok then
 end
 
 nvim_tree.setup({
-	disable_netrw = true,
-	hijack_netrw = true,
-	open_on_setup = false,
-	ignore_ft_on_setup = {},
-	open_on_tab = false,
+	auto_reload_on_write = true,
+	disable_netrw = false,
 	hijack_cursor = false,
-	update_cwd = true,
-	update_to_buf_dir = {
+	hijack_netrw = true,
+	hijack_unnamed_buffer_when_opening = false,
+	ignore_buffer_on_setup = false,
+	open_on_setup = false,
+	open_on_setup_file = false,
+	open_on_tab = false,
+	sort_by = "name",
+	update_cwd = false,
+	view = {
+		width = 40,
+		height = 30,
+		hide_root_folder = false,
+		side = "left",
+		preserve_window_proportions = false,
+		number = true,
+		relativenumber = true,
+		signcolumn = "yes",
+		mappings = {
+			custom_only = false,
+			list = {
+				-- user mappings go here
+			},
+		},
+	},
+	renderer = {
+		indent_markers = {
+			enable = false,
+			icons = {
+				corner = "└ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
+		icons = {
+			webdev_colors = true,
+		},
+	},
+	hijack_directories = {
 		enable = true,
 		auto_open = true,
 	},
+	update_focused_file = {
+		enable = false,
+		update_cwd = false,
+		ignore_list = {},
+	},
+	ignore_ft_on_setup = {},
+	system_open = {
+		cmd = "",
+		args = {},
+	},
 	diagnostics = {
 		enable = true,
+		show_on_dirs = false,
 		icons = {
 			hint = "",
 			info = "",
@@ -56,45 +100,33 @@ nvim_tree.setup({
 			error = "",
 		},
 	},
-	update_focused_file = {
-		enable = true,
-		update_cwd = true,
-		ignore_list = {},
-	},
-	system_open = {
-		cmd = nil,
-		args = {},
-	},
 	filters = {
 		dotfiles = false,
 		custom = {},
+		exclude = {},
 	},
 	git = {
 		enable = true,
-		ignore = false,
-		timeout = 500,
+		ignore = true,
+		timeout = 400,
 	},
-	view = {
-		width = 40,
-		height = 30,
-		hide_root_folder = false,
-		side = "left",
-		auto_resize = true,
-		mappings = {
-			custom_only = false,
-			list = {},
-		},
-		number = false,
-		relativenumber = false,
-		signcolumn = "yes",
-	},
-	renderer = {
-		indent_markers = {
+	actions = {
+		use_system_clipboard = true,
+		change_dir = {
 			enable = true,
-			icons = {
-				corner = "└ ",
-				edge = "│ ",
-				none = "  ",
+			global = false,
+			restrict_above_cwd = false,
+		},
+		open_file = {
+			quit_on_open = false,
+			resize_window = false,
+			window_picker = {
+				enable = true,
+				chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+				exclude = {
+					filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+					buftype = { "nofile", "terminal", "help" },
+				},
 			},
 		},
 	},
@@ -102,19 +134,16 @@ nvim_tree.setup({
 		cmd = "trash",
 		require_confirm = true,
 	},
-	actions = {
-		change_dir = {
-			global = false,
+	log = {
+		enable = false,
+		truncate = false,
+		types = {
+			all = false,
+			config = false,
+			copy_paste = false,
+			diagnostics = false,
+			git = false,
+			profile = false,
 		},
-		open_file = {
-			quit_on_open = false,
-		},
-	},
-	show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 1,
-		tree_width = 30,
 	},
 })
