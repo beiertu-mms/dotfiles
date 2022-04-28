@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -o errexit  # Exit when a command fails
+                # Use || true if a command is allowed to fail
+set -o nounset  # Treat unset variables as an error
+set -o pipefail # Exit when a command in a pipeline fails
+
+function run() {
+  read -rp 'ktlint version: ' version
+  [ -z "$version" ] && echo 'invalid version' && exit 1
+
+  local dl_dir="$HOME/downloads"
+
+  curl -sSLO "https://github.com/pinterest/ktlint/releases/download/${version}/ktlint" \
+    --output-dir "$dl_dir"
+  chmod a+x "${dl_dir}/ktlint"
+  mv -u "${dl_dir}/ktlint" ~/.local/bin/ktlint
+}
+
+run "$@"
