@@ -25,6 +25,7 @@ local servers = {
 	"cmake", -- CMake
 	"diagnosticls", -- Diagnostic (general purpose server)
 	"dockerls", -- Docker
+	"eslint", -- JavaScript, TypeScript
 	"gopls", -- Go
 	"graphql", -- GraphQL
 	"groovyls", -- Groovy
