@@ -19,10 +19,10 @@ $git_status\
 $git_metrics\
 $kubernetes\
 $java\
+$jobs\
 $cmd_duration\
 $status\
 $line_break\
-$jobs\
 $character
 """
 
