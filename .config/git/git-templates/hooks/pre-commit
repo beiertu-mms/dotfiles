@@ -12,6 +12,6 @@ if [[ $(fd -t f -e 'kt' -e 'kts' . | wc -l) -gt 0 ]]; then
 fi
 
 if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
-    terraform fmt
+    terraform fmt -recursive
 fi
 
