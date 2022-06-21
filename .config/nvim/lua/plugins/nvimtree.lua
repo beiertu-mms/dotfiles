@@ -3,32 +3,6 @@
 --
 vim.opt.termguicolors = true
 
-vim.g.nvim_tree_add_trailing = 1 -- append a trailing slash to folder names
-
-vim.g.nvim_tree_icons = {
-	default = "",
-	symlink = "",
-	git = {
-		unstaged = "✗",
-		staged = "✓",
-		unmerged = "",
-		renamed = "➜",
-		untracked = "★",
-		deleted = "",
-		ignored = "◌",
-	},
-	folder = {
-		arrow_open = "",
-		arrow_closed = "",
-		default = "",
-		open = "",
-		empty = "",
-		empty_open = "",
-		symlink = "",
-		symlink_open = "",
-	},
-}
-
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
@@ -64,6 +38,7 @@ nvim_tree.setup({
 		},
 	},
 	renderer = {
+		add_trailing = true,
 		indent_markers = {
 			enable = false,
 			icons = {
@@ -74,6 +49,29 @@ nvim_tree.setup({
 		},
 		icons = {
 			webdev_colors = true,
+			glyphs = {
+				default = "",
+				symlink = "",
+				git = {
+					unstaged = "✗",
+					staged = "✓",
+					unmerged = "",
+					renamed = "➜",
+					untracked = "★",
+					deleted = "",
+					ignored = "◌",
+				},
+				folder = {
+					arrow_closed = "",
+					arrow_open = "",
+					default = "",
+					open = "",
+					empty = "",
+					empty_open = "",
+					symlink = "",
+					symlink_open = "",
+				},
+			},
 		},
 	},
 	hijack_directories = {
