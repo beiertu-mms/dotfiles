@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Install/update ktlint
+# See also https://github.com/pinterest/ktlint#installation
+
 set -o errexit  # Exit when a command fails
                 # Use || true if a command is allowed to fail
 set -o nounset  # Treat unset variables as an error
@@ -11,8 +14,8 @@ function run() {
 
   local dl_dir="$HOME/downloads"
 
-  curl -sSLO "https://github.com/pinterest/ktlint/releases/download/${version}/ktlint" \
-    --output-dir "$dl_dir"
+  curl "https://github.com/pinterest/ktlint/releases/download/${version}/ktlint" \
+    --show-error --location --remote-name --output-dir "$dl_dir"
   chmod a+x "${dl_dir}/ktlint"
   mv -u "${dl_dir}/ktlint" ~/.local/bin/ktlint
 }
