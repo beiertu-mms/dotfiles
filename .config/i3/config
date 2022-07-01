@@ -1,0 +1,227 @@
+#      _ _____                    __ _                       _   _
+#     (_)___ /    ___ ___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
+#     | | |_ \   / __/ _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
+#     | |___) | | (_| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+#     |_|____/   \___\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+#                                      |___/
+#-------------------------------------------------------------------------------
+set $mod Mod4
+
+new_window 1pixel
+focus_follows_mouse no
+mouse_warping none
+hide_edge_borders smart
+popup_during_fullscreen smart
+focus_on_window_activation urgent
+
+# Gaps
+for_window [class="^.*"] border pixel 1
+smart_borders on
+set $gapSize 15
+gaps inner $gapSize
+gaps outer -$gapSize
+
+# Font
+set $font "System San Francisco Display Regular"
+font pango:$font 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Terminal
+bindsym $mod+Return exec st
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+
+# Applications launcher
+bindsym $mod+d exec --no-startup-id $HOME/.config/i3/rofi.sh
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split in horizontal orientation
+bindsym $mod+Control+v split h
+
+# Split in vertical orientation
+bindsym $mod+Control+h split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Control+s layout stacking
+bindsym $mod+Control+t layout tabbed
+bindsym $mod+Control+p layout toggle split
+
+# Toggle tiling / floating
+#bindsym $mod+Shift+f floating toggle
+
+# Change focus between tiling / floating windows
+#bindsym $mod+Shift+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+p focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# Workspaces
+set $workspace_1 "1:  "
+set $workspace_2 "2:  "
+set $workspace_3 "3:  "
+set $workspace_4 "4:  "
+set $workspace_5 "5:  "
+set $workspace_6 "6:  "
+set $workspace_7 "7:  "
+set $workspace_8 "8:  "
+set $workspace_9 "9:  "
+set $workspace_0 "0:  "
+
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
+# switch to workspace
+bindsym $mod+asterisk workspace $workspace_0
+bindsym $mod+parenleft workspace $workspace_1
+bindsym $mod+parenright workspace $workspace_2
+bindsym $mod+braceright workspace $workspace_3
+bindsym $mod+plus workspace $workspace_4
+bindsym $mod+braceleft workspace $workspace_5
+bindsym $mod+bracketright workspace $workspace_6
+bindsym $mod+bracketleft workspace $workspace_7
+bindsym $mod+exclam workspace $workspace_8
+bindsym $mod+equal workspace $workspace_9
+
+# move focused container to workspace
+bindsym $mod+Shift+asterisk move container to workspace $workspace_0
+bindsym $mod+Shift+parenleft move container to workspace $workspace_1
+bindsym $mod+Shift+parenright move container to workspace $workspace_2
+bindsym $mod+Shift+braceright move container to workspace $workspace_3
+bindsym $mod+Shift+plus move container to workspace $workspace_4
+bindsym $mod+Shift+braceleft move container to workspace $workspace_5
+bindsym $mod+Shift+bracketright move container to workspace $workspace_6
+bindsym $mod+Shift+bracketleft move container to workspace $workspace_7
+bindsym $mod+Shift+exclam move container to workspace $workspace_8
+bindsym $mod+Shift+equal move container to workspace $workspace_9
+
+assign [class="St"] $workspace_0
+assign [class="jetbrains-idea"] $workspace_2
+assign [class="Chromium"] $workspace_4
+assign [class="Code"] $workspace_6
+
+# Monitor settings
+# set $laptop_monitor eDP1
+# set $second_monitor HDMI2
+
+# workspace $workspace_1 output $laptop_monitor
+# workspace $workspace_3 output $laptop_monitor
+# workspace $workspace_5 output $laptop_monitor
+# workspace $workspace_7 output $laptop_monitor
+# workspace $workspace_9 output $laptop_monitor
+#
+# workspace $workspace_0 output $second_monitor
+# workspace $workspace_2 output $second_monitor
+# workspace $workspace_4 output $second_monitor
+# workspace $workspace_6 output $second_monitor
+# workspace $workspace_8 output $second_monitor
+
+# reload the configuration file
+bindsym $mod+Shift+q reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+period exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# COLOR
+set $bg_color               #a3be8c
+set $inactive_bg_color      #2e3440
+set $text_color             #2e3440
+set $inactive_text_color    #4c566a
+set $urgent_bg_color        #bf616a
+set $indicator_color        #a3be8c
+
+# Window colors
+# state                 border              background          text                 indicator
+client.focused          $bg_color           $bg_color           $text_color          $indicator_color
+client.unfocused        $inactive_bg_color  $inactive_bg_color  $inactive_text_color $indicator_color
+client.focused_inactive $inactive_bg_color  $inactive_bg_color  $inactive_text_color $indicator_color
+client.urgent           $urgent_bg_color    $urgent_bg_color    $text_color          $indicator_color
+
+set $separator_symbol " "
+set $bar_bg_color       #2e3440
+set $separator_color    #8fbcbb
+set $focused_ws_color   #a3be8c
+set $active_ws_color    #4c566a
+set $inactive_ws_color  #4c566a
+set $urgent_ws_color    #bf616a
+set $text_ws_color      #2e3440
+bar {
+        font pango:JetBrains Mono, FontAwesome 12
+        status_command i3status-rs $HOME/.config/i3status-rs/config.toml
+        tray_padding 5
+        position top
+        height 30
+        separator_symbol $separator_symbol
+        colors {
+            background  $bar_bg_color
+            separator   $separator_color
+            # state             border              background          text
+            focused_workspace   $focused_ws_color   $focused_ws_color   $text_ws_color
+            active_workspace    $active_ws_color    $active_ws_color    $text_ws_color
+            inactive_workspace  $inactive_ws_color  $inactive_ws_color  $text_ws_color
+            urgent_workspace    $urgent_ws_color    $urgent_ws_color    $text_ws_color
+        }
+}
+
+# Volume control
+bindsym $mod+Up exec --no-startup-id volume up
+bindsym $mod+Down exec --no-startup-id volume down
+
+# Backlighting control
+bindsym $mod+Left exec --no-startup-id backlight down
+bindsym $mod+Right exec --no-startup-id backlight up
+
+# Lock screen
+# set $lock "$HOME/.local/bin/lockscreen.sh"
+# bindsym $mod+Control+l exec $lock
+# exec xautolock -detectsleep -time 5 -locker $lock -notify 30 -notifier "Lock screen in 30 seconds"
+
+exec --no-startup-id compton -CGb
+exec --no-startup-id st -e tmux -f $HOME/.config/tmux/config
+
+exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/.config/wallpapers/bg.jpg"
+

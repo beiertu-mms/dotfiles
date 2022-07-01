@@ -26,14 +26,15 @@ compton -CGb &
     --bg-fill "$HOME"/.config/wallpapers/bg2.jpg \
     --bg-fill "$HOME"/.config/wallpapers/bg.jpg &
 
-#-------------#
-#     DWM     #
-#-------------#
-# Workaround for jvm app to be correctly display in DWM
-export _JAVA_AWT_WM_NONREPARENTING=1
-export AWT_TOOLKIT=MToolkit
-wmname LG3D
+if [[ $(hostname) == "t480" ]]; then
+  exec i3
+else
+  # Workaround for jvm app to be correctly display in DWM
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  export AWT_TOOLKIT=MToolkit
+  wmname LG3D
 
-dwmblocks > /dev/null 2>&1 &
-exec dwm
+  dwmblocks > /dev/null 2>&1 &
+  exec dwm
+fi
 
