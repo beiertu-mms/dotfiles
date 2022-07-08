@@ -41,12 +41,6 @@ if command -v confluent &>/dev/null; then
 	confluent completion zsh >~/.config/zsh/completion/_confluent
 fi
 
-if command -v cheatsheets &>/dev/null; then
-	go install github.com/cheat/cheat/cmd/cheat@latest
-	print "update cheatsheets"
-	cheatsheets pull
-fi
-
 print "update zsh plugins"
 for zsh_plugin_dir in "$HOME"/.local/share/zsh/plugins/*; do
 	[[ -d "${zsh_plugin_dir}/.git" ]] || continue
@@ -60,8 +54,17 @@ done
 curl -LJO https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/ssh-agent/ssh-agent.plugin.zsh \
 	--output-dir "$HOME/.local/share/zsh/plugins/ssh-agent/"
 
+print "update cheatsheets"
+go install github.com/cheat/cheat/cmd/cheat@latest
+cheatsheets pull
+
+print "update k8s kind"
+go install sigs.k8s.io/kind@latest
+
+print "update pet"
+go install github.com/knqyf263/pet@latest
+
 print "update arch"
 yay -Syyu
 
 print "done"
-print "TODO update go installed packages"
