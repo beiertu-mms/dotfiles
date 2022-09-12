@@ -1,12 +1,25 @@
-# <git-emoji> (If applied, this commit will...) <subject> (Max 72 char)
 # |<----   Preferably using up to 50 chars   --->|<------------------->|
-# Example: :sparkles: Implement automated commit messages
-# For more Git emoji, see https://gitmoji.dev/
+# (type): (If applied, this commit will...) <subject> (Max 72 char)
+# Example: feat: Implement automated commit messages
 
-# (Optional) Explain the WHY/WHAT vs. HOW
 # |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+# (Optional) Explain the WHY/WHAT vs. HOW
 
-# (Optional) Provide links or keys to any relevant tickets, articles or
-# other resources. Example: Github issue #23
+# (Optional) Links to any relevant tickets, articles or other resources.
+# Example: see https://gitmoji.dev/
 
-# --- COMMIT END ---
+# --- Commit types ---
+# feat         = A new feature
+# fix          = A bug Fix
+# docs         = Documentation only changes
+# style        = Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+# refactor     = A code change that neither fixes a bug nor adds a feature
+# perf         = A code change that improves performance
+# test         = Adding missing tests or correcting existing tests
+# build        = Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+# ci           = Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+# chore        = Other changes that don't modify src or test files
+# revert       = Reverts a previous commit
+# initial      = Initial commit
+# dependencies = Update dependencies
+# metadata     = Update metadata (package.json)
