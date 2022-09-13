@@ -10,9 +10,6 @@ fi
 
 [ -e "$HOME/.Xresources" ] && xrdb "$HOME"/.Xresources &
 
-amixer sset 'Master' 100% &
-amixer sset 'Capture' 100% &
-
 numlockx &
 
 [ ! -d "$HOME/data/git/work" ] && mkdir -p "$HOME"/data/git/work &
@@ -27,8 +24,14 @@ compton -CGb &
     --bg-fill "$HOME"/.config/wallpapers/bg.jpg &
 
 if [[ $(hostname) == "t480" ]]; then
+  amixer sset 'Master' 0% &
+  amixer sset 'Capture' 0% &
+
   exec i3
 else
+  amixer sset 'Master' 100% &
+  amixer sset 'Capture' 100% &
+
   # Workaround for jvm app to be correctly display in DWM
   export _JAVA_AWT_WM_NONREPARENTING=1
   export AWT_TOOLKIT=MToolkit
