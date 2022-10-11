@@ -7,9 +7,7 @@
 #
 #   DESCRIPTION: Used by i3 to lock the workspace.
 #
-#  REQUIREMENTS: i3lock-color(AUR)
-#                scrot
-#                imagemagick
+#  REQUIREMENTS: i3lock-color(AUR) - https://github.com/Raymo111/i3lock-color
 #        AUTHOR: tung beier
 #       CREATED: 21 August 2019 20:29 CEST
 #===============================================================================
@@ -21,47 +19,36 @@ set -o pipefail # Exit when a command in a pipeline fails
 
 
 #---  SCRIPT LOGIC  ------------------------------------------------------------
-readonly IMAGE="$HOME/.config/wallpapers/lockscreen.png"
+readonly BLANK='#00000000'
+readonly CLEAR='#ffffff22'
+readonly DEFAULT='#ff00ffcc'
+readonly TEXT='#ee00eeee'
+readonly WRONG='#880000bb'
+readonly VERIFYING='#bb00bbbb'
 
-# take the screenshot
-#scrot --quality 25 --silent "$IMAGE"
-# blur the image
-#convert "$IMAGE" -blur 0x2 "$IMAGE"
-
-readonly BLANK='#00000000'     # blank
-readonly CLEAR_ISH='#ffffff22' # clear ish
-readonly DEFAULT='#eee8d5ff'   # default
-readonly TEXT='#002b36ff'      # text
-readonly WRONG='#dc322fff'     # wrong
-readonly VERIFYING='#b58900ff' # verifying
-
-i3lock --image "$IMAGE" \
-  --nofork \
-  --tiling \
-  --ignore-empty-password \
-  --show-failed-attempts \
-  --insidevercolor="$CLEAR_ISH" \
-  --ringvercolor="$VERIFYING" \
-  \
-  --insidewrongcolor="$CLEAR_ISH" \
-  --ringwrongcolor="$WRONG" \
-  \
-  --insidecolor="$BLANK" \
-  --ringcolor="$DEFAULT" \
-  --linecolor="$BLANK" \
-  --separatorcolor="$DEFAULT" \
-  \
-  --verifcolor="$TEXT" \
-  --wrongcolor="$TEXT" \
-  --layoutcolor="$TEXT" \
-  --keyhlcolor="$WRONG" \
-  --bshlcolor="$WRONG" \
-  \
-  --radius=65 \
-  --ring-width=40 \
-  --veriftext="" \
-  --wrongtext="" \
-  --noinputtext="" \
-  --screen 1 \
-
-#rm -f /tmp/screen*.png
+i3lock \
+--insidever-color=$CLEAR     \
+--ringver-color=$VERIFYING   \
+\
+--insidewrong-color=$CLEAR   \
+--ringwrong-color=$WRONG     \
+\
+--inside-color=$BLANK        \
+--ring-color=$DEFAULT        \
+--line-color=$BLANK          \
+--separator-color=$DEFAULT   \
+\
+--verif-color=$TEXT          \
+--wrong-color=$TEXT          \
+--time-color=$TEXT           \
+--date-color=$TEXT           \
+--layout-color=$TEXT         \
+--keyhl-color=$WRONG         \
+--bshl-color=$WRONG          \
+\
+--screen 1                   \
+--blur 10                    \
+--clock                      \
+--indicator                  \
+--time-str="%H:%M:%S"        \
+--date-str="%A, %Y-%m-%d"    \
