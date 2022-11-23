@@ -216,8 +216,8 @@ bindsym $mod+Left exec --no-startup-id backlight down
 bindsym $mod+Right exec --no-startup-id backlight up
 
 # Lock screen
-# set $lock "$HOME/.local/bin/lockscreen.sh"
-# bindsym $mod+Control+l exec $lock
+set $lock "$HOME/.local/bin/lockscreen.sh"
+bindsym $mod+Control+l exec $lock
 # exec xautolock -detectsleep -time 5 -locker $lock -notify 30 -notifier "Lock screen in 30 seconds"
 
 exec --no-startup-id compton -CGb
