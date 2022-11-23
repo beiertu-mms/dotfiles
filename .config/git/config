@@ -11,7 +11,6 @@
 	template = ~/.config/git/git-templates/git_commit_msg.txt
 [alias]
 	i = init
-	cl = clone
 	st = status -sb --show-stash
 	d = diff
 	ds = diff --staged
@@ -42,9 +41,7 @@
 	af = add --force
 [push]
 	default = current
-[includeIf "gitdir:~/data/git/"]
-	path = ~/.config/git/git-configs/work
-[includeIf "gitdir:~/data/go/"]
+[includeIf "gitdir:~/data/"]
 	path = ~/.config/git/git-configs/work
 [filter "lfs"]
 	clean = git-lfs clean -- %f
