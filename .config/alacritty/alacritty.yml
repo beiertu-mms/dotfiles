@@ -13,7 +13,8 @@
 env:
   TERM: xterm-256color
 
-#window:
+window:
+  opacity: 1.0
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -160,8 +161,6 @@ colors:
 #  animation: EaseOutExpo
 #  duration: 0
 #  color: '0xffffff'
-
-background_opacity: 1.00
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
