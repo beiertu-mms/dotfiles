@@ -12,8 +12,7 @@ fi
 
 numlockx &
 
-[ ! -d "$HOME/data/git/work" ] && mkdir -p "$HOME"/data/git/work &
-[ ! -d "$HOME/data/git/private" ] && mkdir -p "$HOME"/data/git/private &
+[ ! -d "$HOME/data" ] && mkdir -p "$HOME"/data &
 
 compton -CGb &
 
