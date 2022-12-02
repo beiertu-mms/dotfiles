@@ -28,8 +28,8 @@ if [[ $(hostname) == "t480" ]]; then
 
   exec i3
 else
-  amixer sset 'Master' 100% &
-  amixer sset 'Capture' 100% &
+  amixer sset 'Master' 80% &
+  amixer sset 'Capture' 80% &
 
   # Workaround for jvm app to be correctly display in DWM
   export _JAVA_AWT_WM_NONREPARENTING=1
