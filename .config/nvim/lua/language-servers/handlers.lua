@@ -45,7 +45,7 @@ end
 
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
 			augroup lsp_document_highlight
@@ -88,11 +88,11 @@ end
 M.on_attach = function(client, bufnr)
 	-- Deactivate document formatting for these lsp to not collide with null-ls
 	if client.name == "tsserver" or client.name == "terraformls" or client.name == "sumneko_lua" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 
 	-- Format automatically on save for these files
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.document_formatting then
 		vim.cmd([[
 			augroup autoformat
 				autocmd!
