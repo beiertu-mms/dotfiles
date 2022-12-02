@@ -38,5 +38,6 @@ else
 
   dwmblocks > /dev/null 2>&1 &
   exec dwm
+  # exec awesome
 fi
 
