@@ -8,18 +8,6 @@
 # (Optional) Links to any relevant tickets, articles or other resources.
 # Example: see https://gitmoji.dev/
 
-# --- Commit types ---
-# feat         = A new feature
-# fix          = A bug Fix
-# docs         = Documentation only changes
-# style        = Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-# refactor     = A code change that neither fixes a bug nor adds a feature
-# perf         = A code change that improves performance
-# test         = Adding missing tests or correcting existing tests
-# build        = Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-# ci           = Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-# chore        = Other changes that don't modify src or test files
-# revert       = Reverts a previous commit
-# initial      = Initial commit
-# dependencies = Update dependencies
-# metadata     = Update metadata (package.json)
+# Commit types: feat, fix, docs, style, refactor, test, perf, build, ci,
+#               chore, revert, initial, dependencies, metadata
+
