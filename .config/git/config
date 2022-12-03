@@ -41,8 +41,6 @@
 	af = add --force
 [push]
 	default = current
-[includeIf "gitdir:~/data/"]
-	path = ~/.config/git/git-configs/work
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
