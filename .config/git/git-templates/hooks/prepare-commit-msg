@@ -18,11 +18,15 @@ else
         exit 0
     fi
 
-    # branch name
-    name=$(git symbolic-ref --short HEAD)
-    # branch suffix == description
-    suffix=$(echo "${name}" | cut -d '/' -f 2)
+    branch_name=$(git symbolic-ref --short HEAD)
 
-    sed -i "1i ${suffix//[-_]/ }" .git/COMMIT_EDITMSG
+    # Replace '/' with ': '
+    branch_name_with_prefix="${branch_name/\//: }"
+    # Replace '_' with ': '
+    branch_name_with_prefix="${branch_name/_/: }"
+
+    commit_message="${branch_name_with_prefix//-/ }"
+
+    sed -i "1i $commit_message" .git/COMMIT_EDITMSG
     exit 0
 fi
