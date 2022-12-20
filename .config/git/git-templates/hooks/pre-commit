@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC2009
-if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
-    # skip this as --no-verify was given as param
-    exit 0
-fi
-
 if [[ $(fd -t f -e 'kt' -e 'kts' . | wc -l) -gt 0 ]]; then
-    # https://github.com/pinterest/ktlint#command-line-usage
-    ktlint -F
+  if ! command -v ktlint &> /dev/null; then
+    exit 0
+  fi
+
+  stashed_files=$(git diff --name-only -z --cached --relative -- '*.kt' '*.kts')
+  if [[ -z "$stashed_files" ]]; then
+    exit 0
+  fi
+  # https://github.com/pinterest/ktlint
+  ktlint --relative --patterns-from-stdin="$stashed_files"
 fi
 
 if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
-    terraform fmt -recursive
+  if ! command -v terraform &> /dev/null; then
+    exit 0
+  fi
+  terraform fmt -recursive
 fi
 
