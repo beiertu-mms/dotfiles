@@ -10,4 +10,3 @@
 
 # Commit types: feat, fix, docs, style, refactor, test, perf, build, ci,
 #               chore, revert, initial, dependencies, metadata
-
