@@ -1,8 +1,9 @@
---
+--[[
 -- https://github.com/lewis6991/gitsigns.nvim
---
+--]]
 local status_ok, gitsigns = pcall(require, "gitsigns")
 if not status_ok then
+	print("gitsigns is not installed")
 	return
 end
 

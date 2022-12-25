@@ -20,7 +20,7 @@ set -g default-terminal "tmux-256color"
 set -g status-keys vi
 setw -g mode-keys vi
 
-set-option -ga terminal-overrides ",tmux-256color:Tc"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 set-option -g allow-rename off # Stop auto rename of windows
 set-option -g default-shell /bin/zsh
 set-option -g status-position top
