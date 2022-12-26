@@ -10,7 +10,7 @@ if [[ $(fd -t f -e 'kt' -e 'kts' . | wc -l) -gt 0 ]]; then
     exit 0
   fi
   # https://github.com/pinterest/ktlint
-  ktlint --relative --patterns-from-stdin="$stashed_files"
+  ktlint --format --relative --patterns-from-stdin="$stashed_files"
 fi
 
 if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
