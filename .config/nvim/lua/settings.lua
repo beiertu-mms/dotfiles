@@ -40,7 +40,7 @@ set.incsearch = true
 
 set.termguicolors = true
 
-set.scrolloff = 8
+set.scrolloff = 10
 set.signcolumn = "yes"
 set.isfname:append("@-@")
 
