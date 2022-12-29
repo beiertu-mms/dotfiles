@@ -7,7 +7,21 @@ if not status_ok then
 	return
 end
 
-lsp.preset("recommended")
+lsp.set_preferences({
+	suggest_lsp_servers = true,
+	setup_servers_on_start = true,
+	set_lsp_keymaps = true,
+	configure_diagnostics = true,
+	cmp_capabilities = true,
+	manage_nvim_cmp = true,
+	call_servers = "local",
+	sign_icons = {
+		error = "✘",
+		warn = "▲",
+		hint = "⚑",
+		info = "",
+	},
+})
 
 lsp.ensure_installed({
 	"bashls",
@@ -90,4 +104,45 @@ lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = true,
+})
+
+-- Setup Json SchemaStore via https://github.com/b0o/SchemaStore.nvim
+require("lspconfig").jsonls.setup({
+	settings = {
+		json = {
+			validate = { enable = true },
+			schemas = require("schemastore").json.schemas({
+				-- https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json
+				select = {
+					"Common types for all schemas",
+					-- "dependabot-v2.json",
+					"detekt.yml",
+					"dockerd.json",
+					"docker-compose.yml",
+					"Helm Chart.yaml",
+					"Helm Chart.lock",
+					"helmfile",
+					"GitHub Action",
+					"GitHub Workflow",
+					"GitHub Workflow Template Properties",
+					"Hadolint",
+					"JSON-API",
+					"kustomization.yaml",
+					"Liquibase",
+					"openapi.json",
+					"semantic-release",
+					"Starship",
+					"Swagger API 2.0",
+				},
+				replace = {
+					["dependabot-v2.json"] = {
+						name = "dependabot-v2.json",
+						description = "Override dependabot-v2.json, because it's only supported yml file ending",
+						fileMatch = { "**/.github/dependabot.yml", "**/.github/dependabot.yaml" },
+						url = "https://json.schemastore.org/dependabot-2.0.json",
+					},
+				},
+			}),
+		},
+	},
 })
