@@ -13,8 +13,6 @@
 export TERMINAL="st"
 export TERM="st-256color" # 256 color schemes support
 
-export FLUX_FORWARD_NAMESPACE=gitops
-
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 --info=inline
@@ -36,7 +34,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=15"
 HISTSIZE=10000000
 SAVEHIST=10000000
 HIST_STAMPS="yyyy-mm-dd"
-HISTFILE=~/.config/zsh/history
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Options                                                                  #
@@ -63,8 +61,8 @@ unsetopt menu_complete
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 fpath=(~/.config/zsh/completion $fpath)
 
-autoload -U compinit && compinit -d ~/.config/zsh/zcompdump
-zstyle ':completion:*' menu select
+autoload -U compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ':completion:*' menu select cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
 
