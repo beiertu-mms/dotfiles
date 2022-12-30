@@ -3,7 +3,6 @@
 <div align="center">
 
   <a href="https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt">![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?style=flat-square)</a>
-  <a href="https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml">![Linter](https://img.shields.io/github/workflow/status/beiertu-mms/dotfiles/linter/master?label=linter&style=flat-square)</a>
 
 </div>
 
