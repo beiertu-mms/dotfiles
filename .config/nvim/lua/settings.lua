@@ -27,7 +27,7 @@ set.wildignore:append("*.o,*~,*.pyc,*/out/,*/build/,*/target/")
 
 set.swapfile = false
 set.backup = false
-set.undodir = os.getenv("HOME") .. "/.vim/undodir"
+set.undodir = os.getenv("XDG_DATA_HOME") .. "/nvim/undodir"
 set.undofile = true
 
 set.ruler = true
