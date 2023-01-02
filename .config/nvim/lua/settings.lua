@@ -22,6 +22,10 @@ set.laststatus = 2
 
 set.autoread = true
 
+-- Use system clipboard
+-- set.clipboard:append("unnamed")
+-- set.clipboard:append("unnamedplus")
+
 set.wildmenu = true
 set.wildignore:append("*.o,*~,*.pyc,*/out/,*/build/,*/target/")
 
