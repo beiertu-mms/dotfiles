@@ -11,7 +11,6 @@
 -- Neovim documentation https://neovim.io/doc/user/vim_diff.html
 --]]
 
-require('settings')
-require('key-bindings')
-require('plugins')
-
+require("settings")
+require("remaps")
+require("plugins")
