@@ -52,3 +52,6 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 # Less
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
+# Vagrant
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
