@@ -7,11 +7,17 @@
 	editor = nvim
 	fileMode = false
 	excludesfile = ~/.config/git/git-templates/gitignore_global
-	pager = bat --plain
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	light = false # set to true if using a light background
+  line-numbers = true
 [merge]
-	tool = meld
-[mergetool "meld"]
-	path = /usr/bin/meld
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
 [commit]
 	template = ~/.config/git/git-templates/git_commit_msg.txt
 [alias]
