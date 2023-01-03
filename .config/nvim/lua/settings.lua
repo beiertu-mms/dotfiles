@@ -12,9 +12,9 @@ set.listchars = { eol = '↲', tab = '▸ ', trail = '·', space = '·' }
 set.updatetime = 100
 set.completeopt:append('menu,menuone,noselect')
 
-set.tabstop = 4
-set.softtabstop = 4
-set.shiftwidth = 4
+set.tabstop = 2
+set.softtabstop = 2
+set.shiftwidth = 2
 set.expandtab = true
 set.smarttab = true
 
