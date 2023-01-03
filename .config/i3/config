@@ -1,9 +1,9 @@
-#      _ _____                    __ _                       _   _
-#     (_)___ /    ___ ___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
-#     | | |_ \   / __/ _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
-#     | |___) | | (_| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
-#     |_|____/   \___\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
-#                                      |___/
+#-------------------------------------------------------------------------------
+#      _ _____
+#     (_)___ /     __      ___ __ ___
+#     | | |_ \ ____\ \ /\ / / '_ ` _ \
+#     | |___) |_____\ V  V /| | | | | |
+#     |_|____/       \_/\_/ |_| |_| |_|
 #-------------------------------------------------------------------------------
 set $mod Mod4
 
@@ -22,7 +22,7 @@ gaps inner $gapSize
 gaps outer -$gapSize
 
 # Font
-set $font "System San Francisco Display Regular"
+set $font "JetBrainsMono-Regular"
 font pango:$font 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -62,12 +62,6 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Control+s layout stacking
 bindsym $mod+Control+t layout tabbed
 bindsym $mod+Control+p layout toggle split
-
-# Toggle tiling / floating
-#bindsym $mod+Shift+f floating toggle
-
-# Change focus between tiling / floating windows
-#bindsym $mod+Shift+space focus mode_toggle
 
 # Focus the parent container
 bindsym $mod+p focus parent
@@ -114,26 +108,11 @@ bindsym $mod+Shift+bracketleft move container to workspace $workspace_7
 bindsym $mod+Shift+exclam move container to workspace $workspace_8
 bindsym $mod+Shift+equal move container to workspace $workspace_9
 
+# bind apps to workspace
 assign [class="St"] $workspace_0
 assign [class="jetbrains-idea"] $workspace_2
 assign [class="Chromium"] $workspace_4
 assign [class="Code"] $workspace_6
-
-# Monitor settings
-# set $laptop_monitor eDP1
-# set $second_monitor HDMI2
-
-# workspace $workspace_1 output $laptop_monitor
-# workspace $workspace_3 output $laptop_monitor
-# workspace $workspace_5 output $laptop_monitor
-# workspace $workspace_7 output $laptop_monitor
-# workspace $workspace_9 output $laptop_monitor
-#
-# workspace $workspace_0 output $second_monitor
-# workspace $workspace_2 output $second_monitor
-# workspace $workspace_4 output $second_monitor
-# workspace $workspace_6 output $second_monitor
-# workspace $workspace_8 output $second_monitor
 
 # reload the configuration file
 bindsym $mod+Shift+q reload
@@ -142,19 +121,16 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+period exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+# resize window
+bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+        # resize using vim keys
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym j resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
+        # resize using arrows keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Up resize grow height 10 px or 10 ppt
         bindsym Down resize shrink height 10 px or 10 ppt
@@ -164,7 +140,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
 # COLOR
 set $bg_color               #a3be8c
@@ -190,7 +165,7 @@ set $inactive_ws_color  #4c566a
 set $urgent_ws_color    #bf616a
 set $text_ws_color      #2e3440
 bar {
-        font pango:JetBrains Mono, FontAwesome 12
+        font pango:JetBrains Mono 12
         status_command i3status-rs $HOME/.config/i3status-rs/config.toml
         tray_padding 5
         position top
@@ -220,7 +195,6 @@ set $lock "$HOME/.local/bin/lockscreen.sh"
 bindsym $mod+Control+l exec $lock
 # exec xautolock -detectsleep -time 5 -locker $lock -notify 30 -notifier "Lock screen in 30 seconds"
 
-exec --no-startup-id compton -CGb
 exec --no-startup-id st -e tmux -f $HOME/.config/tmux/config
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/.config/wallpapers/bg.jpg"
