@@ -11,6 +11,6 @@
 -- Neovim documentation https://neovim.io/doc/user/vim_diff.html
 --]]
 
-require("settings")
-require("remaps")
-require("plugins")
+require('settings')
+require('remaps')
+require('plugins')

@@ -1,9 +1,9 @@
 --[[
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 --]]
-local status_ok, indent_blankline = pcall(require, "indent_blankline")
+local status_ok, indent_blankline = pcall(require, 'indent_blankline')
 if not status_ok then
-  print("indent-blankline is not installed")
+  print('indent-blankline is not installed')
   return
 end
 

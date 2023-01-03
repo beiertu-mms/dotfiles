@@ -1,44 +1,44 @@
 --[[
 -- https://github.com/nvim-treesitter/nvim-treesitter
 --]]
-local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+local status_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
 if not status_ok then
-  print("treesitter is not installed")
+  print('treesitter is not installed')
   return
 end
 
 treesitter.setup({
   -- A list of parser names, or "all"
   ensure_installed = {
-    "c",
-    "bash",
-    "comment",
-    "css",
-    "dockerfile",
-    "go",
-    "gomod",
-    "gowork",
-    "hcl",
-    "hjson",
-    "hocon",
-    "html",
-    "java",
-    "javascript",
-    "json",
-    "json5",
-    "kotlin",
-    "lua",
-    "make",
-    "markdown",
-    "python",
-    "rasi",
-    "regex",
-    "scss",
-    "toml",
-    "tsx",
-    "typescript",
-    "vim",
-    "yaml",
+    'c',
+    'bash',
+    'comment',
+    'css',
+    'dockerfile',
+    'go',
+    'gomod',
+    'gowork',
+    'hcl',
+    'hjson',
+    'hocon',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'json5',
+    'kotlin',
+    'lua',
+    'make',
+    'markdown',
+    'python',
+    'rasi',
+    'regex',
+    'scss',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'yaml',
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
