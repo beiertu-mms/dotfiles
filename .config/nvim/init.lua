@@ -14,4 +14,5 @@
 require('settings')
 require('remaps')
 require('plugins')
+require('netrw')
 require('misc')
