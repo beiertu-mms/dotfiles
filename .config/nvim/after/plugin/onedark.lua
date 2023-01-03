@@ -1,14 +1,10 @@
 --[[
--- https://github.com/navarasu/onedark.nvim
+-- https://github.com/RRethy/nvim-base16
 --]]
-local status_ok, onedark = pcall(require, 'onedark')
+local status_ok, _ = pcall(require, 'base16-colorscheme')
 if not status_ok then
-  print('onedark color scheme is not installed')
+  print('base16-colorscheme is not installed')
   return
 end
 
-onedark.setup({
-  style = 'dark',
-  ending_tildes = true,
-})
-onedark.load()
+vim.cmd('colorscheme base16-onedark')
