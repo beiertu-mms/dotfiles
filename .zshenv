@@ -25,12 +25,6 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 # Gradle
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 
-# Java
-JAVA_USERROOT_OPT=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
-JAVA_OPENJFX_OPT=-Djavafx.cachedir="$XDG_CACHE_HOME"/openjfx
-_JAVA_OPTIONS="$JAVA_USERROOT_OPT $JAVA_OPENJFX_OPT"
-export _JAVA_OPTIONS
-
 # NPM
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
