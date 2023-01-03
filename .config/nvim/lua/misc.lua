@@ -7,14 +7,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 --[[
--- Replace multiple blank lines with just one on save.
---]]
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*' },
-  command = [[%s/\(\n\n\)\n\+/\1/]],
-})
-
---[[
 -- Automatically jump to the last cursor position in a previously opened buffer.
 --]]
 vim.api.nvim_create_autocmd('BufReadPost', {

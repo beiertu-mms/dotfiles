@@ -23,9 +23,10 @@ vim.cmd([[
   augroup end
 ]])
 
+-- Start using Packer
 local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
-  print('packer not installed')
+  print('packer is not installed')
   return
 end
 
