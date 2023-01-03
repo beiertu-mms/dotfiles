@@ -30,6 +30,10 @@ floating_modifier $mod
 
 # Terminal
 bindsym $mod+Return exec st
+# Intellij
+bindsym $mod+i exec ideaIU
+# Browser
+bindsym $mod+w exec vivaldi-stable
 
 # Kill focused window
 bindsym $mod+Shift+c kill
