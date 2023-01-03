@@ -14,3 +14,4 @@
 require('settings')
 require('remaps')
 require('plugins')
+require('misc')
