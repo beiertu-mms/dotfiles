@@ -76,7 +76,7 @@ return packer.startup(function(use)
   })
 
   use({
-    'RRethy/nvim-base16',
+    'navarasu/onedark.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
     'jghauser/mkdir.nvim',
