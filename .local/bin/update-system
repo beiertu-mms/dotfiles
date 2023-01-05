@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+#===============================================================================
+#
+#          FILE: system-update.sh
+#
+#         USAGE: ./system-update.sh
+#
+#   DESCRIPTION: Check and update programs on system.
+#
+#  REQUIREMENTS: curl,git,go,jq,yay
+#        AUTHOR: tung beier
+#       CREATED: 28 May 2021 20:29 CEST
+#===============================================================================
+
+set -o errexit # Exit when a command fails
+# Use || true if a command is allowed to fail
+set -o nounset  # Treat unset variables as an error
+set -o pipefail # Exit when a command in a pipeline fails
+
+function print() {
+	local GREEN='\033[0;32m'
+	local NC='\033[0m' # No Color
+
+	echo -e "\n${GREEN}${1}${NC}\n"
+}
+
+function update_gcloud() {
+	if command -v gcloud &>/dev/null; then
+		print "update gcloud"
+		gcloud components update
+	fi
+}
+
+function update_confluent_cli() {
+	if command -v ccloud &>/dev/null; then
+		print "update ccloud"
+		ccloud update
+		ccloud completion zsh >~/.config/zsh/completion/_ccloud
+	fi
+
+	if command -v confluent &>/dev/null; then
+		print "update confluent"
+		confluent update
+		confluent completion zsh >~/.config/zsh/completion/_confluent
+	fi
+}
+
+function update_zsh_plugins() {
+	print "update zsh plugins"
+	for zsh_plugin_dir in "$HOME"/.local/share/zsh/plugins/*; do
+		[[ -d "${zsh_plugin_dir}/.git" ]] || continue
+
+		(
+			echo "updating ${zsh_plugin_dir##/} ..."
+			cd "$zsh_plugin_dir"
+			git pull --ff-only
+		)
+	done
+
+	curl -LJO https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/ssh-agent/ssh-agent.plugin.zsh \
+		--output-dir "$HOME/.local/share/zsh/plugins/ssh-agent/"
+}
+
+function update_cheatsheets() {
+	print "update cheatsheets"
+	go install github.com/cheat/cheat/cmd/cheat@latest
+	cheatsheets pull
+}
+
+function update_k8s_kind() {
+	print "update k8s kind"
+	go install sigs.k8s.io/kind@latest
+}
+
+function update_pet() {
+	print "update pet"
+	go install github.com/knqyf263/pet@latest
+}
+
+function update_ktlint() {
+	local latest_url="https://api.github.com/repos/pinterest/ktlint/releases/latest"
+	local current_version
+	current_version=$(ktlint --version)
+	local latest_version
+	latest_version=$(curl -s -H "Accept: application/vnd.github.v3+json" "$latest_url" | jq -r '.tag_name')
+
+	if [[ "$current_version" != "$latest_version" ]]; then
+		local dl_dir="$HOME/downloads"
+
+		# TODO verify download
+		curl "https://github.com/pinterest/ktlint/releases/download/${latest_version}/ktlint" \
+			--show-error --location --remote-name --output-dir "$dl_dir"
+		chmod a+x "${dl_dir}/ktlint"
+		mv -u "${dl_dir}/ktlint" "$HOME/.local/bin/ktlint"
+	fi
+}
+
+function update_arch() {
+	print "update arch"
+	yay -Syyu
+}
+
+# ----- Script run -----
+print "Start system update..."
+
+update_gcloud
+update_confluent_cli
+update_zsh_plugins
+update_cheatsheets
+update_k8s_kind
+update_pet
+update_ktlint
+update_arch
+
+print "Finished"
