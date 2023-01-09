@@ -1,0 +1,96 @@
+[[snippets]]
+  description = "List all zsh functions"
+  command = "print -l ${(ok)functions[(I)[^_]*]}"
+  tag = ["zsh"]
+  output = ""
+
+[[snippets]]
+  description = "Update python for vim/neovim deoplete plugin"
+  command = "pip3 install --user pynvim"
+  tag = ["neovim", "vim"]
+  output = ""
+
+[[snippets]]
+  description = "Create sealed secrets from input yaml"
+  command = "kubeseal <$(fd -t f -e 'yaml' -d 1 -I | fzf) >$(fd -t f -e 'yaml' -d 1 -I | fzf) -o yaml --controller-namespace gitops --scope cluster-wide"
+  tag = ["gcp", "kubeseal", "gitops"]
+  output = ""
+
+[[snippets]]
+  description = "Start a pod with the given image in the current namespace"
+  command = "kubectl run <pod_name=beiertu-shell> --rm -i --tty --image <image=ubuntu> -- <shell=bash>"
+  tag = ["gcp", "kubectl"]
+  output = ""
+
+[[snippets]]
+  description = "Get all sealed secrets of a service"
+  command = "kubectl get secret $(kubectl get service | tail -n +2 | cut -d' ' -f1 | fzf) -o json | jq '.data'"
+  tag = ["gcp", "kubectl", "gitops"]
+  output = ""
+
+[[snippets]]
+  description = "Delete non-running pods from one namespace"
+  command = "kubectl get pods -n <namespace> | grep -v Running | tail -n+2 | awk '{print $1}' | xargs kubectl delete pods -n <namespace>"
+  tag = ["gcp", "kubectl"]
+  output = ""
+
+[[snippets]]
+  description = "Delete non-running pods from all namespaces"
+  command = "kubectl get pods --all-namespaces | grep -v Running | tail -n+2 | awk '{print $2 \" --namespace \"$1}' | xargs kubectl delete pods"
+  tag = ["gcp", "kubectl"]
+  output = ""
+
+[[snippets]]
+  description = "Attach to a selected GCP pod in the current namespace"
+  command = "kubectl exec --stdin --tty $(kubectl get pods | tail -n +2 | cut -d' ' -f1 | fzf) -- <shell=/bin/sh>"
+  tag = ["gcp", "kubectl"]
+  output = ""
+
+[[snippets]]
+  description = "Bump gradle wrapper version"
+  command = "gradle wrapper --gradle-version $(gradle --version | grep 'Gradle' | cut -d ' ' -f2)"
+  tag = ["gradle", "repository"]
+  output = ""
+
+[[snippets]]
+  description = "Update submodules in a git repo"
+  command = "git submodule foreach git pull origin master --ff-only"
+  tag = ["git"]
+  output = ""
+
+[[snippets]]
+  description = "Choose and view a GitHub Gist in the browser"
+  command = "gh gist view --web $(gh gist list | fzf | cut -f1)"
+  tag = ["gh", "github", "gist", "web"]
+  output = ""
+
+[[snippets]]
+  description = "Choose and edit a GitHub Gist"
+  command = "gh gist edit $(gh gist list | fzf | cut -f1)"
+  tag = ["gh", "github", "gist"]
+  output = ""
+
+[[snippets]]
+  description = "Switch gcloud project"
+  command = "gcloud config set project $(gcloud projects list | tail -n+2 | awk '{print $1}' | fzf)"
+  tag = ["gcp", "gcloud"]
+  output = ""
+
+[[snippets]]
+  description = "SSH into a compute instance"
+  command = "gcloud beta compute ssh $(gcloud compute instances list | tail -n+2 | awk '{print $1}' | fzf) --project=$(gcloud projects list | tail -n+2 | awk '{print $1}' | fzf) --zone=<zone=europe-west4-b> --tunnel-through-iap"
+  tag = ["gcp", "gcloud"]
+  output = ""
+
+[[snippets]]
+  description = "Remove all docker container"
+  command = "docker rm $(docker container ls -q)"
+  tag = ["docker"]
+  output = ""
+
+[[snippets]]
+  description = "Render a helm release locally"
+  command = "cat <release_yaml> | yq .spec.values | helm template <name> <charts_template> -f -"
+  tag = ["gcp", "helm", "gitops"]
+  output = ""
+
