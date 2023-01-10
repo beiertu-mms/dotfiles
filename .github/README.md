@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <a href="https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt">![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?style=flat-square)</a>
+  <a href="https://github.com/beiertu-mms/dotfiles/blob/master/.github/LICENSE.txt">![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?style=flat-square)</a>
   <a href="https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml">![GitHub](https://img.shields.io/github/actions/workflow/status/beiertu-mms/dotfiles/linter.yaml?style=flat-square)</a>
 
 </div>
@@ -13,6 +13,7 @@ My dotfiles setup using [git](https://git-scm.com/) bare repository functionalit
   - [Prerequisites](#prerequisites)
   - [Set up from scratch](#set-up-from-scratch)
   - [Install the dotfiles on a new machine](#install-the-dotfiles-on-a-new-machine)
+  - [Credits](#credits)
   - [License](#license)
 
 ## Prerequisites
@@ -53,4 +54,4 @@ My dotfiles setup using [git](https://git-scm.com/) bare repository functionalit
 - [dotfiles image](https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png) by [Joel Glovier](https://github.com/jglovier)
 
 ## License
-Distributed under the MIT License. See [LICENSE.txt](https://github.com/beiertu-mms/dotfiles/blob/master/LICENSE.txt) for more information.
+Distributed under the MIT License. See [LICENSE.txt](./LICENSE.txt) for more information.
