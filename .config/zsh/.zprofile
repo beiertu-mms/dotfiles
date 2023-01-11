@@ -38,7 +38,10 @@ export GOPATH
 CARGO_HOME=$HOME/.local/share/cargo
 export CARGO_HOME
 
-PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin
+KREW_ROOT=$HOME/.local/share/krew
+export KREW_ROOT
+
+PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
 export PATH
 
 export RAM_DISK_PATH="$HOME/downloads"
