@@ -57,6 +57,7 @@
 	sq = "!_sq() { git rebase --interactive --autosquash $(git merge-base HEAD ${1:-master}); }; _sq"
 [push]
 	default = current
+	autoSetupRemote = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
