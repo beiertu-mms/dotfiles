@@ -11,9 +11,9 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	navigate = true    # use n and N to move between diff sections
-	light = false # set to true if using a light background
-  line-numbers = true
+	navigate = true	# use n and N to move between diff sections
+	light = false		# set to true if using a light background
+	line-numbers = true
 [merge]
 	conflictstyle = diff3
 [diff]
@@ -50,6 +50,11 @@
 	rea = rebase --abort
 	unstage = reset HEAD
 	af = add --force
+	# gen-ignore <lang>: Outputs a .gitignore file for `lang` from gitignore.io to stdout.
+	gen-ignore = "!_gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; _gi"
+	## sq [base_branch]: Starts an interactive rebase from the base of the branch relative to `base_branch`
+	##                   (defaults to `master`; can be any ref) without applying changes on top of `base_branch`.
+	sq = "!_sq() { git rebase --interactive --autosquash $(git merge-base HEAD ${1:-master}); }; _sq"
 [push]
 	default = current
 [filter "lfs"]

@@ -30,10 +30,8 @@ readonly git_config_file=$HOME/.config/git/config
 #                           or it has changed
 #-------------------------------------------------------------------------------
 _check_git_config() {
-	local checksum_folder=$HOME/.config/checksums/
-	if [[ ! -d "$checksum_folder" ]]; then
-		mkdir -p "$checksum_folder"
-	fi
+	local checksum_folder=$HOME/.local/state/
+	[[ ! -d "$checksum_folder" ]] && mkdir -p "$checksum_folder"
 
 	local checksum_file=$checksum_folder/git-config-checksum.md5
 	local check_result
@@ -73,13 +71,15 @@ _generate_alias_file() {
 alias g='git'
 alias dot="git --git-dir=\$HOME/data/github.com/beiertu-mms/dotfiles --work-tree=\$HOME"
 alias gup="git remote update -p && git merge --ff-only @{u}"
+alias ggen-ignore="!_gi() { curl -L -s https://www.gitignore.io/api/\$@ ;}; _gi"
+alias gsq="!_sq() { git rebase --interactive --autosquash \$(git merge-base HEAD \${1:-master}); }; _sq"
 
 EOF
 
 	local marker=0
 	local alias_module_regex="^\[alias\]$"
 	local other_module_regex="^\[\w+\]$"
-	local special_aliases="^up=.+$"
+	local special_aliases="^(up|gen-ignore|sq)=.+$"
 
 	while read -r line; do
 		if [[ -z "$line" ]]; then
@@ -102,7 +102,8 @@ EOF
 			local line_without_first_space="${line/ /}"
 
 			if [[ $line =~ $alias_module_regex ]] ||
-				[[ $line_without_first_space =~ $special_aliases ]]; then
+				[[ $line_without_first_space =~ $special_aliases ]] ||
+				[[ $line_without_first_space =~ ^#.*$ ]]; then
 				continue
 			fi
 
