@@ -70,14 +70,12 @@ _generate_alias_file() {
 #
 alias g='git'
 alias dot="git --git-dir=\$HOME/data/github.com/beiertu-mms/dotfiles --work-tree=\$HOME"
-alias gup="git remote update -p && git merge --ff-only @{u}"
 
 EOF
 
 	local marker=0
 	local alias_module_regex="^\[alias\]$"
 	local other_module_regex="^\[\w+\]$"
-	local special_aliases="^(up|gen-ignore|sq)=.+$"
 
 	while read -r line; do
 		if [[ -z "$line" ]]; then
@@ -100,13 +98,14 @@ EOF
 			local line_without_first_space="${line/ /}"
 
 			if [[ $line =~ $alias_module_regex ]] ||
-				[[ $line_without_first_space =~ $special_aliases ]] ||
-				[[ $line_without_first_space =~ ^#.*$ ]]; then
+				[[ $line_without_first_space =~ ^(#|;).*$ ]]; then
 				continue
 			fi
 
-			local gitAlias="${line_without_first_space/ /\'git }"
-			echo "alias g${gitAlias}'" >>"$alias_file"
+			local sanitized_git_override="${line_without_first_space/\"!git /}"
+			local sanitized_last_double_quote="${sanitized_git_override%\"}"
+			local git_alias="${sanitized_last_double_quote/ /\'git }"
+			echo "alias g${git_alias}'" >>"$alias_file"
 		fi
 
 	done <"$git_config_file"

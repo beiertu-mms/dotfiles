@@ -50,6 +50,7 @@
 	rea = rebase --abort
 	unstage = reset HEAD
 	af = add --force
+	reauto = "!git merge-base HEAD ${1:-master} | xargs git rebase --interactive --autostash --autosquash"
 [push]
 	default = current
 	autoSetupRemote = true

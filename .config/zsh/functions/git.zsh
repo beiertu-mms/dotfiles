@@ -11,12 +11,3 @@ function gen-gitignore() {
   fi
 }
 
-# Usage:       git-auto-rebase $1
-# Description: Fetch and start an interactive rebase from HEAD relative to the base_branch.
-# Params:
-#   - $1: the base_branch or if not given, will default to 'master'.
-function git-auto-rebase() {
-  git fetch
-  local ref=$(git merge-base HEAD "${1:-master}")
-  git rebase --interactive --autosquash --autostash "$ref"
-}
