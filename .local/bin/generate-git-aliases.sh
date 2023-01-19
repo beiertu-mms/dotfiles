@@ -71,8 +71,6 @@ _generate_alias_file() {
 alias g='git'
 alias dot="git --git-dir=\$HOME/data/github.com/beiertu-mms/dotfiles --work-tree=\$HOME"
 alias gup="git remote update -p && git merge --ff-only @{u}"
-alias ggen-ignore="!_gi() { curl -L -s https://www.gitignore.io/api/\$@ ;}; _gi"
-alias gsq="!_sq() { git rebase --interactive --autosquash \$(git merge-base HEAD \${1:-master}); }; _sq"
 
 EOF
 
