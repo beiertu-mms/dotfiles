@@ -14,8 +14,6 @@
 	navigate = true	# use n and N to move between diff sections
 	light = false		# set to true if using a light background
 	line-numbers = true
-[merge]
-	conflictstyle = diff3
 [diff]
 	colorMoved = default
 [commit]
