@@ -70,6 +70,7 @@ function update_cheatsheets() {
 function update_k8s_kind() {
 	print "update k8s kind"
 	go install sigs.k8s.io/kind@latest
+	kind completion zsh >"$HOME/.config/zsh/completion/_kind"
 }
 
 function update_pet() {
