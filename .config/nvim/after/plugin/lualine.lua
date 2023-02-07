@@ -43,7 +43,7 @@ end
 
 local lsp = {
   get_active_lsp,
-  icon = ' LSP:',
+  icon = ' ',
   color = { fg = 'teal', gui = 'bold' },
 }
 
@@ -61,7 +61,7 @@ lualine.setup({
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { { 'mode', fmt = function(str) return str:sub(1,1) end } },
+    lualine_a = { { 'mode', fmt = function(str) return " " .. str:sub(1,1) .. " " end } },
     lualine_b = { filename, 'diagnostics' },
     lualine_c = { 'diff' },
 
