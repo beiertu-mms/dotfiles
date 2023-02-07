@@ -31,6 +31,7 @@ set.undodir = os.getenv('XDG_DATA_HOME') .. '/nvim/undodir'
 set.undofile = true
 
 set.ruler = true
+set.cursorline = true
 
 set.ignorecase = true
 set.smartcase = true
