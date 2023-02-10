@@ -6,7 +6,7 @@
 [core]
 	editor = nvim
 	fileMode = false
-	excludesfile = ~/.config/git/git-templates/gitignore_global
+	excludesfile = ~/.config/git/gitignore_global
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
