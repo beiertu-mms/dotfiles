@@ -93,6 +93,6 @@ env_secrets.yaml
 secret.yaml
 sealedSecret.yaml
 
-SomeSpec.kt
-LocalTest.kt
+SomeSpec*
+LocalTest*
 
