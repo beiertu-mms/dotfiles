@@ -86,6 +86,7 @@ gradle-app.setting
 # Git patch files
 *.patch
 
+# Local stuffs
 run.sh
 
 env_secrets.yaml
@@ -93,3 +94,5 @@ secret.yaml
 sealedSecret.yaml
 
 SomeSpec.kt
+LocalTest.kt
+
