@@ -35,7 +35,7 @@ lsp.ensure_installed({
   'pyright',
   -- "spectral",
   'sqls',
-  'sumneko_lua',
+  'lua_ls',
   'terraformls',
   'vimls',
   'yamlls',
