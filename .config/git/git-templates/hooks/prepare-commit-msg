@@ -1,32 +1,44 @@
 #!/usr/bin/env bash
 
 # shellcheck disable=SC2009
-if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
-    # skip this as --no-verify was given as param
-    exit 0
+if ps -o args= $PPID | grep -E -q ' --no-verify| --amend| -n | -n$'; then
+	# skip this as --no-verify was given as param
+	exit 0
 else
-    if [ -f .git/MERGE_MSG ]; then
-        exit 0
-    fi
+	if [ -f .git/MERGE_MSG ]; then
+		exit 0
+	fi
 
-    if [ ! -f .git/COMMIT_EDITMSG ]; then
-        echo 'EDITMSG file does not exist. Exiting commit message preparation.'
-        exit 0
-    fi
+	if [ ! -f .git/COMMIT_EDITMSG ]; then
+		echo 'EDITMSG file does not exist. Exiting commit message preparation.'
+		exit 0
+	fi
 
-    if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
-        exit 0
-    fi
+	if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
+		exit 0
+	fi
 
-    branch_name=$(git symbolic-ref --short HEAD)
+	branch_name=$(git symbolic-ref --short HEAD)
 
-    # Replace '/' with ': '
-    branch_name_with_prefix="${branch_name/\//: }"
-    # Replace '_' with ': '
-    branch_name_with_prefix="${branch_name/_/: }"
+	components=$(echo "$branch_name" | tr '/' '\n' | wc -l)
 
-    commit_message="${branch_name_with_prefix//-/ }"
+	type=$(echo "$branch_name" | cut -d'/' -f1)
 
-    sed -i "1i $commit_message" .git/COMMIT_EDITMSG
-    exit 0
+	case "$components" in
+	2)
+		description=$(echo "$branch_name" | cut -d'/' -f2)
+		commit_message="$type: ${description//-/ }"
+		;;
+	3)
+		scope=$(echo "$branch_name" | cut -d'/' -f2)
+		description=$(echo "$branch_name" | cut -d'/' -f3)
+		commit_message="$type($scope): ${description//-/ }"
+		;;
+	*)
+		commit_message="$branch_name"
+		;;
+	esac
+
+	sed -i "1i $commit_message" .git/COMMIT_EDITMSG
+	exit 0
 fi
