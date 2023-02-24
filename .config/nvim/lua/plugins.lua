@@ -86,6 +86,11 @@ return packer.startup(function(use)
     'b0o/schemastore.nvim',
   })
 
+  use {
+    'ldelossa/gh.nvim',
+    requires = { { 'ldelossa/litee.nvim' } }
+  }
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
