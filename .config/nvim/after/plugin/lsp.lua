@@ -30,7 +30,7 @@ lsp.ensure_installed({
   'gopls',
   'html',
   'jsonls',
-  'kotlin_language_server',
+  -- 'kotlin_language_server',
   'marksman',
   'pyright',
   -- "spectral",
