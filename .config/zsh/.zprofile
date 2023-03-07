@@ -5,9 +5,6 @@
 #     /___| .__/|_|  \___/|_| |_|_|\___|
 #         |_|
 
-# Adds `~/.local/bin/` and all subdirectories to $PATH
-export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
-
 export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
@@ -41,8 +38,9 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
-PATH=$PATH:$HOME/.local/bin:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
-export PATH
+PATH=$PATH:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
+# Add `~/.local/bin/` and all subdirectories to $PATH
+export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
 
 export RAM_DISK_PATH="$HOME/downloads"
 export BACK_UP_PATH="$HOME/data/backup"
