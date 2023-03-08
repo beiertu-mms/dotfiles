@@ -1,5 +1,6 @@
 return {
   'VonHeikemen/lsp-zero.nvim', -- https://github.com/VonHeikemen/lsp-zero.nvim
+  branch = 'v1.x',
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
@@ -119,11 +120,6 @@ return {
       virtual_text = true,
     })
 
-    --[[
--- https://github.com/hrsh7th/nvim-cmp
--- https://github.com/L3MON4D3/LuaSnip
---]]
-    local cmp = require('cmp')
     local luasnip = require('luasnip')
 
     local kind_icons = {
