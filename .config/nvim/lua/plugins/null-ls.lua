@@ -2,7 +2,7 @@ return {
   'jose-elias-alvarez/null-ls.nvim', -- https://github.com/jose-elias-alvarez/null-ls.nvim
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = { 'mason.nvim' },
-  config = function()
+  opts = function()
     local null_ls = require('null-ls')
 
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -11,7 +11,7 @@ return {
       return client.name == 'null-ls'
     end
 
-    null_ls.setup({
+    return {
       sources = {
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.gofmt,
@@ -35,6 +35,6 @@ return {
           })
         end
       end,
-    })
+    }
   end,
 }
