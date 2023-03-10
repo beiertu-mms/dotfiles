@@ -6,7 +6,7 @@ if [ -x "$HOME/.config/X11/xprofile" ]; then
 fi
 
 [ -x "$HOME/.local/bin/change-keymap" ] && "$HOME"/.local/bin/change-keymap &
-[ -x "$HOME/.local/bin/generate-git-aliases.sh" ] && "$HOME"/.local/bin/generate-git-aliases.sh &
+[ -x "$HOME/.local/bin/generate-git-aliases" ] && "$HOME"/.local/bin/generate-git-aliases &
 
 [ -e "$HOME/.config/X11/Xresources" ] && xrdb -load "$HOME"/.config/X11/Xresources &
 
