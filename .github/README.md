@@ -1,6 +1,6 @@
 # <p align="center"><img src="https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png" alt="dotfiles logo" width="400"></p>
 
-<div align="center">
+<div style="text-align: center;">
 
   <a href="https://github.com/beiertu-mms/dotfiles/blob/master/.github/LICENSE.txt">![GitHub](https://img.shields.io/github/license/beiertu-mms/dotfiles?style=flat-square)</a>
   <a href="https://github.com/beiertu-mms/dotfiles/actions/workflows/linter.yaml">![GitHub](https://img.shields.io/github/actions/workflow/status/beiertu-mms/dotfiles/linter.yaml?style=flat-square)</a>
@@ -17,41 +17,70 @@ My dotfiles setup using [git](https://git-scm.com/) bare repository functionalit
   - [License](#license)
 
 ## Prerequisites
+
 - git
 - rsync (to set up a new machine)
 
 ## Set up from scratch
 
 1. Create a placeholder for git internal files  
-  `mkdir -p ~/dotfiles`
 
-1. Initialize the bare repository  
-  `git init --bare ~/dotfiles`
+```sh
+mkdir -p ~/dotfiles
+```
 
-1. Create an alias to interact with the dotfiles  
-  `alias dot='git --git-dir=~/dotfiles/ --work-tree=$HOME'`  
-  so instead of `git add` or `git status`, use `dot add`, `dot status` etc.
+2. Initialize the bare repository  
 
-1. Config git to ignore all files by default  
-  `dot config --local status.showUntrackedFiles no`
+```sh
+git init --bare ~/dotfiles
+```
 
-1. Now you are ready to track your dot files.  
+3. Create an alias to interact with the dotfiles  
 
-**Note:** To see which files are currently being tracked, use `dot ls-tree -r master --name-only`
+```sh
+alias dot='git --git-dir=~/dotfiles/ --work-tree=$HOME'
+```
+
+So now instead of `git add` or `git status`, use `dot add`, `dot status` etc.
+
+4. Configure git to ignore all files by default  
+
+```sh
+dot config --local status.showUntrackedFiles no
+```
+
+5. Now you are ready to track your dot files.  
+
+**Note:** To see which files are currently being tracked, use 
+
+```sh
+dot ls-tree -r master --name-only
+```
 
 ## Install the dotfiles on a new machine
 
 1. Clone to a temporary folder  
-  `git clone --separate-git-dir=~/dotfiles <remote-git-url> tmp-dotfiles`
 
-1. Synchronize the files  
-  `rsync --recursive --verbose --exclude '.git' tmp-dotfiles/ ~/`
+```sh
+git clone --separate-git-dir=~/dotfiles <remote-git-url> tmp-dotfiles
+```
 
-1. Remove the temporary folder  
-  `rm -rf tmp-dotfiles`
+2. Synchronize the files  
+
+```sh
+rsync --recursive --verbose --exclude '.git' tmp-dotfiles/ ~/
+```
+
+3. Remove the temporary folder  
+
+```sh
+rm -rf tmp-dotfiles
+```
 
 ## Credits
+
 - [dotfiles image](https://github.com/jglovier/dotfiles-logo/blob/main/dotfiles-logo.png) by [Joel Glovier](https://github.com/jglovier)
 
 ## License
+
 Distributed under the MIT License. See [LICENSE.txt](./LICENSE.txt) for more information.
