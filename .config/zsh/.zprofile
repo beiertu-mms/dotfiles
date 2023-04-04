@@ -21,9 +21,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 export TFENV_CONFIG_DIR="$HOME/.config/tfenv"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-M2_HOME=/opt/maven
-export M2_HOME
-
 JAVA_HOME=/usr/lib/jvm/default
 export JAVA_HOME
 
@@ -38,7 +35,7 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
-PATH=$PATH:$M2_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
+PATH=$PATH:/opt/maven/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
 # Add `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
 
