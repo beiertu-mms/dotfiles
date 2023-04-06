@@ -96,6 +96,27 @@ function update_ktlint() {
 	fi
 }
 
+function update_docker_compose() {
+	if command -v docker compose version &>/dev/null; then
+		print "update docker compose plugin"
+		# https://docs.docker.com/compose/install/linux/#install-the-plugin-manually
+		local latest_url="https://api.github.com/repos/docker/compose/releases/latest"
+		local current_version
+		current_version=$(docker compose version | cut -d' ' -f4)
+		local latest_version
+		latest_version=$(curl -s -H "Accept: application/vnd.github.v3+json" "$latest_url" | jq -r '.tag_name')
+
+		if [[ "$current_version" != "$latest_version" ]]; then
+			local output="${DOCKER_CONFIG:-$HOME/.docker}/cli-plugins/docker-compose"
+
+			# TODO verify download
+			curl "https://github.com/docker/compose/releases/download/${latest_version}/docker-compose-linux-x86_64" \
+				--output "$output"
+			chmod a+x "$output"
+		fi
+	fi
+}
+
 function update_arch() {
 	print "update arch"
 	yay -Syyu
@@ -111,6 +132,7 @@ update_cheatsheets
 update_k8s_kind
 update_pet
 update_ktlint
+update_docker_compose
 update_arch
 
 print "Finished"
