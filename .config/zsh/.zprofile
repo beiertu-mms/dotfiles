@@ -38,6 +38,9 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
+DOCKER_CONFIG=$HOME/.config/docker
+export DOCKER_CONFIG
+
 PATH=$PATH:$MAVEN_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
 # Add `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
