@@ -48,7 +48,7 @@ return {
       'jsonls',
       'marksman',
       'pyright',
-      'sqls',
+      -- 'sqlls',
       'lua_ls',
       'terraformls',
       'vimls',
@@ -61,6 +61,10 @@ return {
         Lua = {
           diagnostics = {
             globals = { 'vim' },
+          },
+          -- disable lsp semantic highlight for lua files as it is not currently working with nvim 0.9
+          semantic = {
+            enable = false,
           },
         },
       },
