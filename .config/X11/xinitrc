@@ -6,7 +6,6 @@ if [ -x "$HOME/.config/X11/xprofile" ]; then
 fi
 
 [ -x "$HOME/.local/bin/change-keymap" ] && "$HOME"/.local/bin/change-keymap &
-[ -x "$HOME/.local/bin/generate-git-aliases" ] && "$HOME"/.local/bin/generate-git-aliases &
 
 [ -e "$HOME/.config/X11/Xresources" ] && xrdb -load "$HOME"/.config/X11/Xresources &
 
@@ -17,10 +16,8 @@ numlockx &
 compton -CGb &
 
 # Screen layout and wallpaper
-"$HOME"/.local/bin/screenlayout.sh &&
-	feh --no-fehbg \
-		--bg-fill "$HOME"/.config/wallpapers/bg2.jpg \
-		--bg-fill "$HOME"/.config/wallpapers/bg.jpg &
+"$HOME"/.local/bin/screenlayout.sh &
+[ -x "$HOME/.local/bin/set-wallpapers" ] && "$HOME"/.local/bin/set-wallpapers &
 
 if [[ $(hostname) == "t480" ]]; then
 	amixer sset 'Master' 0% &
