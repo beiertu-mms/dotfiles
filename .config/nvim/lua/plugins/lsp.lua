@@ -55,17 +55,24 @@ return {
       'yamlls',
     })
 
-    -- Fix Undefined global 'vim'
     lsp.configure('lua_ls', {
       settings = {
         Lua = {
           diagnostics = {
+            -- Fix Undefined global 'vim'
             globals = { 'vim' },
           },
           -- disable lsp semantic highlight for lua files as it is not currently working with nvim 0.9
           semantic = {
             enable = false,
           },
+        },
+      },
+    })
+    lsp.configure('yamlls', {
+      settings = {
+        yaml = {
+          keyOrdering = false,
         },
       },
     })
