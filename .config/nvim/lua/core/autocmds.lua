@@ -37,3 +37,9 @@ autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = { '*.md', '*.txt' },
   command = 'setlocal spell spelllang=en_us',
 })
+
+-- Change indentation for file types
+autocmd('FileType', {
+  pattern = { '*.md', '*.json', '*.yaml', '*.yml' },
+  command = 'setlocal shiftwidth=2 tabstop=2',
+})
