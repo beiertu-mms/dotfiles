@@ -11,7 +11,7 @@ alias ld='ls -vlhF'
 
 alias vi='nvim'
 alias nv='nvim'
-alias vim="vim -u $XDG_CONFIG_HOME/vim/vimrc"
+alias vim="nvim"
 
 alias -g L='| bat --show-all --plain'
 alias -g C='| bat --show-all --paging=never'
