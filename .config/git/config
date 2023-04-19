@@ -1,5 +1,6 @@
 [init]
 	templatedir = ~/.config/git/git-templates
+	defaultBranch = master
 [user]
 	name = Tung Beier
 	email = beiertu@mediamarktsaturn.com
