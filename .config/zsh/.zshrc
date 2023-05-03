@@ -123,6 +123,7 @@ function () {
     ["zsh-users/zsh-autosuggestions"]="zsh-autosuggestions.plugin.zsh"
     ["zsh-users/zsh-completions"]="zsh-completions.plugin.zsh"
     ["zsh-users/zsh-syntax-highlighting"]="zsh-syntax-highlighting.plugin.zsh"
+    ["junegunn/fzf-git.sh"]="fzf-git.sh"
   )
   for PLUGIN_SOURCE PLUGIN_FILE in ${(kv)PLUGINS}; do
     local PLUGIN_NAME=$(echo "$PLUGIN_SOURCE" | cut -d"/" -f2)
@@ -134,6 +135,7 @@ function () {
     source "$PLUGIN_DIR/$PLUGIN_FILE"
   done
 }
+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Z.lua                                                                    #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#

@@ -11,3 +11,21 @@ function gen-gitignore() {
   fi
 }
 
+# Usage:       gco
+# Description: Use the function from fzf-git plugin to checkout branch.
+function gco() {
+  if [[ $# > 0 ]]; then
+    git checkout "$@"
+  else
+    local selected=$(_fzf_git_each_ref --no-multi)
+    [ -n "$selected" ] && git checkout "$selected"
+  fi
+}
+
+# Usage:       gedit
+# Description: Use the function from fzf-git plugin to find and edit file.
+function gedit() {
+  local selected=$(_fzf_git_files --no-multi)
+  [ -n "$selected" ] && $EDITOR "$selected"
+}
+
