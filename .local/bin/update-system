@@ -107,12 +107,13 @@ function update_docker_compose() {
 		latest_version=$(curl -s -H "Accept: application/vnd.github.v3+json" "$latest_url" | jq -r '.tag_name')
 
 		if [[ "$current_version" != "$latest_version" ]]; then
-			local output="${DOCKER_CONFIG:-$HOME/.docker}/cli-plugins/docker-compose"
+			local output="$HOME/downloads/docker-compose"
 
 			# TODO verify download
 			curl "https://github.com/docker/compose/releases/download/${latest_version}/docker-compose-linux-x86_64" \
 				--output "$output"
-			chmod a+x "$output"
+			chmod +x "$output"
+			doas mv "$output" /usr/local/lib/docker/cli-plugins/docker-compose
 		fi
 	fi
 }
