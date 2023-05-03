@@ -118,23 +118,20 @@ function () {
 #     Plugins                                                                  #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 function () {
-  local PLUGINS=(
-    "skywind3000/z.lua"
-    "zsh-users/zsh-autosuggestions"
-    "zsh-users/zsh-syntax-highlighting"
-    "zsh-users/zsh-completions"
-    )
-  local PLUGIN
-  for PLUGIN in "${PLUGINS[@]}"; do
-    local PLUGIN_NAME=$(echo "$PLUGIN" | cut -d"/" -f2)
-    local PLUGIN_DIR="${HOME}/.local/share/zsh/plugins/${PLUGIN_NAME}"
+  declare -A PLUGINS=(
+    ["skywind3000/z.lua"]="z.lua.plugin.zsh"
+    ["zsh-users/zsh-autosuggestions"]="zsh-autosuggestions.plugin.zsh"
+    ["zsh-users/zsh-completions"]="zsh-completions.plugin.zsh"
+    ["zsh-users/zsh-syntax-highlighting"]="zsh-syntax-highlighting.plugin.zsh"
+  )
+  for PLUGIN_SOURCE PLUGIN_FILE in ${(kv)PLUGINS}; do
+    local PLUGIN_NAME=$(echo "$PLUGIN_SOURCE" | cut -d"/" -f2)
+    local PLUGIN_DIR="$HOME/.local/share/zsh/plugins/$PLUGIN_NAME"
 
-    if [ -d "$PLUGIN_DIR" ]; then 
-      source "${PLUGIN_DIR}/${PLUGIN_NAME}.plugin.zsh" || \
-        source "${PLUGIN_DIR}/${PLUGIN_NAME}.zsh"
-    else
-      git clone "https://github.com/${PLUGIN}.git" "$PLUGIN_DIR"
+    if [ ! -d "$PLUGIN_DIR" ]; then 
+      git clone "git@github.com:$PLUGIN_SOURCE.git" "$PLUGIN_DIR"
     fi
+    source "$PLUGIN_DIR/$PLUGIN_FILE"
   done
 }
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
