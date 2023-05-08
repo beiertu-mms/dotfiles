@@ -14,13 +14,15 @@ function gen-gitignore() {
 # Usage:       gco
 # Description: Use the function from fzf-git plugin to checkout branch.
 function gco() {
+  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+
   if [[ $# > 0 ]]; then
     git checkout "$@"
   else
     local selected=$(_fzf_git_each_ref --no-multi)
-    [ -z "$selected" ] && exit 0
+    [ -z "$selected" ] && return
 
-    [[ "$selected" =~ '^origin/.*$' ]] \
+    [[ "$selected" =~ '^remotes/.*$' ]] \
         && git checkout --track "$selected" \
         || git checkout "$selected"
   fi
