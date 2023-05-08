@@ -18,7 +18,11 @@ function gco() {
     git checkout "$@"
   else
     local selected=$(_fzf_git_each_ref --no-multi)
-    [ -n "$selected" ] && git checkout "$selected"
+    [ -z "$selected" ] && exit 0
+
+    [[ "$selected" =~ '^origin/.*$' ]] \
+        && git checkout --track "$selected" \
+        || git checkout "$selected"
   fi
 }
 
