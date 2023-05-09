@@ -22,7 +22,7 @@ function gco() {
     local selected=$(_fzf_git_each_ref --no-multi)
     [ -z "$selected" ] && return
 
-    [[ "$selected" =~ '^remotes/.*$' ]] \
+    [[ "$selected" =~ '^origin/.*$' ]] \
         && git checkout --track "$selected" \
         || git checkout "$selected"
   fi
