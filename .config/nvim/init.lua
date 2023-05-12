@@ -34,6 +34,10 @@ local lazy_config = {
     eabled = true,
     frequency = 7200, -- check every 2 hour
   },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
 }
 
 require('lazy').setup('plugins', lazy_config)
