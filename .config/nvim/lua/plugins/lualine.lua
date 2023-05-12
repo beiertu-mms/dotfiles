@@ -20,14 +20,14 @@ return {
       path = 1, -- 0: Just the filename, 1: Relative path, 2: Absolute path
       shorting_target = 50, -- Shortens path to leave 50 spaces in the window
       symbols = {
-        modified = '🖊️',
-        readonly = '🔒',
-        unnamed = '📋',
+        modified = '󰏫',
+        readonly = '',
+        unnamed = '',
       },
     }
 
     local function get_active_lsp()
-      local msg = '❓'
+      local msg = ''
       local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
       local clients = vim.lsp.get_active_clients()
       if next(clients) == nil then
@@ -44,7 +44,7 @@ return {
 
     local lsp = {
       get_active_lsp,
-      icon = '⚙️ ',
+      icon = '',
       color = { fg = 'teal', gui = 'bold' },
     }
 
