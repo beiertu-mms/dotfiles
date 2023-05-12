@@ -35,14 +35,13 @@ format = '[$user@]($style)'
 format = '[$hostname](bold red) '
 
 [directory]
-#home_symbol = '🏠'
 style = 'blue bold'
-format = '[🗁 ]($style) [$read_only]($read_only_style)[$path]($style) '
+format = '[ ]($style) [$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
 style = 'green dimmed'
-#symbol = '☁️ '
+symbol = '󰀸 '
 format = '[$symbol$context:$namespace]($style) '
 
 [git_branch]
@@ -90,7 +89,7 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 [cmd_duration]
 disabled = false
 style = 'cyan dimmed'
-format = '[⌛$duration]($style) ' # ⚙ ⌛
+format = '[ $duration]($style) '
 
 [jobs]
 disabled = false
@@ -107,13 +106,10 @@ style = 'yellow'
 
 [character]
 format = '$symbol '
-#success_symbol = '[❯](bold green)'
-#error_symbol = '[❯](bold red)'
-#vicmd_symbol = '[❮](bold green)'
 
 [time]
 disabled = false
-format = '[$time]($style) ' # 🕒
+format = '[$time]($style) '
 time_format = "%T"
 style = 'cyan dimmed'
 
