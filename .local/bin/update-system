@@ -96,6 +96,36 @@ function update_ktlint() {
 	fi
 }
 
+function update_insomnia() {
+	print "update insomnia"
+
+	local -r releases_url="https://api.github.com/repos/Kong/insomnia/releases?per_page=2"
+	local -r latest_version=$(curl -s -H "Accept: application/vnd.github.v3+json" "$releases_url" |
+		jq -r '.[] | select(.prerelease = "false") | select(.name | startswith("Insomnia")) | .tag_name')
+
+	local -r state_folder=$HOME/.local/state/insomnia/
+	[ ! -d "$state_folder" ] && mkdir -p "$state_folder"
+
+	local -r version_file=$state_folder/version.txt
+	[ ! -f "$version_file" ] && touch "$version_file"
+
+	local -r version="${latest_version#core@}"
+
+	if grep -q "$version" "$version_file"; then
+		echo "insomnia is up-to-date"
+	else
+		local -r dl_dir="$HOME/downloads"
+		curl --location \
+			--remote-header-name \
+			--remote-name \
+			--output-dir "$dl_dir" \
+			"https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.tar.gz"
+		tar -xzf "${dl_dir}/Insomnia.Core-${version}.tar.gz" -C "${dl_dir}"
+		rsync -auv "${dl_dir}/Insomnia.Core-${version}/" "$HOME/.local/share/insomnia/"
+		echo "$version" >"$version_file"
+	fi
+}
+
 function update_docker_compose() {
 	if command -v docker compose version &>/dev/null; then
 		print "update docker compose plugin"
@@ -133,6 +163,7 @@ update_cheatsheets
 update_k8s_kind
 update_pet
 update_ktlint
+update_insomnia
 update_docker_compose
 update_arch
 
