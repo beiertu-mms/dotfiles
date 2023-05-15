@@ -91,8 +91,10 @@ return {
         { name = 'buffer', keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
       },
+      preselect = 'item',
       completion = {
         autocomplete = false,
+        completeopt = 'menu,menuone,noinsert',
       },
       mapping = {
         ['<C-Space>'] = cmp.mapping.complete(),
