@@ -44,5 +44,4 @@ require('lazy').setup('plugins', lazy_config)
 
 require('core.options')
 require('core.keymaps')
-require('core.netrw')
 require('core.autocmds')
