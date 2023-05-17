@@ -31,7 +31,22 @@ function gco() {
 # Usage:       gedit
 # Description: Use the function from fzf-git plugin to find and edit file.
 function gedit() {
+  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+
   local selected=$(_fzf_git_files --no-multi)
   [ -n "$selected" ] && $EDITOR "$selected"
 }
 
+# Usage:       gbase
+# Description: Output the base branch frow where the current branch has been created.
+# Link:        https://gist.github.com/joechrysler/6073741
+function gbase() {
+  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+
+  git show-branch -a 2>/dev/null \
+    | grep '\*' \
+    | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+    | head -n1 \
+    | sed 's/.*\[\(.*\)\].*/\1/' \
+    | sed 's/[\^~].*//'
+}
