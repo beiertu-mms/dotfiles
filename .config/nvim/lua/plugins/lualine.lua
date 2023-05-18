@@ -44,7 +44,7 @@ return {
 
     local lsp = {
       get_active_lsp,
-      icon = '',
+      icon = '󰒋',
       color = { fg = 'teal', gui = 'bold' },
     }
 
@@ -56,8 +56,8 @@ return {
       options = {
         icons_enabled = true,
         theme = custom_onedark,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'dashboard', 'NvimTree', 'Outline' },
         always_divide_middle = true,
       },
