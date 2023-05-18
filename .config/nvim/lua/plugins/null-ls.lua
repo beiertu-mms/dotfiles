@@ -14,10 +14,14 @@ return {
     return {
       sources = {
         null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.jq,
         null_ls.builtins.formatting.gofmt,
+        null_ls.builtins.formatting.ktlint,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.terraform_fmt,
+        null_ls.builtins.formatting.xmllint,
+        null_ls.builtins.formatting.yamlfmt,
       },
 
       on_attach = function(client, bufnr)
