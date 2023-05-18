@@ -1,14 +1,23 @@
 # Usage:       gen-gitignore $1
-# Description: Outputs a .gitignore file for `lang` from gitignore.io to stdout.
+# Description: Outputs a .gitignore for given `lang` from gitignore.io to stdout.
 # Params:
 #   - $1: can be one language name or a list of languages separated by comma.
-#         If not given, a list of available languages will be returned instead.
+#         If not given, a list of available languages will be shown in fzf
+#         and multiple entries can be selected with Tab or Shift-Tab.
 function gen-gitignore() {
+  local -r url="https://www.toptal.com/developers/gitignore/api"
+  local selected
   if [[ $# == 0 ]]; then
-    curl --location --silent "https://www.gitignore.io/api/list"
+    selected=$(curl --location --silent "$url/list" \
+      | tr ',' '\n' \
+      | fzf --multi \
+      | tr '\n' ',' \
+      | sed 's/,$//')
   else
-    curl --location --silent "https://www.gitignore.io/api/$1"
+    selected="$1"
   fi
+
+  [[ -n "$selected" ]] && curl --location --silent "$url/$selected"
 }
 
 # Usage:       gco
