@@ -14,7 +14,10 @@ function gen-gitignore() {
 # Usage:       gco
 # Description: Use the function from fzf-git plugin to checkout branch.
 function gco() {
-  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+  if ! command -v git status &>/dev/null; then
+    echo -e "${RED:-}not a git working directory${NC:-}"
+    return
+  fi
 
   if [[ $# > 0 ]]; then
     git checkout "$@"
@@ -31,7 +34,10 @@ function gco() {
 # Usage:       gedit
 # Description: Use the function from fzf-git plugin to find and edit file.
 function gedit() {
-  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+  if ! command -v git status &>/dev/null; then
+    echo -e "${RED:-}not a git working directory${NC:-}"
+    return
+  fi
 
   local selected=$(_fzf_git_files --no-multi)
   [ -n "$selected" ] && $EDITOR "$selected"
@@ -41,7 +47,10 @@ function gedit() {
 # Description: Output the base branch frow where the current branch has been created.
 # Link:        https://gist.github.com/joechrysler/6073741
 function gbase() {
-  [[ $(git rev-parse --is-inside-work-tree) == 'false' ]] && return
+  if ! command -v git status &>/dev/null; then
+    echo -e "${RED:-}not a git working directory${NC:-}"
+    return
+  fi
 
   git show-branch -a 2>/dev/null \
     | grep '\*' \

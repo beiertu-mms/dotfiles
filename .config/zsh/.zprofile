@@ -50,6 +50,12 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_COLLATE=C
 
+# Terminal colors
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export NC='\033[0m'
+
 # Start graphical server
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     exec startx
