@@ -26,8 +26,11 @@ alias mv='mv --verbose --interactive'
 alias rm='rm -I --verbose --preserve-root'
 alias mkdir='mkdir -v'
 alias mkd='mkdir -pv'
+alias mount='mount | column -t'
 
-alias gotop='gotop -l custom'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
 
 alias ktlint='ktlint --relative'
 
@@ -35,5 +38,4 @@ alias wget="wget --hsts-file $XDG_CONFIG_HOME/wget-hsts"
 alias sbt="sbt -ivy $XDG_DATA_HOME/ivy2 -sbt-dir $XDG_DATA_HOME/sbt"
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
-alias vscodium="vscodium --extensions-dir $XDG_DATA_HOME/vscodium"
 
