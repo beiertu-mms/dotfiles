@@ -20,33 +20,34 @@ function gen-gitignore() {
   [[ -n "$selected" ]] && curl --location --silent "$url/$selected"
 }
 
+# Usage:       _git_check
+# Description: Verify whether the current directory is a git repository.
+function _git_check() {
+  git rev-parse HEAD > /dev/null 2>&1 && return
+
+  echo -e "${RED:-}Not in a git repository${NC:-}"
+  return 1
+}
+
 # Usage:       gcoi
 # Description: Use the function from fzf-git plugin to checkout branch.
 function gcoi() {
-  if ! command -v git status &>/dev/null; then
-    echo -e "${RED:-}not a git working directory${NC:-}"
-    return
-  fi
+  _git_check || return
 
-  if [[ $# > 0 ]]; then
-    git checkout "$@"
-  else
-    local selected=$(_fzf_git_each_ref --no-multi)
-    [ -z "$selected" ] && return
+  [[ $# > 0 ]] && echo -e "${YELLOW:-}No parameters required.${NC:-} Parameter(s) '$@' will be ignored."
 
-    [[ "$selected" =~ '^origin/.*$' ]] \
-        && git checkout --track "$selected" \
-        || git checkout "$selected"
-  fi
+  local selected=$(_fzf_git_each_ref --no-multi)
+  [ -z "$selected" ] && return
+
+  [[ "$selected" =~ '^origin/.*$' ]] \
+      && git checkout --track "$selected" \
+      || git checkout "$selected"
 }
 
 # Usage:       gedit
 # Description: Use the function from fzf-git plugin to find and edit file.
 function gedit() {
-  if ! command -v git status &>/dev/null; then
-    echo -e "${RED:-}not a git working directory${NC:-}"
-    return
-  fi
+  _git_check || return
 
   local selected=$(_fzf_git_files --no-multi)
   [ -n "$selected" ] && $EDITOR "$selected"
@@ -56,12 +57,7 @@ function gedit() {
 # Description: Output the base branch frow where the current branch has been created.
 # Link:        https://gist.github.com/joechrysler/6073741
 function gbase() {
-  if ! command -v git status &>/dev/null; then
-    echo -e "${RED:-}not a git working directory${NC:-}"
-    return
-  fi
-
-  git show-branch -a 2>/dev/null \
+  _git_check && git show-branch -a 2>/dev/null \
     | grep '\*' \
     | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
     | head -n1 \
