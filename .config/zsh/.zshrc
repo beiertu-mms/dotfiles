@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS="
 --multi
 --preview-window=:hidden
 --preview 'bat {-1} --color=always'
---prompt='$ ' --pointer='▶' --marker='✗'
+--prompt='$ ' --pointer='▶' --marker=''
 --bind '?:toggle-preview'
 --bind 'ctrl-a:select-all'
 "
