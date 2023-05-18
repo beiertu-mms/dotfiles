@@ -20,9 +20,9 @@ function gen-gitignore() {
   [[ -n "$selected" ]] && curl --location --silent "$url/$selected"
 }
 
-# Usage:       gco
+# Usage:       gcoi
 # Description: Use the function from fzf-git plugin to checkout branch.
-function gco() {
+function gcoi() {
   if ! command -v git status &>/dev/null; then
     echo -e "${RED:-}not a git working directory${NC:-}"
     return
