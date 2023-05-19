@@ -81,11 +81,11 @@ function gcl() {
     return 1
   fi
 
-  local hostname=${BASH_REMATCH[3]}
-  local user=${BASH_REMATCH[4]}
-  local repo=${BASH_REMATCH[5]}
+  local hostname=$match[3]
+  local user=$match[4]
+  local repo=$match[5]
 
-  mkdir --parents "$base_folder/$hostname/$user/${repo%.git}" \
-      && git clone "$url" "$folder"
+  local folder="$base_folder/$hostname/$user/${repo%.git}"
+  mkdir --parents "$folder" && git clone "$url" "$folder"
 }
 
