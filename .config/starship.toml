@@ -16,9 +16,7 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$git_metrics\
 $kubernetes\
-$java\
 $jobs\
 $cmd_duration\
 $status\
@@ -29,27 +27,27 @@ $character
 add_newline = false
 
 [username]
-format = '[$user@]($style)'
+format = '[$user]($style)@'
 
 [hostname]
 format = '[$hostname](bold red) '
 
 [directory]
-style = 'blue bold'
-format = '[ ]($style) [$read_only]($read_only_style)[$path]($style) '
+style = 'blue'
+format = '[ ]($style)[$read_only]($read_only_style)[$path]($style) '
 
 [kubernetes]
 disabled = false
 style = 'green dimmed'
-symbol = '󰀸 '
+symbol = ' '
 format = '[$symbol$context:$namespace]($style) '
 
 [git_branch]
-disabled = false
+style = 'purple'
 format = '[$symbol$branch]($style) '
 
 [git_commit]
-disabled = false
+style = 'green'
 tag_disabled = false
 only_detached = true
 
@@ -67,29 +65,24 @@ am_or_rebase = 'AM/REBASE'
 
 [git_status]
 disabled = false
-format = '([\[ $ahead_behind$all_status\]]($style) )'
+format = '([\[$ahead_behind$all_status\]]($style) )'
 style = 'bold red'
-diverged = '⇄ ${ahead_count}⇡${behind_count}⇣ '
-ahead = '[${count}⇡ ](blue)'
-behind = '[${count}⇣ ](yellow)'
-up_to_date = '[✅](green)'
-conflicted = '${count}⤧  '
-stashed = '[${count}📦 ](yellow)'
-deleted = '${count}✘ '
-renamed = '${count}» '
-modified = '[${count}📝 ](yellow)'
-staged = '[${count}➕](green)'
-untracked = '[${count}❓](cyan)'
-
-[git_metrics]
-disabled = true
-added_style = "bold blue"
-format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+diverged = ' ${ahead_count} ${behind_count}'
+ahead = ' [${count}](blue)'
+behind = ' [${count}](yellow)'
+up_to_date = '[ ](green)'
+conflicted = ' ${count}⤧ '
+stashed = ' [${count}📦](yellow)'
+deleted = ' ${count}✘'
+renamed = ' ${count}»'
+modified = ' [${count}📝](yellow)'
+staged = ' [${count}➕](green)'
+untracked = ' [${count}❓](cyan)'
 
 [cmd_duration]
 disabled = false
 style = 'cyan dimmed'
-format = '[ $duration]($style) '
+format = '[ $duration]($style) '
 
 [jobs]
 disabled = false
@@ -99,10 +92,6 @@ format = '[$symbol $number]($style) '
 disabled = false
 map_symbol = true
 format = '[$symbol $status]($style) '
-
-[java]
-disabled = true
-style = 'yellow'
 
 [character]
 format = '$symbol '
