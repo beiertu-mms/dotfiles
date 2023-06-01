@@ -2,9 +2,19 @@ return {
   'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
   cmd = 'Telescope',
   keys = {
-    { '<C-p>', '<cmd>Telescope find_files<cr>', desc = 'Find all files' },
-    { '<C-n>', '<cmd>Telescope git_files<cr>', desc = 'Find files tracked by Git' },
     { '<C-s>', '<cmd>Telescope buffers<cr>', desc = 'Open files in buffers' },
+    {
+      '<C-n>',
+      function()
+        local opts = {}
+        vim.fn.system('git rev-parse --is-inside-work-tree')
+        if vim.v.shell_error == 0 then
+          require('telescope.builtin').git_files(opts)
+        else
+          require('telescope.builtin').find_files(opts)
+        end
+      end,
+    },
     --[[
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
@@ -17,7 +27,7 @@ return {
   opts = {
     defaults = {
       prompt_prefix = '  ',
-      selection_caret = ' ',
+      selection_caret = '▶ ',
       path_display = { 'smart' },
     },
     pickers = {
@@ -25,24 +35,26 @@ return {
         theme = 'dropdown',
         previewer = false,
         layout_config = {
-          height = 0.25,
-          width = 0.85,
+          height = 0.50,
+          width = 0.80,
         },
+        find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
       },
       git_files = {
         theme = 'dropdown',
         previewer = false,
         layout_config = {
-          height = 0.25,
-          width = 0.85,
+          height = 0.50,
+          width = 0.80,
         },
+        find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
       },
       buffers = {
         theme = 'dropdown',
         previewer = false,
         layout_config = {
-          height = 0.25,
-          width = 0.85,
+          height = 0.50,
+          width = 0.80,
         },
       },
     },
