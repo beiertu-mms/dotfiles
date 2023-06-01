@@ -56,6 +56,8 @@ export GREEN='\033[0;32m'
 export YELLOW='\033[0;33m'
 export NC='\033[0m'
 
+export XMLLINT_INDENT="    "
+
 # Start graphical server
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     exec startx
