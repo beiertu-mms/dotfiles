@@ -11,7 +11,6 @@ Xft.hintstyle:  hintslight
 ! special
 *.foreground:   #ABB2BF
 *.background:   #282C34
-*.cursorColor:  #ABB2BF
 
 ! black
 *.color0:       #282C34
