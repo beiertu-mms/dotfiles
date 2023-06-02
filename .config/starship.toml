@@ -9,8 +9,6 @@
 
 format = """
 $time\
-$username\
-$hostname\
 $directory\
 $git_branch\
 $git_commit\
@@ -26,25 +24,20 @@ $character
 
 add_newline = false
 
-[username]
-format = '[$user]($style)@'
-
-[hostname]
-format = '[$hostname](bold red) '
+[time]
+disabled = false
+format = '[$time]($style) '
+time_format = "%T"
+style = 'cyan dimmed'
 
 [directory]
+format = '[📂]($style)[$read_only]($read_only_style) [$path]($style) '
 style = 'blue'
-format = '[ ]($style)[$read_only]($read_only_style)[$path]($style) '
-
-[kubernetes]
-disabled = false
-style = 'green dimmed'
-symbol = ' '
-format = '[$symbol$context:$namespace]($style) '
+read_only='🔒'
 
 [git_branch]
-style = 'purple'
 format = '[$symbol$branch]($style) '
+style = 'purple'
 
 [git_commit]
 style = 'green'
@@ -65,24 +58,30 @@ am_or_rebase = 'AM/REBASE'
 
 [git_status]
 disabled = false
-format = '([\[$ahead_behind$all_status\]]($style) )'
-style = 'bold red'
-diverged = ' ${ahead_count} ${behind_count}'
-ahead = ' [${count}](blue)'
-behind = ' [${count}](yellow)'
-up_to_date = '[ ](green)'
-conflicted = ' ${count}⤧ '
-stashed = ' [${count}📦](yellow)'
-deleted = ' ${count}✘'
-renamed = ' ${count}»'
-modified = ' [${count}📝](yellow)'
-staged = ' [${count}➕](green)'
-untracked = ' [${count}❓](cyan)'
+format = '([\[$ahead_behind$all_status\]]($style)) '
+style = 'red'
+diverged = '🔀${ahead_count}${behind_count}'
+ahead = '[⬆️${count}](blue)'
+behind = '[⬇️${count}](yellow)'
+up_to_date = '[✅](green)'
+conflicted = '${count}❗'
+deleted = '${count}❌'
+stashed = '[${count}📦](white)'
+modified = '[${count}📝](yellow)'
+staged = '[${count}➕](green)'
+untracked = '${count}❓'
+renamed = '${count}🔄'
+
+[kubernetes]
+disabled = false
+format = '[$symbol $context:$namespace]($style) '
+style = 'green dimmed'
+symbol = '☁️'
 
 [cmd_duration]
 disabled = false
+format = '[⌛$duration]($style) '
 style = 'cyan dimmed'
-format = '[ $duration]($style) '
 
 [jobs]
 disabled = false
@@ -91,14 +90,8 @@ format = '[$symbol $number]($style) '
 [status]
 disabled = false
 map_symbol = true
-format = '[$symbol $status]($style) '
+format = '[$symbol$status]($style)'
 
 [character]
 format = '$symbol '
-
-[time]
-disabled = false
-format = '[$time]($style) '
-time_format = "%T"
-style = 'cyan dimmed'
 
