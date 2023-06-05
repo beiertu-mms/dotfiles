@@ -10,9 +10,6 @@
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Environment Variables                                                    #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-export TERMINAL="st"
-export TERM="st-256color" # 256 color schemes support
-
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 --info=inline

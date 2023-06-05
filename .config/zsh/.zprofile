@@ -8,7 +8,7 @@
 export EDITOR="nvim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
-export TERMINAL="st"
+export TERMINAL="kitty"
 export BROWSER="vivaldi-stable"
 export READER="zathura"
 export FILE="lf"
