@@ -5,6 +5,7 @@
   selectcmd = "fzf --ansi"
   backend = "gist"
   sortby = "command"
+  cmd = ["bash", "-c"]
 
 [Gist]
   file_name = "pet-snippet.toml"

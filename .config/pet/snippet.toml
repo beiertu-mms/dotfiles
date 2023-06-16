@@ -1,4 +1,10 @@
 [[snippets]]
+  description = "Download a YouTube video as mp3 file"
+  command = "yt-dlp -x -f bestaudio --audio-format mp3 '<video-link>' --output <folder=~/music>/<file-name>.mp3"
+  tag = ["shell"]
+  output = ""
+
+[[snippets]]
   description = "List all zsh functions"
   command = "print -l ${(ok)functions[(I)[^_]*]}"
   tag = ["zsh"]
@@ -83,6 +89,12 @@
   output = ""
 
 [[snippets]]
+  description = "Login to GitHub container registry"
+  command = "echo $CR_PAT | docker login ghcr.io -u <user-name> --password-stdin"
+  tag = ["github", "docker", "ghcr"]
+  output = ""
+
+[[snippets]]
   description = "Remove all docker container"
   command = "docker rm $(docker container ls -q)"
   tag = ["docker"]
@@ -94,3 +106,8 @@
   tag = ["gcp", "helm", "gitops"]
   output = ""
 
+[[snippets]]
+  description = "Run all selected docker compose file"
+  command = "docker compose $(fd -t f -e yaml -e yml . <path=.> | fzf | awk '{print \"-f \" $1}' | tr '\\n' ' ') <cmd=up> <additional_ops=-d>"
+  tag = ["docker", "compose"]
+  output = ""
