@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-if [[ -f ./git/MERGE_MODE ]]; then
-    exit 0
-fi
+main() {
+	[[ -f .git/MERGE_MODE ]] && exit 0
 
-commit_regex='((^Revert .*[^\.]$)|(^\[(NoRef-0|S5|[A-Z]{2,10}-[0-9]{1,7})\] [A-Z].*[^\. ]$))((\n(.*)?)+)?'
+	local -r commit_message=$(head -1 "$1")
+	local -r commit_types="build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test"
+	local -r convetional_commit_regex="^($commit_types){1}(\(.+\))?:\s{1}.+[^\.+\s+"
+	if [[ "$commit_message" =~ $convetional_commit_regex ]]; then
+		exit 0
+	fi
 
-RED='\033[0;31m'
-NC='\033[0m' # no color
+	echo "Invalid commit message '$commit_message'"
+	echo "See https://www.conventionalcommits.org/en/v1.0.0/#summary for more information."
+	exit 1
+}
 
-if [[ "$1" =~ ${commit_regex} ]]; then
-    echo -e "${RED}Wrong commit format. Aborting commit...${NC}\n" >&2
-    exit 1
-fi
-
+main "$@"
