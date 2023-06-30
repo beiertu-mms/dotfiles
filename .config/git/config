@@ -1,5 +1,5 @@
 [init]
-	templatedir = ~/.config/git/git-templates
+	templatedir = ~/.config/git/templates
 	defaultBranch = master
 [user]
 	name = Tung Beier
@@ -12,13 +12,13 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	navigate = true	# use n and N to move between diff sections
-	light = false		# set to true if using a light background
+	navigate = true # use n and N to move between diff sections
+	light = false   # set to true if using a light background
 	line-numbers = true
 [diff]
 	colorMoved = default
 [commit]
-	template = ~/.config/git/git-templates/git_commit_msg.txt
+	template = ~/.config/git/templates/commit_msg.txt
 [alias]
 	i = init
 	st = status -sb --show-stash
