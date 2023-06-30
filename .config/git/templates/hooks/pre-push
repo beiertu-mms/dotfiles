@@ -1,54 +1,40 @@
 #!/usr/bin/env bash
 
 function printCautionText() {
-    cat << END
-    ____________________
-   /                    \\
-   |      CAUTION!      |
-   \____________________/
-            !  !
-            L_ !
-           / _)!
-          / /__L
-_________/ (____)
-           (____)
-_________  (____)
-         \_(____)
-            !  !
-            \__/
+	cat <<END
 
->>>>> You are on ${prefix} <<<<<
+  ██████  █████  ██    ██ ████████ ██  ██████  ███    ██ ██ 
+ ██      ██   ██ ██    ██    ██    ██ ██    ██ ████   ██ ██ 
+ ██      ███████ ██    ██    ██    ██ ██    ██ ██ ██  ██ ██ 
+ ██      ██   ██ ██    ██    ██    ██ ██    ██ ██  ██ ██    
+  ██████ ██   ██  ██████     ██    ██  ██████  ██   ████ ██ 
 
+About to push to $1 branch...
 END
 }
 
-# shellcheck disable=SC2009
-if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$' ; then
-    # skip this as --no-verify was given as param
-    exit 0
-else
-    # ----- Variables -----
-    # branch name
-    name=$(git symbolic-ref --short HEAD)
-    # branch prefix, e.g. feature, bugfix, etc.
-    prefix=$(echo "${name}" | cut -d '/' -f 1)
+main() {
+	# shellcheck disable=SC2009
+	if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$'; then
+		exit 0
+	fi
 
-    # check regex
-    prefix_regex="^(master|develop|dev|integration|release|preview)$"
+	branch_name=$(git symbolic-ref --short HEAD)
+	if [[ "$branch_name" =~ ^(master|main|dev|prod)$ ]]; then
+		printCautionText "$branch_name"
 
-    # ----- Logic -----
-    if [[ ${prefix} =~ $prefix_regex ]]; then
-        printCautionText
+		exec </dev/tty
+		while read -r -p "Continue? (y/N) " yn; do
+			case $yn in
+			[Yy]) exit 0 ;;
+			*) exit 1 ;;
+			esac
+		done
+		exec <&-
+	fi
 
-        exec < /dev/tty
-        while read -r -p "Continue? (y/N) " yn; do
-            case $yn in
-                [Yy] ) exit 0;;
-                * ) exit 1;;
-            esac
-        done
-        exec <&-
-    else
-        exit 0
-    fi
-fi
+	exit 0
+}
+
+# Run script
+main
