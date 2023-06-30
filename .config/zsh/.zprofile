@@ -24,6 +24,9 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 MAVEN_HOME=/opt/maven
 export MAVEN_HOME
 
+MAVEN_DAEMON_HOME="$HOME/.local/share/mvnd"
+export MAVEN_DAEMON_HOME
+
 JAVA_HOME=/usr/lib/jvm/default
 export JAVA_HOME
 
@@ -38,7 +41,7 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
-PATH=$PATH:$MAVEN_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
+PATH=$PATH:$MAVEN_HOME/bin:$MAVEN_DAEMON_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
 # Add `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
 
