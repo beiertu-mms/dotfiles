@@ -1,20 +1,32 @@
 #!/usr/bin/env bash
 
-if [[ $(fd -t f -e 'kt' -e 'kts' . | wc -l) -gt 0 ]]; then
-    if ! command -v ktlint &>/dev/null; then
-        exit 0
-    fi
+format_kotlin() {
+	local -r modified_files=$(git diff --cached --relative --name-only --diff-filter=d -- '*.kt' '*.kts')
 
-    if [[ $(git status --short | wc -l) -gt 0 ]]; then
-        # https://github.com/pinterest/ktlint
-        git diff --name-only -z --cached --relative -- '*.kt' '*.kts' |
-            ktlint --relative --patterns-from-stdin=''
-    fi
-fi
+	[[ -z "$modified_files" ]] && exit 0
 
-if [[ $(fd -t f -e 'tf' . | wc -l) -gt 0 ]]; then
-    if ! command -v terraform &>/dev/null; then
-        exit 0
-    fi
-    terraform fmt -recursive
-fi
+	if ! command -v ktlint &>/dev/null; then
+		echo "[pre-commit] ktlint is not installed."
+		exit 0
+	fi
+
+	echo "$modified_files" | ktlint --format --relative --reporter=plain?group_by_file --patterns-from-stdin
+	git add $(echo "$modified_files" | tr '\n' ' ')
+}
+
+format_terraform() {
+	local -r modified_files=$(git diff --cached --relative --name-only --diff-filter=d -- '*.tf' | tr '\n' ' ')
+
+	[[ -z "$modified_files" ]] && exit 0
+
+	if ! command -v terraform &>/dev/null; then
+		echo "[pre-commit] terraform is not installed."
+		exit 0
+	fi
+
+	terraform fmt "$modified_files"
+	git add "$modified_files"
+}
+
+format_kotlin
+format_terraform
