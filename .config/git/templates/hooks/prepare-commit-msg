@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC2009
-if ps -o args= $PPID | grep -E -q ' --no-verify| --amend| -n | -n$'; then
-	# skip this as --no-verify was given as param
-	exit 0
-else
-	if [ -f .git/MERGE_MSG ]; then
+main() {
+	# shellcheck disable=SC2009
+	if ps -o args= $PPID | grep -E -q ' --no-verify| --amend| -n | -n$'; then
+		# skip this as --no-verify was given as param
 		exit 0
 	fi
+
+	[[ -f .git/MERGE_MSG ]] && exit 0
 
 	if [ ! -f .git/COMMIT_EDITMSG ]; then
-		echo 'EDITMSG file does not exist. Exiting commit message preparation.'
+		echo "[prepare-commit-msg] EDITMSG file does not exist. Exiting commit message preparation."
 		exit 0
 	fi
 
-	if [[ $(head -1 .git/COMMIT_EDITMSG) == [* ]]; then
-		exit 0
-	fi
+	[[ $(head -1 .git/COMMIT_EDITMSG) == [* ]] && exit 0
 
 	branch_name=$(git symbolic-ref --short HEAD)
 
@@ -40,5 +38,6 @@ else
 	esac
 
 	sed -i "1i $commit_message" .git/COMMIT_EDITMSG
-	exit 0
-fi
+}
+
+main
