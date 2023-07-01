@@ -5,10 +5,17 @@ main() {
 
 	local -r commit_message=$(head -1 "$1")
 
+	if [[ "$commit_message" =~ ^(#.*|\ *)$ ]]; then
+		echo -e "\n[commit-msg] Commit message can't be empty!"
+		exit 1
+	fi
+
+	[[ "$commit_message" =~ ^(Merge .+|Initial commit)$ ]] && exit 0
+
 	[[ "$commit_message" =~ ^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.+\))?:\ .+[^\.+\ +]$ ]] && exit 0
 
-	echo -e "\nINVALID COMMIT MESSAGE: '$commit_message'"
-	echo "See https://www.conventionalcommits.org/en/v1.0.0/#summary for more information."
+	echo -e "\n[commit-msg] Message '$commit_message' doesn't meet the Conventional Commit standard!"
+	echo "[commit-msg] See https://www.conventionalcommits.org/en/v1.0.0/#summary for more information."
 	exit 1
 }
 
