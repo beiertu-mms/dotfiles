@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+main() {
+	exec </dev/tty
+	while read -r -p "Push commit? (y/N) " yn; do
+		case $yn in
+		[Yy])
+			git push --set-upstream origin HEAD --force-with-lease
+			exit 0
+			;;
+		*)
+			exit 0
+			;;
+		esac
+	done
+	exec <&-
+}
+
+# Run script
+main
