@@ -2,8 +2,9 @@
 # Search with fd and return the selected value from fzf.
 #-------------------------------------------------------------------------------
 _search_with_fzf() {
-  local selected
-  selected=$(fd -E .git -E target -E build -E out -E .cache -H "$@" | fzf)
+  local -r selected=$(fd --color=always \
+      -E .git -E target -E build -E out -E .cache \
+      -H "$@" | fzf --ansi)
   echo "$selected"
 }
 
