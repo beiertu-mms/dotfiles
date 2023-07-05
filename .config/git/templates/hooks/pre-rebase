@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+function printCautionText() {
+	cat <<END
+
+  ██████  █████  ██    ██ ████████ ██  ██████  ███    ██ ██ 
+ ██      ██   ██ ██    ██    ██    ██ ██    ██ ████   ██ ██ 
+ ██      ███████ ██    ██    ██    ██ ██    ██ ██ ██  ██ ██ 
+ ██      ██   ██ ██    ██    ██    ██ ██    ██ ██  ██ ██    
+  ██████ ██   ██  ██████     ██    ██  ██████  ██   ████ ██ 
+
+About to rebase $1 branch...
+END
+}
+
+main() {
+	# shellcheck disable=SC2009
+	if ps -o args= $PPID | grep -E -q ' --no-verify| -n | -n$'; then
+		exit 0
+	fi
+
+	branch_name=$(git symbolic-ref --short HEAD)
+	if [[ "$branch_name" =~ ^(master|main|dev|prod)$ ]]; then
+		printCautionText "$branch_name"
+
+		exec </dev/tty
+		while read -r -p "Continue? (y/N) " yn; do
+			case $yn in
+			[Yy]) exit 0 ;;
+			*) exit 1 ;;
+			esac
+		done
+		exec <&-
+	fi
+
+	exit 0
+}
+
+# Run script
+main
