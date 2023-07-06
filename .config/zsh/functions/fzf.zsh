@@ -4,7 +4,8 @@
 _search_with_fzf() {
   local -r selected=$(fd --color=always \
       -E .git -E target -E build -E out -E .cache \
-      -H "$@" | fzf --ansi)
+      -H "$@" \
+      | fzf --ansi --select-1)
   echo "$selected"
 }
 
