@@ -14,14 +14,22 @@ return {
           require('telescope.builtin').find_files(opts)
         end
       end,
+      { desc = 'Find files' },
     },
-    --[[
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>ps', function()
-      builtin.grep_string({ search = vim.fn.input('Grep > ') })
-    end)
---]]
+    {
+      '<leader>/',
+      function()
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+          winblend = 10,
+          previewer = false,
+        }))
+      end,
+      { desc = '[/] Fuzzily search in current buffer' },
+    },
+    { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[S]earch [D]iagnostics' },
+    { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = '[S]earch by [G]rep' },
+    { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
+    { '<leader>sw', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [W]ord' },
   },
   dependencies = { 'nvim-lua/plenary.nvim', lazy = true },
   opts = {
