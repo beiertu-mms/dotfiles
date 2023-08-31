@@ -61,9 +61,11 @@ return {
       'yamlls',
     })
 
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    local config = require('lspconfig')
 
-    require('lspconfig').yamlls.setup({
+    config.lua_ls.setup(lsp.nvim_lua_ls())
+
+    config.yamlls.setup({
       settings = {
         yaml = {
           keyOrdering = false,
@@ -71,11 +73,24 @@ return {
       },
     })
 
-    require('lspconfig').jsonls.setup({
+    config.jsonls.setup({
       settings = {
         json = {
           schemas = require('schemastore').json.schemas(),
           validate = { enable = true },
+        },
+      },
+    })
+
+    config.gopls.setup({
+      settings = {
+        gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          analyses = {
+            unusedparams = true,
+            unreachable = true,
+          },
         },
       },
     })
