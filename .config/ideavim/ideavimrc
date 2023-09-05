@@ -12,5 +12,8 @@ set wrapscan
 
 set ideajoin
 set ideastatusicon=gray
-set surround
 
+Plug 'tpope/vim-surround'
+
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = "500" " in millis
