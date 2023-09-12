@@ -1,4 +1,7 @@
 """ See https://github.com/JetBrains/ideavim
+""" Map leader to space ---------------------
+let mapleader=" "
+
 """ Common settings ------------------------------------------------------------
 set number
 set relativenumber
@@ -9,11 +12,19 @@ set ignorecase
 set smartcase
 set visualbell
 set wrapscan
+set scrolloff=5
 
+""" Idea specific settings ------------------
 set ideajoin
 set ideastatusicon=gray
+set idearefactormode=keep
 
-Plug 'tpope/vim-surround'
+""" Plugins  --------------------------------
+set surround
+set highlightedyank
 
-Plug 'machakann/vim-highlightedyank'
-let g:highlightedyank_highlight_duration = "500" " in millis
+""" Plugin settings -------------------------
+let g:highlightedyank_highlight_duration = "250" " in millis
+
+""" Mappings --------------------------------
+map <leader>n <Action>(FileStructurePopup)
