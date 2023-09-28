@@ -73,3 +73,14 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
+-- Set terraform-vars filetype to terraform
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = augroup('set_filetype_of_tfvars'),
+  pattern = '*',
+  callback = function()
+    if vim.bo.filetype == 'terraform-vars' then
+      vim.cmd('set filetype=terraform')
+    end
+  end,
+})
