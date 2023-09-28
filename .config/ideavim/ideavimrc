@@ -27,4 +27,7 @@ set highlightedyank
 let g:highlightedyank_highlight_duration = "250" " in millis
 
 """ Mappings --------------------------------
+" https://github.com/JetBrains/ideavim?tab=readme-ov-file#executing-ide-actions
+" Don't use Ex mode, use Q to collapse all doc comments
+map Q <Action>(CollapseDocComments)
 map <leader>n <Action>(FileStructurePopup)
