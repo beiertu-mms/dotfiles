@@ -22,6 +22,7 @@ set idearefactormode=keep
 """ Plugins  --------------------------------
 set surround
 set highlightedyank
+set easymotion
 
 """ Plugin settings -------------------------
 let g:highlightedyank_highlight_duration = "250" " in millis
