@@ -62,3 +62,6 @@ vim.keymap.set('', '<Right>', '<NOP>')
 
 -- Open help in full window with 'H'
 vim.cmd([[ command! -nargs=1 -complete=help H h <args> | only ]])
+
+-- Open netrw, the file tree by vim
+vim.keymap.set('n', '<leader>n', vim.cmd.Ex)
