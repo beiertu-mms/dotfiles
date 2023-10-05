@@ -44,6 +44,13 @@ return {
 
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation') -- See `:help K` for why this keymap
       nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+      if vim.bo[bufnr].buftype ~= '' or vim.bo[bufnr].filetype == 'helm' then
+        vim.diagnostic.disable(bufnr)
+        vim.defer_fn(function()
+          vim.diagnostic.reset(nil, bufnr)
+        end, 1000)
+      end
     end)
 
     -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
@@ -52,6 +59,7 @@ return {
       'diagnosticls',
       'dockerls',
       'gopls',
+      'helm_ls',
       'html',
       'jsonls',
       'lua_ls',
