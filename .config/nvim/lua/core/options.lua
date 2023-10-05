@@ -33,6 +33,7 @@ set.undofile = true
 
 set.ruler = true
 set.cursorline = true
+set.cursorlineopt = 'number'
 
 set.ignorecase = true
 set.smartcase = true
