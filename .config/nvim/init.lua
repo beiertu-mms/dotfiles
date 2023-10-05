@@ -45,24 +45,3 @@ require('lazy').setup('plugins', lazy_config)
 require('core.options')
 require('core.keymaps')
 require('core.autocmds')
-
---[[
--- Change file types to helm if a 'Chart.yaml' file is found
---]]
-local isHelmfile = function(path)
-  local check = vim.fs.find('Chart.yaml', { path = vim.fs.dirname(path), upward = true })
-  return not vim.tbl_isempty(check)
-end
-
-vim.filetype.add({
-  extension = {
-    yaml = isHelmfile and 'helm' or 'yaml',
-    yml = isHelmfile and 'helm' or 'yaml',
-    tmpl = isHelmfile and 'helm' or 'tmpl',
-    tpl = isHelmfile and 'helm' or 'tpl',
-  },
-  filename = {
-    ['Chart.yaml'] = 'yaml',
-    ['Chart.lock'] = 'yaml',
-  },
-})

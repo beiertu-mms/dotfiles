@@ -80,7 +80,16 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
   callback = function()
     if vim.bo.filetype == 'terraform-vars' then
-      vim.cmd('set filetype=terraform')
+      vim.opt_local.filetype = 'terraform'
     end
+  end,
+})
+
+-- Set filetype to helm when the file is in certain paths
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = augroup('set_filetype_of_helm'),
+  pattern = { '*/templates/*.yaml', '*/templates/*.tpl', '*.gotmpl', 'helmfile*.yaml' },
+  callback = function()
+    vim.opt_local.filetype = 'helm'
   end,
 })
