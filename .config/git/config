@@ -32,7 +32,7 @@
 	f = fetch
 	l = log
 	ll = log -1
-	lp = log --pretty="%Cblue%h %Creset%s%C(auto)%d %C(dim white)[%ar]%Creset"
+	lp = log --pretty='%Cblue%h%Creset %s%C(auto)%d%Creset%C(dim white) %ar by %an %Creset'
 	a = add
 	c = commit --verbose
 	cp = cherry-pick
