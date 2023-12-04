@@ -93,3 +93,12 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
     vim.opt_local.filetype = 'helm'
   end,
 })
+
+-- Set filetype to sh for zsh file ending
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = augroup('set_filetype_of_shell'),
+  pattern = { '*.zsh' },
+  callback = function()
+    vim.opt_local.filetype = 'sh'
+  end,
+})
