@@ -89,6 +89,12 @@
   output = ""
 
 [[snippets]]
+  description = "Delete GitHub run(s) of the selected workflow"
+  command = "for id in $(gh run list --limit <limit=25> --workflow $(gh workflow list | fzf | cut -f3) --json databaseId | jq -r '.[].databaseId'); do gh run delete \"$id\"; done"
+  tag = ["gh", "github"]
+  output = ""
+
+[[snippets]]
   description = "Login to GitHub container registry"
   command = "echo $CR_PAT | docker login ghcr.io -u <user-name> --password-stdin"
   tag = ["github", "docker", "ghcr"]
@@ -101,19 +107,14 @@
   output = ""
 
 [[snippets]]
-  description = "Render a helm release locally"
-  command = "cat <release_yaml> | yq .spec.values | helm template <name> <charts_template> -f -"
-  tag = ["gcp", "helm", "gitops"]
-  output = ""
-
-[[snippets]]
   description = "Run all selected docker compose file"
   command = "docker compose $(fd -t f -e yaml -e yml . <path=.> | fzf | awk '{print \"-f \" $1}' | tr '\\n' ' ') <cmd=up> <additional_ops=-d>"
   tag = ["docker", "compose"]
   output = ""
 
 [[snippets]]
-  description = "Delete GitHub run(s) of the selected workflow"
-  command = "for id in $(gh run list --limit <limit=25> --workflow $(gh workflow list | fzf | cut -f3) --json databaseId | jq -r '.[].databaseId'); do gh run delete \"$id\"; done"
-  tag = ["gh", "github"]
+  description = "Render a helm release locally"
+  command = "cat <release_yaml> | yq .spec.values | helm template <name> <charts_template> -f -"
+  tag = ["gcp", "helm", "gitops"]
   output = ""
+
