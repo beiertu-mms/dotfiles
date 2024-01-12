@@ -75,7 +75,7 @@ renamed = '${count}🔄'
 [kubernetes]
 disabled = false
 format = '[$symbol $context:$namespace]($style) '
-style = 'green dimmed'
+style = 'white'
 symbol = '☁️'
 
 [cmd_duration]
