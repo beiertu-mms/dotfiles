@@ -73,3 +73,32 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
+-- Set terraform-vars filetype to terraform
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = augroup('set_filetype_of_tfvars'),
+  pattern = '*',
+  callback = function()
+    if vim.bo.filetype == 'terraform-vars' then
+      vim.opt_local.filetype = 'terraform'
+    end
+  end,
+})
+
+-- Set filetype to helm when the file is in certain paths
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = augroup('set_filetype_of_helm'),
+  pattern = { '*/templates/*.yaml', '*/templates/*.tpl', '*.gotmpl', 'helmfile*.yaml' },
+  callback = function()
+    vim.opt_local.filetype = 'helm'
+  end,
+})
+
+-- Set filetype to sh for zsh file ending
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = augroup('set_filetype_of_shell'),
+  pattern = { '*.zsh' },
+  callback = function()
+    vim.opt_local.filetype = 'sh'
+  end,
+})
