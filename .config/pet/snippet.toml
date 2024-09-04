@@ -118,3 +118,14 @@
   tag = ["gcp", "helm", "gitops"]
   output = ""
 
+[[snippets]]
+  description = "Assign temporary permission to GCP project"
+  command = "cloudctl permissions assign-temp --project $(gcloud projects list --sort-by=projectId --format=json | jq -r '.[].projectId' | fzf) \"roles/container.admin\""
+  tag = ["gcp", "cloudctl", "devops"]
+  output = ""
+
+[[snippets]]
+  description = "Open refactoring.guru"
+  command = "$BROWSER https://refactoring.guru/refactoring"
+  tag = ["browser", "www"]
+  output = ""
