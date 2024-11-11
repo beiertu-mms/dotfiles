@@ -29,14 +29,20 @@ function _git_check() {
   return 1
 }
 
-# Usage:       gcoi
+# Usage:       gcoi $1
 # Description: Use the function from fzf-git plugin to checkout branch.
+# Params:
+#   - $1: (Optional) Can be -b for branches or -t for tags.
 function gcoi() {
   _git_check || return
 
-  [[ $# > 0 ]] && echo -e "${YELLOW:-}No parameters required.${NC:-} Parameter(s) '$@' will be ignored."
+  local selected=""
+  case "$1" in
+    -b) selected=$(_fzf_git_branches --no-multi) ;;
+    -t) selected=$(_fzf_git_tags --no-multi) ;;
+    *) selected=$(_fzf_git_each_ref --no-multi) ;;
+  esac
 
-  local selected=$(_fzf_git_each_ref --no-multi)
   [ -z "$selected" ] && return
 
   [[ "$selected" =~ '^origin/.*$' ]] \
