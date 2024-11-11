@@ -17,10 +17,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint
-        uses: oxsecurity/megalinter/flavors/ci_light@v6.18.0 # see https://megalinter.io/flavors/
+        uses: oxsecurity/megalinter/flavors/ci_light@v6.18.0 # see https://megalinter.io/latest/flavors/ci_light/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
-          ENABLE: BASH,REPOSITORY
+          ENABLE: BASH,REPOSITORY_SECRETLINT,REPOSITORY_GITLEAKS
           PRINT_ALPACA: false
           FLAVOR_SUGGESTIONS: false
