@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Set VIM init environment variables 
-# to align directory as explain on
-# https://wiki.archlinux.org/title/XDG_Base_Directory
-export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
