@@ -11,7 +11,7 @@ format_kotlin() {
 	fi
 
 	echo "$modified_files" | ktlint --format --relative --reporter=plain?group_by_file --patterns-from-stdin
-	git add $(echo "$modified_files" | tr '\n' ' ')
+	git add "$(echo "$modified_files" | tr '\n' ' ')"
 }
 
 format_terraform() {
