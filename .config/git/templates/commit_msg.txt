@@ -6,3 +6,5 @@
 # (Optional body) Explain the WHY/WHAT vs. HOW
 #
 # (Optional footer) Links to relevant resources, etc.
+# Link to GitHub issue with: Closes, Fixes or Resolves
+# See also https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue
