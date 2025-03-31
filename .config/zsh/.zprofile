@@ -49,6 +49,7 @@ export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//
 
 export RAM_DISK_PATH="$HOME/downloads"
 export BACK_UP_PATH="$HOME/data/backup"
+export PASSWORD_STORE_DIR="$HOME/data/github.com/beiertu-mms/pass"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
