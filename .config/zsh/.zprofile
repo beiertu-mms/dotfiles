@@ -49,7 +49,11 @@ export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//
 
 export RAM_DISK_PATH="$HOME/downloads"
 export BACK_UP_PATH="$HOME/data/backup"
+
+# See also https://git.zx2c4.com/password-store/about/
 export PASSWORD_STORE_DIR="$HOME/data/github.com/beiertu-mms/pass"
+export PASSWORD_STORE_GENERATED_LENGTH=21
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
