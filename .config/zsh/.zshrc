@@ -102,6 +102,7 @@ function () {
     "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
     # Ssh agent from oh-my-zsh
     "$HOME/.local/share/zsh/plugins/ssh-agent/ssh-agent.plugin.zsh"
+    "$HOME/.local/bin/set-mms-envs.sh"
     )
   local SOURCE
   for SOURCE in "${SOURCES[@]}"; do
