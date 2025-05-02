@@ -13,7 +13,6 @@ numlockx &
 
 compton -CGb &
 
-command -v change-keymap &>/dev/null && change-keymap &
 command -v set-screenlayout &>/dev/null && set-screenlayout &
 command -v set-wallpapers &>/dev/null && set-wallpapers &
 
