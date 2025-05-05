@@ -5,6 +5,14 @@ return {
   opts = {
     style = 'dark',
     ending_tildes = true,
+
+    toggle_style_key = "<leader>ts",
+    toggle_style_list = {'dark', 'light'},
+
+    code_style = {
+        comments = 'italic',
+        functions = 'bold',
+    },
   },
   init = function()
     require('onedark').load()

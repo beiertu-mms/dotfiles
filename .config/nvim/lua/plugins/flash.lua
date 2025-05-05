@@ -1,6 +1,5 @@
 return {
-  -- https://github.com/folke/flash.nvim
-  'folke/flash.nvim',
+  'folke/flash.nvim', -- https://github.com/folke/flash.nvim
   opts = {},
   -- stylua: ignore
   keys = {

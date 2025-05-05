@@ -8,11 +8,7 @@ return {
     'markdown',
     'xml',
   },
-  config = function()
-    require('nvim-treesitter.configs').setup({
-      autotag = {
-        enable = true,
-      },
-    })
-  end,
+  opts = {
+    enable_close_on_slash = true,
+  },
 }
