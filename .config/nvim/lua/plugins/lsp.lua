@@ -1,4 +1,9 @@
 return {
+  {
+    'williamboman/mason.nvim', -- https://github.com/williamboman/mason.nvim
+    build = ':MasonUpdate',
+    opts = { ui = { border = 'single' } },
+  },
   -- see also https://lsp-zero.netlify.app/blog/you-might-not-need-lsp-zero.html
   {
     'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
@@ -7,12 +12,20 @@ return {
       -- Package manager to install and manage LSP servers, DAP servers, linters, and formatters.
       {
         'williamboman/mason-lspconfig.nvim', -- https://github.com/williamboman/mason-lspconfig.nvim
-        dependencies = { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+        dependencies = { 'williamboman/mason.nvim' },
       },
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      -- Schema Store
+      { 'b0o/schemastore.nvim' },
+      -- Pictograms for LSP
+      { 'onsails/lspkind.nvim' },
     },
     config = function()
       -- note: diagnostics are not exclusive to lsp servers
@@ -36,7 +49,6 @@ return {
           vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
           vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
           vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          -- vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
           vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         end,
       })
@@ -48,6 +60,7 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           'bashls',
+          'cuelsp',
           'diagnosticls',
           'dockerls',
           'gopls',
@@ -95,6 +108,45 @@ return {
               },
             })
           end,
+
+          yamlls = function()
+            lspconfig.yamlls.setup({
+              capabilities = lsp_capabilities,
+              settings = {
+                yaml = {
+                  keyOrdering = false,
+                },
+              },
+            })
+          end,
+
+          jsonls = function()
+            lspconfig.jsonls.setup({
+              capabilities = lsp_capabilities,
+              settings = {
+                json = {
+                  schemas = require('schemastore').json.schemas(),
+                  validate = { enable = true },
+                },
+              },
+            })
+          end,
+
+          gopls = function()
+            lspconfig.gopls.setup({
+              capabilities = lsp_capabilities,
+              settings = {
+                gopls = {
+                  completeUnimported = true,
+                  usePlaceholders = true,
+                  analyses = {
+                    unusedparams = true,
+                    unreachable = true,
+                  },
+                },
+              },
+            })
+          end,
         },
       })
 
@@ -102,12 +154,19 @@ return {
 
       cmp.setup({
         sources = {
+          { name = 'path' },
           { name = 'nvim_lsp' },
+          { name = 'buffer', keyword_length = 3 },
+          { name = 'luasnip', keyword_length = 2 },
+        },
+        preselect = 'item',
+        completion = {
+          autocomplete = false,
+          completeopt = 'menu,menuone,noinsert',
         },
         mapping = cmp.mapping.preset.insert({
           -- Enter key confirms completion item
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
-
           -- Ctrl + space triggers completion menu
           ['<C-Space>'] = cmp.mapping.complete(),
         }),
@@ -122,16 +181,5 @@ return {
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
-  },
-  {
-    'williamboman/mason.nvim', -- https://github.com/williamboman/mason.nvim
-    opts = {
-      ui = {
-        border = 'single',
-        keymaps = {
-          toggle_help = '?',
-        },
-      },
-    },
   },
 }
