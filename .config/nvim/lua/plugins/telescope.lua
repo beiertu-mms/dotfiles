@@ -1,6 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim', -- https://github.com/nvim-telescope/telescope.nvim
-  branch = '0.1.x',
+  tag = '0.1.8',
   cmd = 'Telescope',
   keys = {
     { '<C-s>', '<cmd>Telescope buffers<cr>', desc = 'Open files in buffers' },
@@ -30,12 +30,8 @@ return {
     { '<leader>sw', '<cmd>Telescope grep_string<cr>', desc = '[S]earch current [W]ord' },
   },
   dependencies = {
-    { 'nvim-lua/plenary.nvim', lazy = true },
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-      lazy = true,
-    },
+    { 'nvim-lua/plenary.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
     local telescope = require('telescope')
