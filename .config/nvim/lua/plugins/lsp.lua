@@ -1,10 +1,10 @@
+-- see also https://lsp-zero.netlify.app/blog/you-might-not-need-lsp-zero.html
 return {
   {
     'williamboman/mason.nvim', -- https://github.com/williamboman/mason.nvim
     build = ':MasonUpdate',
     opts = { ui = { border = 'single' } },
   },
-  -- see also https://lsp-zero.netlify.app/blog/you-might-not-need-lsp-zero.html
   {
     'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
     event = 'BufReadPre',
@@ -26,6 +26,7 @@ return {
       { 'b0o/schemastore.nvim' },
       -- Pictograms for LSP
       { 'onsails/lspkind.nvim' },
+      { url = 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
     },
     config = function()
       -- note: diagnostics are not exclusive to lsp servers
@@ -150,7 +151,12 @@ return {
         },
       })
 
+      require('lsp_lines').setup()
+
       vim.diagnostic.config({
+        -- Disable virtual_text since it's redundant due to lsp_lines.
+        virtual_text = false,
+        virtual_lines = true,
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '✘',
