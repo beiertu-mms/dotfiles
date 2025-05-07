@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 -- Enable spelling check for file types
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('decrease_indent_and_enable_wrap_and_spell'),
-  pattern = { 'gitcommit', 'markdown', 'json', 'text', 'yaml' },
+  pattern = { 'asciidoc', 'gitcommit', 'markdown', 'json', 'text', 'yaml' },
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
