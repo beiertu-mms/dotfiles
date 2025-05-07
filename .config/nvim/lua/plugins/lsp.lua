@@ -3,7 +3,16 @@ return {
   {
     'williamboman/mason.nvim', -- https://github.com/williamboman/mason.nvim
     build = ':MasonUpdate',
-    opts = { ui = { border = 'single' } },
+    opts = {
+      ui = {
+        border = 'single',
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
+      },
+    },
   },
   {
     'neovim/nvim-lspconfig', -- https://github.com/neovim/nvim-lspconfig
