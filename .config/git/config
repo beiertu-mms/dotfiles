@@ -35,7 +35,7 @@
 	f = fetch
 	l = log
 	ll = log -1
-	lp = log --pretty='%Cblue%h%Creset %s%C(auto)%d%Creset%C(dim white) %ar by %an %Creset'
+	lp = log --all --pretty='%Cblue%h%Creset %s%C(auto)%d%Creset%C(dim white) %ar by %an %Creset'
 	a = add
 	c = commit --verbose
 	ca = commit --verbose --amend
