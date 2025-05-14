@@ -9,6 +9,9 @@
 	fileMode = false
 	excludesfile = ~/.config/git/gitignore_global
 	pager = delta
+ 	preloadindex = true
+[advice]
+ 	statusHints = false
 [interactive]
 	diffFilter = delta --color-only
 [delta]
@@ -57,6 +60,8 @@
 [push]
 	default = current
 	autoSetupRemote = true
+[fetch]
+	writeCommitGraph = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
