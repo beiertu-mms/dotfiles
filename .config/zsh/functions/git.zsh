@@ -92,6 +92,8 @@ function gcl() {
   local repo=$match[5]
 
   local folder="$base_folder/$hostname/$user/${repo%.git}"
-  mkdir --parents "$folder" && git clone "$url" "$folder"
+  mkdir --parents "$folder" \
+    && git clone "$url" "$folder" \
+    && cd "$folder"
 }
 
