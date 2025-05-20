@@ -6,5 +6,6 @@ function render-helm-template() {
   CHARTS=$(fd -t d -d 1 '' ./charts | fzf)
   local release_file="${RELEASE##*/}"
 
-  yq '.spec.values' "$RELEASE" | helm template "${release_file%.yaml}" "$CHARTS" -f -
+  yq '.spec.values' "$RELEASE" |
+    helm template "${release_file%.yaml}" "$CHARTS" -f -
 }

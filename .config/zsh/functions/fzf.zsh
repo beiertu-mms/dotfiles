@@ -3,9 +3,9 @@
 #-------------------------------------------------------------------------------
 _search_with_fzf() {
   local -r selected=$(fd --color=always \
-      -E .git -E target -E build -E out -E .cache \
-      -H "$@" \
-      | fzf --ansi --select-1)
+    -E .git -E target -E build -E out -E .cache \
+    -H "$@" |
+    fzf --ansi --select-1)
   echo "$selected"
 }
 
@@ -24,4 +24,3 @@ function sf() {
   local -r selected=$(_search_with_fzf -t f "$@")
   [[ -n "$selected" ]] && $EDITOR "$selected" || return 0
 }
-

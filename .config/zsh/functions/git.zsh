@@ -8,11 +8,11 @@ function gen-gitignore() {
   local -r url="https://www.toptal.com/developers/gitignore/api"
   local selected
   if [[ $# == 0 ]]; then
-    selected=$(curl --location --silent "$url/list" \
-      | tr ',' '\n' \
-      | fzf --multi \
-      | tr '\n' ',' \
-      | sed 's/,$//')
+    selected=$(curl --location --silent "$url/list" |
+      tr ',' '\n' |
+      fzf --multi |
+      tr '\n' ',' |
+      sed 's/,$//')
   else
     selected="$1"
   fi
@@ -23,7 +23,7 @@ function gen-gitignore() {
 # Usage:       _git_check
 # Description: Verify whether the current directory is a git repository.
 function _git_check() {
-  git rev-parse HEAD > /dev/null 2>&1 && return
+  git rev-parse HEAD >/dev/null 2>&1 && return
 
   echo -e "${RED:-}Not in a git repository${NC:-}"
   return 1
@@ -38,16 +38,16 @@ function gcoi() {
 
   local selected=""
   case "$1" in
-    -b) selected=$(_fzf_git_branches --no-multi) ;;
-    -t) selected=$(_fzf_git_tags --no-multi) ;;
-    *) selected=$(_fzf_git_each_ref --no-multi) ;;
+  -b) selected=$(_fzf_git_branches --no-multi) ;;
+  -t) selected=$(_fzf_git_tags --no-multi) ;;
+  *) selected=$(_fzf_git_each_ref --no-multi) ;;
   esac
 
   [ -z "$selected" ] && return
 
-  [[ "$selected" =~ '^origin/.*$' ]] \
-      && git checkout --track "$selected" \
-      || git checkout "$selected"
+  [[ "$selected" =~ '^origin/.*$' ]] &&
+    git checkout --track "$selected" ||
+    git checkout "$selected"
 }
 
 # Usage:       gedit
@@ -63,12 +63,12 @@ function gedit() {
 # Description: Output the base branch frow where the current branch has been created.
 # Link:        https://gist.github.com/joechrysler/6073741
 function gbase() {
-  _git_check && git show-branch -a 2>/dev/null \
-    | grep '\*' \
-    | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
-    | head -n1 \
-    | sed 's/.*\[\(.*\)\].*/\1/' \
-    | sed 's/[\^~].*//'
+  _git_check && git show-branch -a 2>/dev/null |
+    grep '\*' |
+    grep -v "$(git rev-parse --abbrev-ref HEAD)" |
+    head -n1 |
+    sed 's/.*\[\(.*\)\].*/\1/' |
+    sed 's/[\^~].*//'
 }
 
 # Usage:       gcl $1 $2
@@ -92,8 +92,7 @@ function gcl() {
   local repo=$match[5]
 
   local folder="$base_folder/$hostname/$user/${repo%.git}"
-  mkdir --parents "$folder" \
-    && git clone "$url" "$folder" \
-    && cd "$folder"
+  mkdir --parents "$folder" &&
+    git clone "$url" "$folder" &&
+    cd "$folder"
 }
-
