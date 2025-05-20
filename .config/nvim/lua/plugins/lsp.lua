@@ -95,21 +95,12 @@ return {
               capabilities = lsp_capabilities,
               settings = {
                 Lua = {
-                  -- Disable telemetry
                   telemetry = { enable = false },
-                  runtime = {
-                    -- Tell the language server which version of Lua you're using
-                    -- (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                  },
-                  diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = { 'vim' },
-                  },
+                  runtime = { version = 'LuaJIT' },
+                  diagnostics = { globals = { 'vim' } },
                   workspace = {
                     checkThirdParty = false,
                     library = {
-                      -- Make the server aware of Neovim runtime files
                       vim.env.VIMRUNTIME,
                       '${3rd}/luv/library',
                     },
@@ -165,13 +156,13 @@ return {
       vim.diagnostic.config({
         -- Disable virtual_text since it's redundant due to lsp_lines.
         virtual_text = false,
-        virtual_lines = true,
+        virtual_lines = { only_current_line = true },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = '✘',
-            [vim.diagnostic.severity.WARN] = '▲',
-            [vim.diagnostic.severity.HINT] = '⚑',
-            [vim.diagnostic.severity.INFO] = '»',
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.HINT] = '󰉀',
+            [vim.diagnostic.severity.INFO] = '',
           },
         },
       })
