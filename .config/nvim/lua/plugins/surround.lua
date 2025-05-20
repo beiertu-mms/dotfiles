@@ -1,12 +1,6 @@
 return {
-  'kylechui/nvim-surround', -- https://github.com/kylechui/nvim-surround
-  version = '^3.0.0',
+  'echasnovski/mini.surround', -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
+  version = '*',
   event = 'VeryLazy',
-  opts = {
-    keymaps = {
-      normal = 'sa',
-      delete = 'sd',
-      change = 'sr',
-    },
-  },
+  opts = {},
 }
