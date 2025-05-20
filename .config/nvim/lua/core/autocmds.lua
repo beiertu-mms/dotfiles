@@ -37,23 +37,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
   command = 'set fo-=c fo-=r fo-=o',
 })
 
--- Change indentation for file types
--- Enable spelling check for file types
-vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('decrease_indent_and_enable_wrap_and_spell'),
-  pattern = { 'asciidoc', 'gitcommit', 'markdown', 'json', 'text', 'yaml' },
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-
-    if vim.bo.filetype ~= 'json' and vim.bo.filetype ~= 'yaml' then
-      vim.opt_local.wrap = true
-      vim.opt_local.spell = true
-      vim.opt_local.spelllang = { 'en_us', 'de_de' }
-    end
-  end,
-})
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup('highlight_yank'),
