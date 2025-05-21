@@ -48,6 +48,12 @@ return {
       color = { fg = 'teal', gui = 'bold' },
     }
 
+    local noice = {
+      require('noice').api.statusline.mode.get,
+      cond = require('noice').api.statusline.mode.has,
+      color = { fg = '#ff9e64' },
+    }
+
     local custom_onedark = require('lualine.themes.onedark')
     custom_onedark.normal.a.bg = '#61AFEF'
     custom_onedark.insert.a.bg = '#98C379'
@@ -73,7 +79,7 @@ return {
         lualine_b = { filename, 'diagnostics' },
         lualine_c = { 'diff' },
 
-        lualine_x = { lsp, 'encoding', 'fileformat', filetype },
+        lualine_x = { noice, lsp, 'encoding', 'fileformat', filetype },
         lualine_y = { 'branch', 'progress' },
         lualine_z = { 'location' },
       },
