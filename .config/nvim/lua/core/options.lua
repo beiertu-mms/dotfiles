@@ -47,8 +47,6 @@ set.scrolloff = 10
 set.signcolumn = 'yes'
 set.isfname:append('@-@')
 
-set.lazyredraw = true
-
 set.magic = true
 
 set.showmatch = true
