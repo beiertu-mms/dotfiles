@@ -3,6 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     formatters_by_ft = {
+      cue = { 'cue_fmt' },
       go = { 'gofmt' },
       json = { 'jq' },
       kotlin = { 'ktlint' },
