@@ -78,6 +78,7 @@ return {
           'html',
           'jsonls',
           'lua_ls',
+          'marksman',
           'pyright',
           'terraformls',
           'lemminx',
