@@ -43,9 +43,14 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
-PATH=$PATH:$MAVEN_HOME/bin:$M2_HOME/bin:$MAVEN_DAEMON_HOME/bin:$GOBIN:$JAVA_HOME/bin:$CARGO_HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin
-# Add `~/.local/bin/` and all subdirectories to $PATH
-export PATH="$PATH:$(find "$HOME/.local/bin" -type d | tr '\n' ':' | sed 's/:$//')"
+PATH=$PATH:$MAVEN_HOME/bin:$M2_HOME/bin:$MAVEN_DAEMON_HOME/bin
+PATH=$PATH:$GOBIN
+PATH=$PATH:$JAVA_HOME/bin
+PATH=$PATH:$CARGO_HOME/bin
+PATH=$PATH:${KREW_ROOT:-$HOME/.krew}/bin
+PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/.local/share/npm/bin
+export PATH
 
 export RAM_DISK_PATH="$HOME/downloads"
 export BACK_UP_PATH="$HOME/data/backup"
