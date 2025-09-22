@@ -17,7 +17,7 @@ jobs:
 
       - name: Lint
         # see https://megalinter.io/latest/flavors/ci_light/
-        uses: oxsecurity/megalinter/flavors/ci_light@e08c2b05e3dbc40af4c23f41172ef1e068a7d651 # v8.8.0
+        uses: oxsecurity/megalinter/flavors/ci_light@0dcbedd66ea456ba2d54fd350affaa15df8a0da3 # v9.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
