@@ -43,6 +43,9 @@ export CARGO_HOME
 KREW_ROOT=$HOME/.local/share/krew
 export KREW_ROOT
 
+ANSIBLE_HOME=$HOME/.local/share/ansible
+export ANSIBLE_HOME
+
 PATH=$PATH:$MAVEN_HOME/bin:$M2_HOME/bin:$MAVEN_DAEMON_HOME/bin
 PATH=$PATH:$GOBIN
 PATH=$PATH:$JAVA_HOME/bin
