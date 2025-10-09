@@ -28,10 +28,10 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root line)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=15"
 
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
 HIST_STAMPS="yyyy-mm-dd"
-HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Options                                                                  #
@@ -58,8 +58,16 @@ unsetopt menu_complete
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 fpath=(~/.config/zsh/completion $fpath)
 
-autoload -U compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-zstyle ':completion:*' menu select cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
+autoload -Uz compinit; compinit -d "$ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION"
+
+zstyle ':completion:*' menu select cache-path "$ZSH_CACHE_DIR/zcompcache"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
 
