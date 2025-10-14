@@ -95,7 +95,13 @@ bindkey '^e' edit-command-line
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     SSH-Agent                                                                #
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-zstyle :omz:plugins:ssh-agent lazy yes
+# https://wiki.archlinux.org/title/SSH_keys#SSH_agents
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [ ! -f "$SSH_AUTH_SOCK" ]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
 #     Files sourcing                                                           #
@@ -108,10 +114,7 @@ function () {
     # Google Cloud SDK.
     "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
     "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
-    # Ssh agent from oh-my-zsh
-    "$HOME/.local/share/zsh/plugins/ssh-agent/ssh-agent.plugin.zsh"
-    "$HOME/.local/bin/set-mms-envs.sh"
-    )
+  )
   local SOURCE
   for SOURCE in "${SOURCES[@]}"; do
     [ -e "$SOURCE" ] || continue
