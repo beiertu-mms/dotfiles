@@ -16,6 +16,7 @@ export DELTA_PAGER="bat"
 export PAGER="bat --plain"
 export DIFFPROG="nvim -d"
 export GNUPGHOME="$HOME/.config/gnupg"
+export GPG_TTY=$(tty)
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 # export CLOUDSDK_PYTHON="/usr/bin/python3" # set python execuable for gcloud
 export TFENV_CONFIG_DIR="$HOME/.config/tfenv"
