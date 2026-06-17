@@ -96,3 +96,10 @@ function gcl() {
     git clone "$url" "$folder" &&
     cd "$folder"
 }
+
+# Usage:       gclbr
+# Description: Clean up local branches, which don't exist on remote anymore.
+function gclbr() {
+  git fetch --prune
+  git branch -vv | grep 'gone]' | awk '{print $1}' | xargs git branch -D
+}
