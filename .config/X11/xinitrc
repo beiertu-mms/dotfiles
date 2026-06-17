@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
+# Copied from /etc/X11/xinit/xinitrc
+xinitdir="/etc/X11/xinit"
+if [ -d "$xinitdir"/xinitrc.d ]; then
+  for f in "$xinitdir/xinitrc.d"/?*.sh; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
 if [ -x "$HOME/.config/X11/xprofile" ]; then
-	# shellcheck disable=SC1091
-	source "$HOME"/.config/X11/xprofile
+  # shellcheck disable=SC1091
+  source "$HOME"/.config/X11/xprofile
 fi
 
 [ -e "$HOME/.config/X11/Xresources" ] && xrdb -load "$HOME"/.config/X11/Xresources &
@@ -16,23 +25,13 @@ compton -CGb &
 command -v set-screenlayout &>/dev/null && set-screenlayout &
 command -v set-wallpapers &>/dev/null && set-wallpapers &
 
-if [[ $(hostname) == "t480" ]]; then
-	amixer sset 'Master' 0% &
-	amixer sset 'Capture' 0% &
+amixer sset 'Master' 80% &
+amixer sset 'Capture' 80% &
 
-	command -v activate-touchpad-tapping &>/dev/null && activate-touchpad-tapping &
+# Workaround for jvm app to be correctly display in DWM
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
+wmname LG3D
 
-	exec i3
-else
-	amixer sset 'Master' 80% &
-	amixer sset 'Capture' 80% &
-
-	# Workaround for jvm app to be correctly display in DWM
-	export _JAVA_AWT_WM_NONREPARENTING=1
-	export AWT_TOOLKIT=MToolkit
-	wmname LG3D
-
-	dwmblocks >/dev/null 2>&1 &
-	exec dwm
-	# exec awesome
-fi
+dwmblocks >/dev/null 2>&1 &
+exec dwm
