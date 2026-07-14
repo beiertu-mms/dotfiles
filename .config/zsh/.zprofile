@@ -47,6 +47,9 @@ export KREW_ROOT
 ANSIBLE_HOME=$HOME/.local/share/ansible
 export ANSIBLE_HOME
 
+COPILOT_HOME=$HOME/.config/copilot
+export COPILOT_HOME
+
 PATH=$PATH:$MAVEN_HOME/bin:$M2_HOME/bin:$MAVEN_DAEMON_HOME/bin
 PATH=$PATH:$GOBIN
 PATH=$PATH:$JAVA_HOME/bin
@@ -54,6 +57,7 @@ PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:${KREW_ROOT:-$HOME/.krew}/bin
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.local/share/npm/bin
+PATH=$PATH:$HOME/.local/share/copilot/bin
 export PATH
 
 export RAM_DISK_PATH="$HOME/downloads"
