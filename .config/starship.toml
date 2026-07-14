@@ -26,14 +26,14 @@ add_newline = false
 
 [time]
 disabled = false
-format = '[\[$time\]]($style) '
+format = '[$time]($style) '
 time_format = "%T"
 style = 'cyan dimmed'
 
 [directory]
-format = '[📂]($style)[$read_only]($read_only_style) [$path]($style) '
+format = '[]($style)[$read_only]($read_only_style) [$path]($style) '
 style = 'blue'
-read_only='🔒'
+read_only='󰌾'
 
 [git_branch]
 format = '[$symbol$branch]($style) '
@@ -48,7 +48,7 @@ only_detached = true
 disabled = false
 format = '\([$state($progress_current/$progress_total)]($style)\) '
 style = 'bold yellow'
-cherry_pick = "[🍒 PICKING](bold red)"
+cherry_pick = "[ PICKING](bold red)"
 rebase = 'REBASING'
 merge = 'MERGING'
 revert = 'REVERTING'
@@ -59,28 +59,28 @@ am_or_rebase = 'AM/REBASE'
 [git_status]
 disabled = false
 format = '([\[$ahead_behind$all_status\]]($style)) '
-style = 'red'
-up_to_date = '[✅](green)'
-diverged = '🔀${ahead_count}${behind_count}'
-ahead = '[${count}⬆️](blue)'
-behind = '[${count}⬇️](yellow)'
-conflicted = '${count}❗'
-deleted = '${count}❌'
-stashed = '[${count}📦](white)'
-modified = '[${count}📝](yellow)'
-staged = '[${count}➕](green)'
-untracked = '${count}❓'
-renamed = '${count}🔄'
+style = 'purple'
+up_to_date = '[](green)'
+diverged = '[⇕${ahead_count}⇡${behind_count}⇣](red)'
+ahead = '[${count}⇡](blue)'
+behind = '[${count}⇣](yellow)'
+conflicted = '[${count}=](red)'
+deleted = '[${count}✘](red)'
+stashed = '[${count}\$](white)'
+modified = '[${count}!](yellow)'
+staged = '[${count}+](green)'
+untracked = '[${count}?](white)'
+renamed = '[${count}»](yellow)'
 
 [kubernetes]
 disabled = false
 format = '[$symbol $context:$namespace]($style) '
 style = 'white'
-symbol = '☁️'
+symbol = '󱇶'
 
 [cmd_duration]
 disabled = false
-format = '[⌛$duration]($style) '
+format = '[ $duration]($style) '
 style = 'cyan dimmed'
 
 [jobs]
