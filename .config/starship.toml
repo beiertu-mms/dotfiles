@@ -33,7 +33,7 @@ style = 'cyan dimmed'
 [directory]
 format = '[]($style)[$read_only]($read_only_style) [$path]($style) '
 style = 'blue'
-read_only='󰌾'
+read_only='󰌾 '
 
 [git_branch]
 format = '[$symbol$branch]($style) '
@@ -60,23 +60,23 @@ am_or_rebase = 'AM/REBASE'
 disabled = false
 format = '([\[$ahead_behind$all_status\]]($style)) '
 style = 'purple'
-up_to_date = '[](green)'
-diverged = '[⇕${ahead_count}⇡${behind_count}⇣](red)'
-ahead = '[${count}⇡](blue)'
-behind = '[${count}⇣](yellow)'
-conflicted = '[${count}=](red)'
-deleted = '[${count}✘](red)'
-stashed = '[${count}\$](white)'
-modified = '[${count}!](yellow)'
-staged = '[${count}+](green)'
-untracked = '[${count}?](white)'
-renamed = '[${count}»](yellow)'
+up_to_date = '[ ](green)'
+diverged = '[ ${ahead_count} ${behind_count} ](red)'
+ahead = '[${count} ](blue)'
+behind = '[${count} ](yellow)'
+conflicted = '[${count}󰦎 ](red)'
+deleted = '[${count}✘ ](red)'
+stashed = '[${count}󰏗 ](white dimmed)'
+modified = '[${count} ](yellow)'
+staged = '[${count}󱇬 ](green)'
+untracked = '[${count} ](white)'
+renamed = '[${count} ](yellow)'
 
 [kubernetes]
 disabled = false
 format = '[$symbol $context:$namespace]($style) '
 style = 'white'
-symbol = '󱇶'
+symbol = '󱇶 '
 
 [cmd_duration]
 disabled = false
@@ -90,7 +90,7 @@ format = '[$symbol $number]($style) '
 [status]
 disabled = false
 map_symbol = true
-format = '[$symbol$status]($style)'
+format = '[$symbol $status]($style)'
 
 [character]
 format = '$symbol '
