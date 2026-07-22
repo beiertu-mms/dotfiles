@@ -1,8 +1,10 @@
 return {
   'nvim-treesitter/nvim-treesitter', -- https://github.com/nvim-treesitter/nvim-treesitter
+  branch = 'main',
   version = false,
   build = ':TSUpdate',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
+  cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
   opts = {
     ensure_installed = {
       'c',
@@ -54,6 +56,6 @@ return {
     },
   },
   config = function(_, opts)
-    require('nvim-treesitter.configs').setup(opts)
+    require('nvim-treesitter').setup(opts)
   end,
 }
