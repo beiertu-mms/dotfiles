@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://gh-dash.dev/schema.json
+notificationsSections:
+  - title: "Unread"
+    filters: "is:unread"
+  - title: "All"
+    filters: ""
+  - title: "Done"
+    filters: "is:done"
+
+prSections:
+  - title: "Needs My Review"
+    filters: "is:open review-requested:@me"
+  - title: "Mine"
+    filters: "is:open author:@me"
+
+issuesSections:
+  - title: "Mine"
+    filters: "is:open author:@me"
+  - title: "Assigned"
+    filters: "is:open assignee:@me"
+  - title: "Involved"
+    filters: "is:open involves:@me -author:@me"
+
+pager:
+  diff: delta
+
+showAuthorIcons: true
+smartFilteringAtLaunch: true
+
+defaults:
+  view: notifications
+  refetchIntervalMinutes: 5
+  prsLimit: 20
+  issuesLimit: 20
+  notificationsLimit: 20
+  prApproveComment: ""
+  preview:
+    open: true
+    width: 0.60
+
+keybindings:
+  universal: []
+  prs:
+    - key: R
+      name: code review
+      command: >
+        tmux new-window -c {{.RepoPath}} '
+        nvim -c ":silent Octo pr edit {{.PrNumber}}"
+        '
+    - key: A
+      name: approve
+      command: >
+        gh pr review --repo {{.RepoName}} --approve {{.PrNumber}}
+
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      compact: false
+      showSeparator: true
+  # https://github.com/catppuccin/gh-dash
+  colors:
+    text:
+      primary: "#cad3f5"
+      secondary: "#8bd5ca"
+      inverted: "#181926"
+      faint: "#b8c0e0"
+      warning: "#eed49f"
+      success: "#a6da95"
+      error: "#ed8796"
+    background:
+      selected: "#363a4f"
+    border:
+      primary: "#8bd5ca"
+      secondary: "#494d64"
+      faint: "#363a4f"
+
