@@ -63,9 +63,20 @@ mkdir -p "$ZSH_CACHE_DIR"
 
 autoload -Uz compinit; compinit -d "$ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION"
 
-zstyle ':completion:*' menu select cache-path "$ZSH_CACHE_DIR/zcompcache"
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/zcompcache"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*:*:*:*:matches' group 'yes'
+zstyle ':completion:*:*:*:*:options' description 'yes'
+zstyle ':completion:*:*:*:*:options' auto-description '%d'
+zstyle ':completion:*:*:*:*:descriptions' format ' %F{magenta} -- %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{yellow} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 zmodload zsh/complist
