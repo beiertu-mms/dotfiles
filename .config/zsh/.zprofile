@@ -21,6 +21,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 # export CLOUDSDK_PYTHON="/usr/bin/python3" # set python execuable for gcloud
 export TFENV_CONFIG_DIR="$HOME/.config/tfenv"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export NVM_DIR="$HOME/.local/share/nvm"
 
 MAVEN_HOME=/user/share/java/maven
 M2_HOME=/user/share/java/maven

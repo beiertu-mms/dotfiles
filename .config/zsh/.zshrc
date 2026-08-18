@@ -128,6 +128,8 @@ function () {
     # Google Cloud SDK.
     "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
     "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
+    # NVM
+    "$HOME/.local/share/nvm/nvm.sh"
   )
   local SOURCE
   for SOURCE in "${SOURCES[@]}"; do
