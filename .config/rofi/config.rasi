@@ -1,12 +1,12 @@
 // https://github.com/davatorium/rofi/blob/next/CONFIG.md
 configuration {
-  modes: [window,run];
+  modes: [window,run,ssh,combi];
   combi-modi: [window,run,ssh];
   display-combi: " :";
   display-drun: " :";
   display-filebrowser: " ";
   display-keys: " :";
-  display-run: " :";
+  display-run: " :";
   display-ssh: " :";
   display-window: " :";
   display-windowcd: " :";
