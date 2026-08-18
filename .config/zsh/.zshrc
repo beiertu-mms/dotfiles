@@ -65,7 +65,7 @@ autoload -Uz compinit; compinit -d "$ZSH_CACHE_DIR/zcompdump-$ZSH_VERSION"
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/zcompcache"
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' group-name ''
@@ -73,11 +73,14 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:*:*:matches' group 'yes'
 zstyle ':completion:*:*:*:*:options' description 'yes'
 zstyle ':completion:*:*:*:*:options' auto-description '%d'
-zstyle ':completion:*:*:*:*:descriptions' format ' %F{magenta} -- %d --%f'
+zstyle ':completion:*:*:*:*:descriptions' format '[%d]'
 zstyle ':completion:*:*:*:*:messages' format ' %F{yellow} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=enter:accept
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
@@ -140,10 +143,11 @@ function () {
 function () {
   declare -A PLUGINS=(
     ["skywind3000/z.lua"]="z.lua.plugin.zsh"
+    ["Aloxaf/fzf-tab"]="fzf-tab.plugin.zsh"
+    ["junegunn/fzf-git.sh"]="fzf-git.sh"
     ["zsh-users/zsh-autosuggestions"]="zsh-autosuggestions.plugin.zsh"
     ["zsh-users/zsh-completions"]="zsh-completions.plugin.zsh"
     ["zsh-users/zsh-syntax-highlighting"]="zsh-syntax-highlighting.plugin.zsh"
-    ["junegunn/fzf-git.sh"]="fzf-git.sh"
   )
   for PLUGIN_SOURCE PLUGIN_FILE in ${(kv)PLUGINS}; do
     local PLUGIN_NAME=$(echo "$PLUGIN_SOURCE" | cut -d"/" -f2)
