@@ -27,7 +27,7 @@ command -v set-screenlayout &>/dev/null && set-screenlayout &
 command -v set-wallpapers &>/dev/null && set-wallpapers &
 
 amixer sset 'Master' 80% &
-amixer sset 'Capture' 80% &
+amixer sset 'Capture' 60% &
 
 # Workaround for jvm app to be correctly display in DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
