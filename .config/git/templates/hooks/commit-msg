@@ -12,7 +12,7 @@ main() {
 
 	[[ "$commit_message" =~ ^(Merge .+|Initial commit)$ ]] && exit 0
 
-	[[ "$commit_message" =~ ^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.+\))?:\ .+[^\.+\ +]$ ]] && exit 0
+	[[ "$commit_message" =~ ^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.+\))?!?:\ .+[^\.+\ +]$ ]] && exit 0
 
 	echo -e "\n[commit-msg] Message '$commit_message' doesn't meet the Conventional Commit standard!"
 	echo "[commit-msg] See https://www.conventionalcommits.org/en/v1.0.0/#summary for more information."
